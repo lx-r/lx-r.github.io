@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: cpp | 知行空间</title>
+    
+    
+        <meta name="keywords" content="C++" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="0.程序中的内存 静态内存用来保存局部static对象，类static数据成员，以及定义在任何函数之外的变量。栈内存用来保存定义在函数内的非static对象。分配在静态或栈内存中的对象由编译器自动创建和销毁。对于栈对象，仅在其定义的程序块运行时才存在；static对象的在使用之前分配，在程序结束时销毁。 除了静态内存和栈内存，每个程序还拥有一个内存池。这部分的内存被称作自由空间或堆。程序用堆来存储">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(七)C++中的内存管理">
+<meta property="og:url" content="https://foobarweb.net/2022/04/17/7memory-manage/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="0.程序中的内存 静态内存用来保存局部static对象，类static数据成员，以及定义在任何函数之外的变量。栈内存用来保存定义在函数内的非static对象。分配在静态或栈内存中的对象由编译器自动创建和销毁。对于栈对象，仅在其定义的程序块运行时才存在；static对象的在使用之前分配，在程序结束时销毁。 除了静态内存和栈内存，每个程序还拥有一个内存池。这部分的内存被称作自由空间或堆。程序用堆来存储">
+<meta property="og:locale">
+<meta property="og:image" content="https://foobarweb.net/images/cpp/7memory-manage/memory.jpg">
+<meta property="article:published_time" content="2022-04-17T04:08:47.000Z">
+<meta property="article:modified_time" content="2022-04-17T05:52:26.163Z">
+<meta property="article:author" content="Alasky">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://foobarweb.net/images/cpp/7memory-manage/memory.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file active"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式下标</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-7memory-manage" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/C/">C++</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/17/7memory-manage/">
+            <time datetime="2022-04-17T04:08:47.000Z" itemprop="datePublished">2022-04-17</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/7memory-manage.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/7memory-manage.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/7memory-manage.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            (七)C++中的内存管理
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98"><span class="toc-number">1.</span> <span class="toc-text">0.程序中的内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c%E8%AF%AD%E8%A8%80%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">1.C语言的内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#malloc"><span class="toc-number">2.1.</span> <span class="toc-text">1.1malloc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#realloc"><span class="toc-number">2.2.</span> <span class="toc-text">1.2realloc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memset"><span class="toc-number">2.3.</span> <span class="toc-text">1.3memset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memcpy"><span class="toc-number">2.4.</span> <span class="toc-text">1.4 memcpy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#memmove"><span class="toc-number">2.5.</span> <span class="toc-text">1.5 memmove</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calloc"><span class="toc-number">2.6.</span> <span class="toc-text">1.6 calloc</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c%E4%B8%AD%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">2.C++中内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 智能指针</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new%E5%92%8Cdelete"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 new和delete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#new%E4%B8%8Edelete"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 new[]与delete[]</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#allocator%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">3.allocator类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="程序中的内存">0.程序中的内存</h2>
+<p>静态内存用来保存局部<code>static</code>对象，类<code>static</code>数据成员，以及定义在任何函数之外的变量。栈内存用来保存定义在函数内的非<code>static</code>对象。分配在静态或栈内存中的对象由编译器自动创建和销毁。对于栈对象，仅在其定义的程序块运行时才存在；<code>static</code>对象的在使用之前分配，在程序结束时销毁。</p>
+<p>除了静态内存和栈内存，每个程序还拥有一个内存池。这部分的内存被称作自由空间或<strong>堆</strong>。程序用堆来存储动态分配的对象，即在程序运行时分配的对象。动态对象的生存期由程序来控制，即当动态对象不再使用时必须显式的销毁它。</p>
+<h2 id="c语言的内存管理">1.C语言的内存管理</h2>
+<p><img src="/images/cpp/7memory-manage/memory.jpg"></p>
+<h3 id="malloc">1.1malloc</h3>
+<p>包含头文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> *cp = <span class="built_in">malloc</span>( <span class="number">200</span> * <span class="keyword">sizeof</span>(<span class="type">char</span>) );</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">malloc</span><span class="params">(<span class="type">int</span> num)</span></span><br></pre></td></tr></table></figure>
+<p>分配 <code>num</code> bytes大小的未初始化的内存</p>
+<h3 id="realloc">1.2realloc</h3>
+<p>Resizing memory allocated, 当malloc分配的内存不够使用时，使用 <code>realloc</code>重新分配, <strong>使用 <code>malloc</code> 分配的内存在使用结束的时候必须使用 <code>free</code>函数进行释放，否则会造成内存泄漏</strong>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="type">char</span> *cp = <span class="built_in">malloc</span>( <span class="number">200</span> * <span class="keyword">sizeof</span>(<span class="type">char</span>) );</span><br><span class="line"></span><br><span class="line"><span class="comment">/* suppose you want to store bigger cp */</span></span><br><span class="line">cp = <span class="built_in">realloc</span>( cp, <span class="number">100</span> * <span class="keyword">sizeof</span>(<span class="type">char</span>) );</span><br><span class="line"></span><br><span class="line"><span class="built_in">free</span>(cp);</span><br></pre></td></tr></table></figure>
+<h3 id="memset">1.3memset</h3>
+<p>在使用数组的时候经常因为没有初始化而产生“烫烫烫烫烫烫”这样的野值，俗称“乱码”,memset() 函数可以说是初始化内存的“万能函数”，通常为新申请的内存进行初始化工作。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> *<span class="title function_">memset</span><span class="params">(<span class="type">void</span> *s, <span class="type">int</span> c, <span class="type">unsigned</span> <span class="type">long</span> n)</span>;</span><br></pre></td></tr></table></figure>
+<p>将指针变量 s 所指向的前 n 字节的内存单元用一个“整数” c 替换，注意 c 是 int 型。s 是 void* 型的指针变量，所以它可以为任何类型的数据进行初始化。memset() 的作用是在一段内存块中填充某个给定的值。因为它只能填充一个值，所以该函数的初始化为原始初始化，无法将变量初始化为程序中需要的数据。</p>
+<p>memset 一般使用“0”初始化内存单元，而且通常是给数组或结构体进行初始化。一般的变量如 char、int、float、double 等类型的变量直接初始化即可，没有必要用 memset。</p>
+<p>当然，数组也可以直接进行初始化，但 memset 是对较大的数组或结构体进行清零初始化的最快方法。</p>
+<p><code>memset</code>函数将<code>c</code>的值复制到<code>s</code>指向的<code>n</code>个字节的内存空间上，复制<code>c</code>时会做类型转换，一次拷贝1个字节即<code>unsigned char</code>类型，因此使用<code>memset</code>初始化数组时有时会发生意想不到的结果。</p>
+<h3 id="memcpy">1.4 memcpy</h3>
+<p>包含头文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span>* <span class="title">memcpy</span> <span class="params">( <span class="type">void</span> *dest, <span class="type">const</span> <span class="type">void</span> *src, <span class="type">size_t</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>【形参】<code>memcpy()</code> 会复制 <code>src</code> 所指的内存内容的前 <code>num</code> 个字节到 <code>dest</code> 所指的内存地址上, <code>memcpy()</code> 并不关心被复制的数据类型，只是逐字节地进行复制，这给函数的使用带来了很大的灵活性，可以面向任何数据类型进行复制。</p>
+<p>【返回值】返回指向 dest 的指针。注意返回的指针类型是 void，使用时一般要进行强制类型转换。</p>
+<p>【备注】memcpy分配的内存在栈区或全局数据区，<code>dest</code>指向的内存中的值可修改。<code>dest</code>所指向的内存空间必须大于等于 <code>src</code>的 <code>num</code>个字节。</p>
+<h3 id="memmove">1.5 memmove</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> * <span class="title">memmove</span> <span class="params">( <span class="type">void</span> * destination, <span class="type">const</span> <span class="type">void</span> * source, <span class="type">size_t</span> num )</span></span>;</span><br></pre></td></tr></table></figure>
+<p>【形参】destination与source 所指向的内存块至少要有num个字节 【返回值】返回指向 dest 的指针。注意返回的指针类型是 void，使用时一般要进行强制类型转换。 【备注】 从<code>source</code> 复制 <code>n</code> 个字符到 <code>destination</code>,当内存不重叠时，其作用与<code>memcpy</code>相同，如果目标区域和源区域有重叠的话，memmove() 能够保证源串在被覆盖之前将重叠区域的字节拷贝到目标区域中，复制后源区域的内容会被更改。</p>
+<h3 id="calloc">1.6 calloc</h3>
+<p>C 库函数 <code>void *calloc(size_t nitems, size_t size)</code>分配所需的内存空间，并返回一个指向它的指针。<code>malloc</code> 和 <code>calloc</code> 之间的不同点是，<code>malloc</code> 不会设置内存为零，而 <code>calloc</code> 会设置分配的内存为零。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *ip = (<span class="type">int</span> *)<span class="built_in">calloc</span>(<span class="number">2</span>, <span class="built_in">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">ip[<span class="number">1</span>] = <span class="number">100</span>;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Array made by calloc: &quot;</span> &lt;&lt; ip[<span class="number">1</span>] &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<h2 id="c中内存管理">2.C++中内存管理</h2>
+<p>在<code>C++</code>中，动态内存的管理是通过一对操作符来完成的。这两个运算符分别是：<code>new</code>在动态内存中为对象分配空间并 返回一个指向该对象的指针，<code>delete</code>接受一个的动态对象的指针，销毁该对象，并释放与之关联的内存。如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c++ new &amp; delete</span></span><br><span class="line">point op = <span class="built_in">point</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">point *np = <span class="keyword">new</span> <span class="built_in">point</span>(<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;(x,y): &quot;</span> &lt;&lt; np-&gt;x &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; np-&gt;y &lt;&lt; endl;</span><br><span class="line"><span class="keyword">delete</span>[] np;</span><br></pre></td></tr></table></figure>
+<p>手动管理动态内存的使用是十分困难的，有时候会忘记释放内存，这种情况下会产生内存泄漏；有时在尚有指针的引用 内存的情况下释放内存，这将导致引用非法内存的指针。</p>
+<p>为了更好的使用动态内存，<code>C++11</code>中提供了两种<strong>智能指针</strong><code>shared_ptr</code>和<code>unique_ptr</code>来管理动态对象。智能指针同常规的指针，但其自动回收所管理的对象。两种智能指针的区别在于管理底层指针的方式，<code>shared_ptr</code>允许多个指针指向同个对象，<code>unique_ptr</code>则独占所指向的对象。标准库还定义了<code>weak_ptr</code>的伴随类，它是一种弱引用，指向<code>shared_ptr</code>所指向的对象。上述三个智能指针类定义在头文件<code>memory</code>中。</p>
+<h3 id="智能指针">2.1 智能指针</h3>
+<ul>
+<li><code>shared_ptr</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;<span class="type">int</span>&gt; p = <span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">10</span>);</span><br><span class="line"><span class="function"><span class="keyword">auto</span> <span class="title">q</span><span class="params">(p)</span></span>; <span class="comment">// q是p的copy,会递增p中引用计数器</span></span><br><span class="line"></span><br><span class="line">shared_ptr&lt;<span class="type">int</span>&gt; ptr;</span><br></pre></td></tr></table></figure>
+<p>未初始化的<code>shared_ptr</code>会被初始化为一个空指针。 <code>shared_ptr</code>使用引用计数器来统计有多少指针指向同个对象。</p>
+<h3 id="new和delete">2.2 <code>new</code>和<code>delete</code></h3>
+<p>在堆上分配的内存是无名的，<strong>因此<code>new</code>操作符号无法为其分配的对象命名</strong>，而是返回一个指向该对象的指针。用<code>new</code>分配<code>const</code>对象是合法的，一个动态分配<code>const</code>对象必须进行初始化。<code>shared_ptr</code>可以和<code>new</code>一起使用，但不能将一个内置指针隐式转换成智能指针，只能通过直接初始化的形式。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> *pci = <span class="keyword">new</span> <span class="type">const</span> <span class="built_in">int</span>(<span class="number">1024</span>);</span><br><span class="line">vector&lt;<span class="type">int</span>&gt; *p = <span class="keyword">new</span> vector&lt;<span class="type">int</span>&gt;&#123;<span class="number">0</span>, <span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line">shared_ptr&lt;<span class="type">int</span>&gt; p1 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">1024</span>); <span class="comment">// error</span></span><br><span class="line"><span class="function">shared_ptr&lt;<span class="type">int</span>&gt; <span class="title">p2</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">1024</span>))</span></span>; <span class="comment">// right</span></span><br></pre></td></tr></table></figure>
+<p>为了防止内存耗尽，动态内存使用完毕后，必须将其还给系统。可以通过<code>delete</code>表达式来释放内存。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> p;</span><br><span class="line">p = <span class="literal">nullptr</span>; <span class="comment">// 释放后重置指针</span></span><br></pre></td></tr></table></figure>
+<h3 id="new与delete">2.3 new[]与delete[]</h3>
+<p>默认情况下，<code>new</code>分配的对象，不管是单个分配的还是数组中的，都是默认初始化的。可以初始化动态分配的数组，可以对数组中的元素进行值初始化，方法是在大小之后跟一对<code>()</code>，注意与<code>malloc</code>的区别,<code>malloc</code>只是分配内存空间，并没有进行初始化。可以用变量来确定要分配的对象的数目。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// allocated</span></span><br><span class="line"><span class="type">int</span> *p = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>]();</span><br><span class="line"><span class="type">int</span> *pc = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">2</span>]&#123;<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">size_t</span>  i = <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> *pp = <span class="keyword">new</span> <span class="type">int</span>[i];</span><br><span class="line"><span class="comment">// free allocated</span></span><br><span class="line"><span class="keyword">delete</span>[] p;</span><br><span class="line"><span class="keyword">delete</span>[] pc;</span><br><span class="line"><span class="keyword">delete</span>[] pp;</span><br></pre></td></tr></table></figure>
+<p><strong>另</strong>：标准库还提供了一个可以管理<code>new</code>分配的数组的智能指针<code>unique_ptr</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unique_ptr&lt;<span class="type">int</span> []&gt; <span class="title">up</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>]&#123;<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>&#125;)</span></span>;</span><br><span class="line">cout &lt;&lt; up[<span class="number">1</span>] &lt;&lt; endl; <span class="comment">// 2</span></span><br><span class="line">up.<span class="built_in">release</span>(); <span class="comment">// 自动调用delete[] up;</span></span><br></pre></td></tr></table></figure>
+<p><strong>malloc与free, new与delete, new[]与delete[]必须成对使用,<code>new</code>和<code>malloc</code>分配的内存是连续的</strong></p>
+<h2 id="allocator类">3.allocator类</h2>
+<p><code>new</code>操作符将内存分配和对象初始化组合在了一起，<code>delete</code>将对象析构和内存释放组合在了一起。但是，当分配一块较大的内存时，通常需要在内存上按需构造对象，也就是将内存分配和对象构造解耦。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">string* p = <span class="keyword">new</span> string[<span class="number">100</span>]; <span class="comment">// 构造了`100`个空string</span></span><br><span class="line">string s;</span><br><span class="line">string* q = p;</span><br><span class="line"><span class="keyword">while</span>(cin &gt;&gt; s &amp;&amp; s!=<span class="string">&quot;q!&quot;</span> &amp;&amp; q!=p+<span class="number">100</span>) &#123;</span><br><span class="line">    *q++ = s;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">delete</span>[] p;</span><br></pre></td></tr></table></figure>
+<p>如上述代码，当输入<code>q!</code>的时候程序就结束了，很可能大多数情况都不会输入<code>100</code>个字符串，但是在使用<code>new</code>的时候构造了<code>100</code>的空字符串。而且，对于输入的元素，每个都被赋值了两次，一次是<code>new</code>初始化时，一个是<code>cin</code>输入时。</p>
+<p><code>allocator</code>类在<code>C++</code>标准库<code>memory</code>头文将中，用以将内存分配和对象构造分离开来。其分配的内存是原始的，没有构造的。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">allocator&lt;string&gt; alloc; <span class="comment">// 可以分配string的allocator对象</span></span><br><span class="line"><span class="type">size_t</span> n = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">auto</span> <span class="type">const</span> pa = alloc.<span class="built_in">allocate</span>(n); <span class="comment">// 分配2个未初始化的string</span></span><br><span class="line"><span class="keyword">auto</span> qq = pa; <span class="comment">// 保持数组首地址</span></span><br><span class="line">alloc.<span class="built_in">construct</span>(qq++); <span class="comment">// 空字符串</span></span><br><span class="line">alloc.<span class="built_in">construct</span>(qq++, <span class="number">3</span>, <span class="string">&#x27;c&#x27;</span>); <span class="comment">// ccc</span></span><br><span class="line">alloc.<span class="built_in">construct</span>(qq++, <span class="string">&quot;hi&quot;</span>); <span class="comment">// hi</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;qq:&quot;</span> &lt;&lt; *(pa+i) &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">while</span>(qq!= pa) &#123;</span><br><span class="line">    alloc.<span class="built_in">destroy</span>(qq--);</span><br><span class="line">&#125;</span><br><span class="line">alloc.<span class="built_in">deallocate</span>(pa, n); <span class="comment">// 释放内存</span></span><br></pre></td></tr></table></figure>
+<p>元素被<code>destory</code>后，可以重新使用这部分内存来<code>construct</code>其他对象，也可以将其释放掉，还给系统。</p>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://book.douban.com/subject/25708312/">1.C++ Primer 中文版（第 5 版）</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/memory/shared_ptr/shared_ptr/">2.https://www.cplusplus.com/reference/memory/shared_ptr/shared_ptr/</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2022/04/18/1oneshot-learning-semantic-segmentation/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    (一)One-Shot Learning for Semantic Segmentation论文阅读笔记
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2022/04/16/6array-initialize-error/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(六)C++ variable-sized object may not be initialized</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>

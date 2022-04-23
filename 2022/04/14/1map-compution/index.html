@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: Detection | 知行空间</title>
+    
+    
+        <meta name="keywords" content="Detection" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.MAP是什么 在目标检测任务中，MAP是对算法模型检测结果一个广泛使用的评判标准。MAP是Mean Average Precision，即在各个类别上的检测结果的平均精准率（AP,Average Precision）的平均，如果文字描述不清楚，下面看具体计算过程。理解MAP前需先弄明白平均精准率AP(Average Precision)、召回率Recall、精准率Precision、由Reca">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(一)目标检测指标VOC MAP的计算">
+<meta property="og:url" content="https://foobarweb.net/2022/04/14/1map-compution/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="1.MAP是什么 在目标检测任务中，MAP是对算法模型检测结果一个广泛使用的评判标准。MAP是Mean Average Precision，即在各个类别上的检测结果的平均精准率（AP,Average Precision）的平均，如果文字描述不清楚，下面看具体计算过程。理解MAP前需先弄明白平均精准率AP(Average Precision)、召回率Recall、精准率Precision、由Reca">
+<meta property="og:locale">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/recall.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/precision.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/img_desc_det.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/prcurve1.jpg">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/ap_int.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/roud_ap_2007.jpg">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/round_ap_11.jpg">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/ap11.jpg">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/all_point.jpg">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/1map-compution/equation_all.jpg">
+<meta property="article:published_time" content="2022-04-14T15:04:44.000Z">
+<meta property="article:modified_time" content="2022-04-14T16:03:37.503Z">
+<meta property="article:author" content="Alasky">
+<meta property="article:tag" content="Detection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://foobarweb.net/images/Detection/1map-compution/recall.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式下标</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-1map-compution" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Detection/">Detection</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Detection/" rel="tag">Detection</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/14/1map-compution/">
+            <time datetime="2022-04-14T15:04:44.000Z" itemprop="datePublished">2022-04-14</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Detection/1map-compution.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Detection/1map-compution.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Detection/1map-compution.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            (一)目标检测指标VOC MAP的计算
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#map%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1.MAP是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#recallprecisionpr%E6%9B%B2%E7%BA%BFauc%E5%92%8Cap"><span class="toc-number">2.</span> <span class="toc-text">2.Recall&#x2F;Precision&#x2F;PR曲线&#x2F;AUC和AP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ap%E7%9A%84%E4%B8%8D%E5%90%8C%E8%AE%A1%E7%AE%97%E7%AD%96%E7%95%A5"><span class="toc-number">3.</span> <span class="toc-text">3.AP的不同计算策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">4.代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="map是什么">1.MAP是什么</h2>
+<p><strong>在目标检测任务中，<code>MAP</code>是对算法模型检测结果一个广泛使用的评判标准</strong>。<code>MAP</code>是<code>Mean Average Precision</code>，即在各个类别上的检测结果的平均精准率（<code>AP,Average Precision</code>）的平均，如果文字描述不清楚，下面看具体计算过程。理解<code>MAP</code>前需先弄明白平均精准率<code>AP(Average Precision)</code>、召回率<code>Recall</code>、精准率<code>Precision</code>、由<code>Recall</code>和<code>Precision</code>组成的<code>PR</code>曲线及曲线下面积<code>AUC(Area Under the Curve)</code>。</p>
+<h2 id="recallprecisionpr曲线auc和ap">2.Recall/Precision/PR曲线/AUC和AP</h2>
+二分类预测问题，对于某个具体样本的预测结果有两种，要么是预测正确，要么是预测错误。而预测正确又可细分为样本标签是正值预测为正值（<code>TP,True Positive</code>）、样本标签是负值预测为负值(<code>TN,True Negative</code>)； 而预测错误的场景亦可细分为样本标签为正预测为负(<code>FN,False Negative</code>)、样本标签为负预测为正(<code>FP,False Positive</code>),如下表：
+<center>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">预测</th>
+<th style="text-align: center;">1</th>
+<th style="text-align: center;">0</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">FN</td>
+<td style="text-align: center;">TN</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>则<code>Recall</code>和<code>Precision</code>分别为：</p>
+<p><code>Recall</code>:召回率，即标签为正的样本有多少被预测为正</p>
+<figure>
+<img src="/images/Detection/1map-compution/recall.png" alt="recall"><figcaption aria-hidden="true">recall</figcaption>
+</figure>
+<p><code>Precision</code>:精准率，即预测为正的结果中有多少实际标签为正</p>
+<p><img src="/images/Detection/1map-compution/precision.png"></p>
+对于目标检测任务，在所有的测试数据上，可以得到具体某个类别目标的预测框，<b style="color:blue">得到预测框后与测试数据的标签框进行比对</b>，可以计算取不同置信度阈值时，当前类别对应的<code>精准率Precision</code>和<code>召回率Recall</code>,记录对应的数据以<code>Precision</code>为纵轴，<code>Recall</code>为横轴即可画出对应的<code>Precision-Recall曲线</code>。下面通过1个例子来说明。
+<center>
+<img src="/images/Detection/1map-compution/img_desc_det.png"> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35916487/article/details/89076570#commentBox">图片参考自1:csdn-修木</a>
+</center>
+图中有7个图像，<b style="color:green">绿色框表示图像中某个类对象目标的标签框（15个）</b>，<b style="color:red">红色表示此类别在7张图像上目标的预测框（24个）</b>，预测框列表如下：
+<center>
+<p><b>表格1</b></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Images</th>
+<th style="text-align: center;">Prediction BBox</th>
+<th style="text-align: center;">Confidence</th>
+<th style="text-align: center;">IOU</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">88%</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">70%</td>
+<td style="text-align: center;">0.80</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">71%</td>
+<td style="text-align: center;">0.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">54%</td>
+<td style="text-align: center;">0.83</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">74%</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">G</td>
+<td style="text-align: center;">18%</td>
+<td style="text-align: center;">0.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;">67%</td>
+<td style="text-align: center;">0.05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">38%</td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">J</td>
+<td style="text-align: center;">91%</td>
+<td style="text-align: center;">0.91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">K</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">L</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">0.08</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">78%</td>
+<td style="text-align: center;">0.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">14%</td>
+<td style="text-align: center;">0.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">P</td>
+<td style="text-align: center;">62%</td>
+<td style="text-align: center;">0.62</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">Q</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.68</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">S</td>
+<td style="text-align: center;">23%</td>
+<td style="text-align: center;">0.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">U</td>
+<td style="text-align: center;">84%</td>
+<td style="text-align: center;">0.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">43%</td>
+<td style="text-align: center;">0.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">48%</td>
+<td style="text-align: center;">0.68</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.08</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>IOU是什么怎么求的？<a href>可以看这里</a></p>
+</blockquote>
+</center>
+<code>A-V</code>和<code>X</code>,<code>Y</code>即算法输出的7张图像中目标的预测框，输出的检测框也即预测检测结果包含目标对象，也即都是<code>Position Prediction</code>,当然其中包括了 预测正确的 <code>True Positive（TP）</code>和 预测错误的<code>False Positive(FP)</code>。检测结果的最终输出还需根据<code>IOU</code>来判断，选取某个<code>IOU</code>阈值，大于<code>当前IOU阈值</code>的预测正确为<code>TP</code>，否则预测错误为<code>FP</code>。这里选定<code>IOU阈值为0.5</code>进行判断可得表格2。
+<center>
+<p><b>表格2</b></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Images</th>
+<th style="text-align: center;">Prediction BBox</th>
+<th style="text-align: center;">Confidence</th>
+<th style="text-align: center;">IOU</th>
+<th style="text-align: center;">IOU大于阈值</th>
+<th style="text-align: center;">TP/FP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">88%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">70%</td>
+<td style="text-align: center;">0.80</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">71%</td>
+<td style="text-align: center;">0.42</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">54%</td>
+<td style="text-align: center;">0.83</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">74%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">G</td>
+<td style="text-align: center;">18%</td>
+<td style="text-align: center;">0.54</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;">67%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">38%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">J</td>
+<td style="text-align: center;">91%</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">K</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">L</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">78%</td>
+<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">14%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">P</td>
+<td style="text-align: center;">62%</td>
+<td style="text-align: center;">0.62</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">Q</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">S</td>
+<td style="text-align: center;">23%</td>
+<td style="text-align: center;">0.21</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.35</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">U</td>
+<td style="text-align: center;">84%</td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">43%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">48%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>将上述表格中的数据根据<code>Confidence</code>进行排序，可得如下<code>表格3</code>如下：</p>
+<center>
+<p><b>表格3</b></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Images</th>
+<th style="text-align: center;">Prediction BBox</th>
+<th style="text-align: center;">Confidence</th>
+<th style="text-align: center;">IOU</th>
+<th style="text-align: center;">IOU大于阈值</th>
+<th style="text-align: center;">TP/FP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">J</td>
+<td style="text-align: center;">91%</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">88%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">U</td>
+<td style="text-align: center;">84%</td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">78%</td>
+<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">74%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">71%</td>
+<td style="text-align: center;">0.42</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">70%</td>
+<td style="text-align: center;">0.80</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;">67%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">P</td>
+<td style="text-align: center;">62%</td>
+<td style="text-align: center;">0.62</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">54%</td>
+<td style="text-align: center;">0.83</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">48%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.35</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">K</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">Q</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">43%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">38%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">L</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">S</td>
+<td style="text-align: center;">23%</td>
+<td style="text-align: center;">0.21</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">G</td>
+<td style="text-align: center;">18%</td>
+<td style="text-align: center;">0.54</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">14%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+</tr>
+</tbody>
+</table>
+</center>
+<p>从高到低取不同的置信度作为阈值分别计算对应的<code>Precision</code>和<code>Recall</code>,可得<code>表格4</code>，</p>
+<center>
+<p><b>表格4</b></p>
+<table>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Images</th>
+<th style="text-align: center;">Prediction BBox</th>
+<th style="text-align: center;">Confidence</th>
+<th style="text-align: center;">IOU</th>
+<th style="text-align: center;">IOU大于阈值</th>
+<th style="text-align: center;">TP/FP</th>
+<th style="text-align: center;">TP</th>
+<th style="text-align: center;">FP</th>
+<th style="text-align: center;">TP总计</th>
+<th style="text-align: center;">FP总计</th>
+<th style="text-align: center;">Precision</th>
+<th style="text-align: center;">Recall</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">R</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1/1=1</td>
+<td style="text-align: center;">1/15=0.0667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">95%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1/2=0.5</td>
+<td style="text-align: center;">1/15=0.0667</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">J</td>
+<td style="text-align: center;">91%</td>
+<td style="text-align: center;">0.91</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2/3=0.6667</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">88%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2/4=0.5</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">U</td>
+<td style="text-align: center;">84%</td>
+<td style="text-align: center;">0.03</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2/5=0.4</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">80%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2/6=0.3333</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">78%</td>
+<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">2/7=0.2857</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">F</td>
+<td style="text-align: center;">74%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2/8=0.25</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">71%</td>
+<td style="text-align: center;">0.42</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">2/8=0.2222</td>
+<td style="text-align: center;">2/15=0.1333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image1</td>
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">70%</td>
+<td style="text-align: center;">0.80</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;">67%</td>
+<td style="text-align: center;">0.05</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0.2727</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">P</td>
+<td style="text-align: center;">62%</td>
+<td style="text-align: center;">0.62</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0.3333</td>
+<td style="text-align: center;">0.2667</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image2</td>
+<td style="text-align: center;">E</td>
+<td style="text-align: center;">54%</td>
+<td style="text-align: center;">0.83</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0.3846</td>
+<td style="text-align: center;">0.3333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image7</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">48%</td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0.4285</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">N</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">T</td>
+<td style="text-align: center;">45%</td>
+<td style="text-align: center;">0.35</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0.375</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">K</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">0.3529</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">Q</td>
+<td style="text-align: center;">44%</td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">0.3333</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image6</td>
+<td style="text-align: center;">V</td>
+<td style="text-align: center;">43%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">0.3157</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">I</td>
+<td style="text-align: center;">38%</td>
+<td style="text-align: center;">0.06</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">L</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: center;">0.08</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">0.2857</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image5</td>
+<td style="text-align: center;">S</td>
+<td style="text-align: center;">23%</td>
+<td style="text-align: center;">0.21</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">0.2727</td>
+<td style="text-align: center;">0.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">image3</td>
+<td style="text-align: center;">G</td>
+<td style="text-align: center;">18%</td>
+<td style="text-align: center;">0.54</td>
+<td style="text-align: center;">是</td>
+<td style="text-align: center;">TP</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">0.3043</td>
+<td style="text-align: center;">0.4667</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">image4</td>
+<td style="text-align: center;">O</td>
+<td style="text-align: center;">14%</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">否</td>
+<td style="text-align: center;">FP</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">0.2913</td>
+<td style="text-align: center;">0.4667</td>
+</tr>
+</tbody>
+</table>
+</center>
+取<code>表格4</code>中的<code>Precision</code>和<code>Recall</code>可画出当<code>IOU阈值0.5时</code>的<code>Precision-Recall</code>曲线：
+<center>
+<img src="/images/Detection/1map-compution/prcurve1.jpg">
+</center>
+<code>Average Precision(AP)</code>即是<code>P-R曲线</code>下面积，
+<center>
+<img src="/images/Detection/1map-compution/ap_int.png">
+</center>
+<p>以上就是目标检测中某类别<code>特定IOU阈值</code>下<code>AP</code>的具体所指及其含义，各个类的<code>AP</code>求平均即可算得<code>特定IOU下的mAP</code>,不同的比赛采取不同的曲线下面积<code>AUC</code>近似计算策略，如<code>PASCAL2007</code>、<code>COCO</code>等。</p>
+<h2 id="ap的不同计算策略">3.AP的不同计算策略</h2>
+<ul>
+<li>PASCAL VOC 2007</li>
+</ul>
+在<code>PASCAL VOC 2007</code>中，在计算AP之前会对上述曲线进行平滑，平滑方法为，对每一个Precision值，使用其右边最大的Precision值替代,具体示意图如下:
+<center>
+图3-1：PR曲线向右取<code>precision</code>最大值替代 <img src="/images/Detection/1map-compution/roud_ap_2007.jpg">
+</center>
+<p>平滑后，上面蓝色的PR曲线就变成了红色的虚线，平滑后的<code>PR曲线</code>变成了单调递减：</p>
+<center>
+图3-2：<code>PASCAL VOC 2007</code>取<code>[0:0.1:1]</code>11个点计算AP <img src="/images/Detection/1map-compution/round_ap_11.jpg">
+</center>
+实际计算时，对平滑后的<code>Precision</code>曲线进行均匀采样出11个点（每个点间隔0.1），然后计算这11个点的平均<code>Precision</code>:
+<center>
+<img src="/images/Detection/1map-compution/ap11.jpg">
+</center>
+<ul>
+<li>PASCAL VOC 2007后</li>
+</ul>
+<p>上述11点插值的办法由于插值点数过少，容易导致结果不准。一个解决办法就是内插所有点。所谓内插所有点，其实就是对上述平滑之后的曲线算曲线下面积。</p>
+<center>
+图3-3：<code>PASCAL VOC 2007后</code>计算平滑后曲线下面积作AP <img src="/images/Detection/1map-compution/all_point.jpg">
+</center>
+<p>在上面的例子中：</p>
+<center>
+<img src="/images/Detection/1map-compution/equation_all.jpg">
+</center>
+<ul>
+<li>COCO</li>
+</ul>
+<p>COCO中根据不同的<code>IOU阈值</code>计算了<code>AP50、AP75</code>等 且<code>COCO</code>中使用的是<code>101</code>个点对<code>PR</code>曲线做插值，得到的结果会更准确。</p>
+<h2 id="代码实现">4.代码实现</h2>
+<ul>
+<li>计算<code>Precision</code>和<code>Recall</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_precision_and_recall</span>(<span class="params">detpath,</span></span><br><span class="line"><span class="params">             annopath,</span></span><br><span class="line"><span class="params">             imagesetfile,</span></span><br><span class="line"><span class="params">             classname,</span></span><br><span class="line"><span class="params">             cachedir,</span></span><br><span class="line"><span class="params">             ovthresh=<span class="number">0.5</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># read list of images</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(imagesetfile, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">    imagenames = [x.strip() <span class="keyword">for</span> x <span class="keyword">in</span> lines]</span><br><span class="line">    recs = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i, imagename <span class="keyword">in</span> <span class="built_in">enumerate</span>(imagenames):</span><br><span class="line">        recs[imagename] = parse_rec(annopath.<span class="built_in">format</span>(imagename))</span><br><span class="line">    <span class="comment"># extract all ground truth objects for current class</span></span><br><span class="line">    class_recs = &#123;&#125;</span><br><span class="line">    npos = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> imagename <span class="keyword">in</span> imagenames:</span><br><span class="line">        R = [obj <span class="keyword">for</span> obj <span class="keyword">in</span> recs[imagename] <span class="keyword">if</span> obj[<span class="string">&#x27;name&#x27;</span>] == classname]</span><br><span class="line">        bbox = np.array([x[<span class="string">&#x27;bbox&#x27;</span>] <span class="keyword">for</span> x <span class="keyword">in</span> R])</span><br><span class="line">        difficult = np.array([x[<span class="string">&#x27;difficult&#x27;</span>] <span class="keyword">for</span> x <span class="keyword">in</span> R]).astype(np.<span class="built_in">bool</span>)</span><br><span class="line">        det = [<span class="literal">False</span>] * <span class="built_in">len</span>(R)</span><br><span class="line">        npos = npos + <span class="built_in">sum</span>(~difficult)</span><br><span class="line">        class_recs[imagename] = &#123;<span class="string">&#x27;bbox&#x27;</span>: bbox,</span><br><span class="line">                                 <span class="string">&#x27;difficult&#x27;</span>: difficult,</span><br><span class="line">                                 <span class="string">&#x27;det&#x27;</span>: det&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># read detected bounding box</span></span><br><span class="line">    detfile = detpath.<span class="built_in">format</span>(classname)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(detfile, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.readlines()</span><br><span class="line"></span><br><span class="line">    splitlines = [x.strip().split(<span class="string">&#x27; &#x27;</span>) <span class="keyword">for</span> x <span class="keyword">in</span> lines]</span><br><span class="line">    image_ids = [x[<span class="number">0</span>] <span class="keyword">for</span> x <span class="keyword">in</span> splitlines]</span><br><span class="line">    confidence = np.array([<span class="built_in">float</span>(x[<span class="number">1</span>]) <span class="keyword">for</span> x <span class="keyword">in</span> splitlines])</span><br><span class="line">    BB = np.array([[<span class="built_in">float</span>(z) <span class="keyword">for</span> z <span class="keyword">in</span> x[<span class="number">2</span>:]] <span class="keyword">for</span> x <span class="keyword">in</span> splitlines])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># sort by confidence</span></span><br><span class="line">    sorted_ind = np.argsort(-confidence)</span><br><span class="line">    sorted_scores = np.sort(-confidence)</span><br><span class="line">    BB = BB[sorted_ind, :]</span><br><span class="line">    image_ids = [image_ids[x] <span class="keyword">for</span> x <span class="keyword">in</span> sorted_ind]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># go down dets and mark TPs and FPs</span></span><br><span class="line">    <span class="comment"># judge whether the bb is correct for every bb </span></span><br><span class="line">    <span class="comment"># in the corresponing img</span></span><br><span class="line">    nd = <span class="built_in">len</span>(image_ids)</span><br><span class="line">    tp = np.zeros(nd)</span><br><span class="line">    fp = np.zeros(nd)</span><br><span class="line">    <span class="keyword">for</span> d <span class="keyword">in</span> <span class="built_in">range</span>(nd):</span><br><span class="line">        R = class_recs[image_ids[d]]</span><br><span class="line">        bb = BB[d, :].astype(<span class="built_in">float</span>)</span><br><span class="line">        ovmax = -np.inf</span><br><span class="line">        BBGT = R[<span class="string">&#x27;bbox&#x27;</span>].astype(<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> BBGT.size &gt; <span class="number">0</span>:</span><br><span class="line">            <span class="comment"># compute overlaps intersection(IOU)</span></span><br><span class="line">            ixmin = np.maximum(BBGT[:, <span class="number">0</span>], bb[<span class="number">0</span>])</span><br><span class="line">            iymin = np.maximum(BBGT[:, <span class="number">1</span>], bb[<span class="number">1</span>])</span><br><span class="line">            ixmax = np.minimum(BBGT[:, <span class="number">2</span>], bb[<span class="number">2</span>])</span><br><span class="line">            iymax = np.minimum(BBGT[:, <span class="number">3</span>], bb[<span class="number">3</span>])</span><br><span class="line">            iw = np.maximum(ixmax - ixmin + <span class="number">1.</span>, <span class="number">0.</span>)</span><br><span class="line">            ih = np.maximum(iymax - iymin + <span class="number">1.</span>, <span class="number">0.</span>)</span><br><span class="line">            inters = iw * ih</span><br><span class="line">            uni = ((bb[<span class="number">2</span>] - bb[<span class="number">0</span>] + <span class="number">1.</span>) * (bb[<span class="number">3</span>] - bb[<span class="number">1</span>] + <span class="number">1.</span>) +</span><br><span class="line">                   (BBGT[:, <span class="number">2</span>] - BBGT[:, <span class="number">0</span>] + <span class="number">1.</span>) *</span><br><span class="line">                   (BBGT[:, <span class="number">3</span>] - BBGT[:, <span class="number">1</span>] + <span class="number">1.</span>) - inters)</span><br><span class="line"></span><br><span class="line">            overlaps = inters / uni</span><br><span class="line">            ovmax = np.<span class="built_in">max</span>(overlaps)</span><br><span class="line">            jmax = np.argmax(overlaps)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> ovmax &gt; ovthresh:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> R[<span class="string">&#x27;difficult&#x27;</span>][jmax]:</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> R[<span class="string">&#x27;det&#x27;</span>][jmax]: </span><br><span class="line">                    tp[d] = <span class="number">1.</span></span><br><span class="line">                    R[<span class="string">&#x27;det&#x27;</span>][jmax] = <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>: <span class="comment"># repeated predicition is fp</span></span><br><span class="line">                    fp[d] = <span class="number">1.</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            fp[d] = <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># compute precision recall</span></span><br><span class="line">    fp = np.cumsum(fp)</span><br><span class="line">    tp = np.cumsum(tp)</span><br><span class="line">    rec = tp / <span class="built_in">float</span>(npos)</span><br><span class="line">    <span class="comment"># avoid divide by zero in case the first detection matches a difficult</span></span><br><span class="line">    <span class="comment"># ground truth</span></span><br><span class="line">    prec = tp / np.maximum(tp + fp, np.finfo(np.float64).eps)</span><br><span class="line">    <span class="keyword">return</span> prec,rec,</span><br></pre></td></tr></table></figure>
+<ul>
+<li>计算<code>Average Precision</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">voc_ap</span>(<span class="params">rec, prec, use_07_metric=<span class="literal">False</span></span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot; ap = voc_ap(rec, prec, [use_07_metric])</span></span><br><span class="line"><span class="string">    Compute VOC AP given precision and recall.</span></span><br><span class="line"><span class="string">    If use_07_metric is true, uses the</span></span><br><span class="line"><span class="string">    VOC 07 11 point method (default:False).</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> use_07_metric: <span class="comment"># 11 point metric</span></span><br><span class="line">        ap = <span class="number">0.</span></span><br><span class="line">        <span class="keyword">for</span> t <span class="keyword">in</span> np.arange(<span class="number">0.</span>, <span class="number">1.1</span>, <span class="number">0.1</span>):</span><br><span class="line">            <span class="keyword">if</span> np.<span class="built_in">sum</span>(rec &gt;= t) == <span class="number">0</span>:</span><br><span class="line">                p = <span class="number">0</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                p = np.<span class="built_in">max</span>(prec[rec &gt;= t])</span><br><span class="line">            ap = ap + p / <span class="number">11.</span></span><br><span class="line">    <span class="keyword">else</span>: <span class="comment"># after 2007</span></span><br><span class="line">        <span class="comment"># correct AP calculation</span></span><br><span class="line">        <span class="comment"># first append sentinel values at the end</span></span><br><span class="line">        mrec = np.concatenate(([<span class="number">0.</span>], rec, [<span class="number">1.</span>]))</span><br><span class="line">        mpre = np.concatenate(([<span class="number">0.</span>], prec, [<span class="number">0.</span>]))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># compute the precision envelope</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(mpre.size - <span class="number">1</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">            mpre[i - <span class="number">1</span>] = np.maximum(mpre[i - <span class="number">1</span>], mpre[i])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># to calculate area under PR curve, look for points</span></span><br><span class="line">        <span class="comment"># where X axis (recall) changes value</span></span><br><span class="line">        i = np.where(mrec[<span class="number">1</span>:] != mrec[:-<span class="number">1</span>])[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># and sum (\Delta recall) * prec</span></span><br><span class="line">        ap = np.<span class="built_in">sum</span>((mrec[i + <span class="number">1</span>] - mrec[i]) * mpre[i + <span class="number">1</span>])</span><br><span class="line">    <span class="keyword">return</span> ap</span><br></pre></td></tr></table></figure>
+<p>可运行代码地址(两个地址同一个仓库，任选其一访问即可)：</p>
+<p>1.<a target="_blank" rel="noopener" href="https://gitee.com/lx_r/object_detection_task.git" class="uri">https://gitee.com/lx_r/object_detection_task.git</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://github.com/lxrobot/object_detection_task.git" class="uri">https://github.com/lxrobot/object_detection_task.git</a></p>
+<p>（跑不起来的代码都是刷流氓^_^）</p>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/60834912">1.https://zhuanlan.zhihu.com/p/60834912</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2022/04/15/2yolo-anchor/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    (二)Yolov2训练时anchor是如何使用的
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2022/04/14/4python-args/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(五)*args和**kargs</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>

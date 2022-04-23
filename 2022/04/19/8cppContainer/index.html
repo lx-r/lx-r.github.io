@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: cpp | 知行空间</title>
+    
+    
+        <meta name="keywords" content="(八)C++的常用容器简析" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.vector vector是动态数组 1.1 Vecor的构造函数 vector C++11中六种构造方法   构造一个空的vector   12std::vector&lt;int&gt; first; &#x2F;&#x2F; empty vector of ints   指定元素个数并初始化   12std::vector&lt;int&gt; second (4,100); &#x2F;&#x2F; four ints wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(八)C++的常用容器简析">
+<meta property="og:url" content="https://foobarweb.net/2022/04/19/8cppContainer/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="1.vector vector是动态数组 1.1 Vecor的构造函数 vector C++11中六种构造方法   构造一个空的vector   12std::vector&lt;int&gt; first; &#x2F;&#x2F; empty vector of ints   指定元素个数并初始化   12std::vector&lt;int&gt; second (4,100); &#x2F;&#x2F; four ints wi">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-04-18T17:07:16.000Z">
+<meta property="article:modified_time" content="2022-04-19T12:28:31.230Z">
+<meta property="article:author" content="Alasky">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file active"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式下标</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-8cppContainer" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/C/">C++</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/19/8cppContainer/">
+            <time datetime="2022-04-18T17:07:16.000Z" itemprop="datePublished">2022-04-19</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/8cppContainer.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/8cppContainer.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/8cppContainer.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            (八)C++的常用容器简析
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector"><span class="toc-number">1.</span> <span class="toc-text">1.vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vecor%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Vecor的构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 二维数组初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#erase%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84"><span class="toc-number">1.3.</span> <span class="toc-text">1.3erase删除数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop_back"><span class="toc-number">1.4.</span> <span class="toc-text">1.4pop_back</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#back"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 back</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#resize"><span class="toc-number">1.6.</span> <span class="toc-text">1.6 resize</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#queue"><span class="toc-number">2.</span> <span class="toc-text">2.queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emplace"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 emplace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#front"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 front</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 push</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#priority_queue"><span class="toc-number">3.</span> <span class="toc-text">3.priority_queue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0priority_queue"><span class="toc-number">3.1.</span> <span class="toc-text">3.1构造priority_queue</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">4.</span> <span class="toc-text">4.Map</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-1"><span class="toc-number">4.1.</span> <span class="toc-text">4.1构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%8D%E5%8E%86map"><span class="toc-number">4.2.</span> <span class="toc-text">4.2遍历map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Eunordered_map%E6%AF%94%E8%BE%83"><span class="toc-number">4.3.</span> <span class="toc-text">4.3与unordered_map比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">4.4.</span> <span class="toc-text">4.4方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set"><span class="toc-number">5.</span> <span class="toc-text">5.set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0-2"><span class="toc-number">5.1.</span> <span class="toc-text">5.1构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unordered_set"><span class="toc-number">6.</span> <span class="toc-text">6 unordered_set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">6.1构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#find"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 find</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stack"><span class="toc-number">7.</span> <span class="toc-text">7.stack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">7.1.</span> <span class="toc-text">7.1构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 top</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pop-1"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 pop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push-1"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#size"><span class="toc-number">7.5.</span> <span class="toc-text">7.5 size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#empty"><span class="toc-number">7.6.</span> <span class="toc-text">7.6 empty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#swap"><span class="toc-number">7.7.</span> <span class="toc-text">7.7 swap</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#list"><span class="toc-number">8.</span> <span class="toc-text">8.list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#splice"><span class="toc-number">8.1.</span> <span class="toc-text">8.1splice</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#size-1"><span class="toc-number">8.2.</span> <span class="toc-text">8.3size()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pair"><span class="toc-number">9.</span> <span class="toc-text">9.pair</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-1"><span class="toc-number">9.1.</span> <span class="toc-text">9.1构造函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="vector">1.vector</h2>
+<p><code>vector</code>是动态数组</p>
+<h3 id="vecor的构造函数">1.1 Vecor的构造函数</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/vector/vector/">vector</a></p>
+<p><code>C++11</code>中六种构造方法</p>
+<ul>
+<li><ol type="1">
+<li>构造一个空的<code>vector</code></li>
+</ol></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; first; <span class="comment">// empty vector of ints</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><ol start="2" type="1">
+<li>指定元素个数并初始化</li>
+</ol></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">second</span> <span class="params">(<span class="number">4</span>,<span class="number">100</span>)</span></span>; <span class="comment">// four ints with value 100</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>3）借助迭代器</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">third</span> <span class="params">(second.begin(),second.end())</span></span>;  <span class="comment">// iterating through second</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4)从一个数组中复制</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::vector&lt;<span class="type">int</span>&gt; <span class="title">fourth</span> <span class="params">(third)</span></span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>5)从数组中构建</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">res</span><span class="params">(a, a+<span class="number">5</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="二维数组初始化">1.2 二维数组初始化</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;num = </span><br><span class="line">        &#123; &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//二维数组初始化</span></span><br><span class="line"><span class="comment">//vector&lt;vector&lt;int&gt;&gt; vec(10, vector&lt;int&gt;(10));</span></span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;<span class="built_in">right</span>(num.<span class="built_in">size</span>(), <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(num[<span class="number">0</span>].<span class="built_in">size</span>()));</span><br></pre></td></tr></table></figure>
+<h3 id="erase删除数组">1.3erase删除数组</h3>
+<p>删除第几个，删除哪几个，不包括end</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// erase the 6th element</span></span><br><span class="line">myvector.<span class="built_in">erase</span> (myvector.<span class="built_in">begin</span>()+<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// erase the first 3 elements:</span></span><br><span class="line">myvector.<span class="built_in">erase</span> (myvector.<span class="built_in">begin</span>(),myvector.<span class="built_in">begin</span>()+<span class="number">3</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="pop_back">1.4pop_back</h3>
+<p>移除vector向量中最后一个元素</p>
+<h3 id="back">1.5 back</h3>
+<p>返回vector中最后一个元素的引用</p>
+<h3 id="resize">1.6 resize</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; s;</span><br><span class="line">s.resize(3, 2);</span><br></pre></td></tr></table></figure>
+<p>将s的大小调整为3并用2填补。</p>
+<h2 id="queue">2.queue</h2>
+<p>C++ 标准库定义了三种类型的容器适配器： <code>stack、</code> <code>queue</code>和 <code>priority_queue</code> <a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/queue/queue">queue</a> queue所有元素的进出都必须符合先进先出的条件，只有queue的顶端元素，才有机会被外界取用，<strong>queue不提供遍历功能</strong>，<strong>也不提供迭代器</strong>。</p>
+<h3 id="构造">2.1 构造</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line">    <span class="type">int</span> y;</span><br><span class="line">    <span class="built_in">Point</span>(<span class="type">int</span> x, <span class="type">int</span> y):<span class="built_in">x</span>(x), <span class="built_in">y</span>(y) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">queue&lt;Point&gt; points;</span><br><span class="line">points.<span class="built_in">emplace</span>(<span class="number">12</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="emplace">2.2 emplace</h3>
+<p>往队列的尾部添加元素，并可调用对象的构造函数初始化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">points.<span class="built_in">emplace</span>(<span class="number">12</span>, <span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="front">2.3 front</h3>
+<p>从 <code>queue</code>中获取头部元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Point p = points.<span class="built_in">front</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="pop">2.4 pop</h3>
+<p>移除队列中的最头部元素</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">points.<span class="built_in">pop</span>();<span class="meta"># remove value can be obtained by front;</span></span><br></pre></td></tr></table></figure>
+<h3 id="push">2.5 push</h3>
+<p>往队列的末尾追加1个新元素,<strong>注意与emplace的区别</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Point p = <span class="built_in">Point</span>(<span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">que.<span class="built_in">push</span>(p);</span><br></pre></td></tr></table></figure>
+<h2 id="priority_queue">3.priority_queue</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/queue/priority_queue/">类 <code>priority_queue</code></a>对元素进行排序，以便最大元素或最小元素始终位于顶部位置。 它支持元素的插入以及顶部元素的检查和删除。 一个很好的类比是人们喜欢按年龄、身高或其他条件排列位置。<strong>可以按任意顺序插入元素，但只能从堆顶取元素。</strong></p>
+<p><code>priority_queue</code>是<code>C++</code>标准定义的三个容器适配器之一，其基于<strong>堆</strong>实现，是一棵完全二叉树，树中每个结点的值都不小于（或不大于）其左右孩子的值。 如果父亲结点是大于等于左右孩子就是大顶堆，小于等于左右孩子就是小顶堆。</p>
+<p>抛开内部结构，<code>priority_queue</code>实现的功能是从一端插入元素，一端取元素，如同队列一般。而与队列不同的是，其会对插入的元素进行排序，因此从队列头取出的元素不是满足<code>FIFO</code>的原则，而是优先取出最大或最小的元素。 支持的方法有：</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">方法</th>
+<th style="text-align: center;">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">empty</td>
+<td style="text-align: center;">是否为空</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">size</td>
+<td style="text-align: center;">元素个数</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">top</td>
+<td style="text-align: center;">获取队头元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">push</td>
+<td style="text-align: center;">插入元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">emplace</td>
+<td style="text-align: center;">构造并插入元素</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">pop</td>
+<td style="text-align: center;">移除队首元素</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">swap</td>
+<td style="text-align: center;">swap (priority_queue&amp; x) 交换两个队列中的元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="构造priority_queue">3.1构造priority_queue</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">priority_queue&lt;Type, Container, Functional&gt;</span><br></pre></td></tr></table></figure>
+<p>Type为数据类型， Container为保存数据的容器，Functional为元素比较方式。</p>
+<p>如果不写后两个参数，那么容器默认用的是vector，比较方式默认用operator&lt;，也就是优先队列是大顶堆，队头元素最大。 例如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://www.cplusplus.com/reference/queue/priority_queue/priority_queue/</span></span><br><span class="line"><span class="comment">// constructing priority queues</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span>       <span class="comment">// std::cout</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span>          <span class="comment">// std::priority_queue</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span>         <span class="comment">// std::vector</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;functional&gt;</span>     <span class="comment">// std::greater</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">mycomparison</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">bool</span> reverse;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">mycomparison</span>(<span class="type">const</span> <span class="type">bool</span>&amp; revparam=<span class="literal">false</span>)</span><br><span class="line">    &#123;reverse=revparam;&#125;</span><br><span class="line">  <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(<span class="type">const</span> <span class="type">int</span>&amp; lhs, <span class="type">const</span> <span class="type">int</span>&amp;rhs)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (reverse) <span class="keyword">return</span> (lhs&gt;rhs);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> (lhs&lt;rhs);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="type">int</span> myints[]= &#123;<span class="number">10</span>,<span class="number">60</span>,<span class="number">50</span>,<span class="number">20</span>&#125;;</span><br><span class="line"></span><br><span class="line">  std::priority_queue&lt;<span class="type">int</span>&gt; first;</span><br><span class="line">  <span class="function">std::priority_queue&lt;<span class="type">int</span>&gt; <span class="title">second</span> <span class="params">(myints,myints+<span class="number">4</span>)</span></span>;</span><br><span class="line">  std::priority_queue&lt;<span class="type">int</span>, std::vector&lt;<span class="type">int</span>&gt;, std::greater&lt;<span class="type">int</span>&gt; &gt;</span><br><span class="line">                            <span class="built_in">third</span> (myints,myints+<span class="number">4</span>);</span><br><span class="line">  <span class="comment">// using mycomparison:</span></span><br><span class="line">  <span class="keyword">typedef</span> std::priority_queue&lt;<span class="type">int</span>,std::vector&lt;<span class="type">int</span>&gt;,mycomparison&gt; mypq_type;</span><br><span class="line"></span><br><span class="line">  mypq_type fourth;                       <span class="comment">// less-than comparison</span></span><br><span class="line">  <span class="function">mypq_type <span class="title">fifth</span> <span class="params">(mycomparison(<span class="literal">true</span>))</span></span>;   <span class="comment">// greater-than comparison</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="map">4.Map</h2>
+<p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/container/map">map</a></p>
+<h3 id="构造-1">4.1构造</h3>
+<p>c++11中， map有5种构造函数</p>
+<ul>
+<li>（1)默认构造函数</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; dict;</span><br><span class="line">dict[<span class="string">&#x27;a&#x27;</span>] = <span class="number">95</span>;</span><br><span class="line">dict[<span class="string">&#x27;c&#x27;</span>] = <span class="number">97</span>;</span><br><span class="line">dict[<span class="string">&#x27;b&#x27;</span>] = <span class="number">96</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>(2)借助其他map构建，包括开始和结尾</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; <span class="title">dict1</span><span class="params">(dict.find(<span class="string">&#x27;a&#x27;</span>), dict.end())</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="遍历map">4.2遍历map</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">for</span> (std::map&lt;<span class="type">char</span>,<span class="type">int</span>&gt;::iterator it=mymap.<span class="built_in">begin</span>(); it!=mymap.<span class="built_in">end</span>(); ++it)</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; it-&gt;first &lt;&lt; <span class="string">&quot; =&gt; &quot;</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">auto</span> m : map)</span><br><span class="line">&#123;</span><br><span class="line">    cout &lt;&lt; m.first &lt;&lt; <span class="string">&quot;: &quot;</span> &lt;&lt; m.second &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="与unordered_map比较">4.3与unordered_map比较</h3>
+<ul>
+<li>map：<code>&lt;br&gt;</code> 优点：有序性，这是map结构最大的优点，<strong>其元素是按照<code>key</code>的字典顺序排列的,而不是插入顺序.</strong>的有序性在很多应用中都会简化很多的操作.红黑树，内部实现一个红黑书使得map的很多操作在lgn的时间复杂度下就可以实现，因此效率非常的高 缺点： 空间占用率高，因为map内部实现了红黑树，虽然提高了运行效率，但是因为每一个节点都需要额外保存父节点、孩子节点和红/黑性质，使得每一个节点都占用大量的空间 适用处：对于那些有顺序要求的问题，用map会更高效一些 特点：<strong>基于红黑树实现</strong>，查找效率时O(logN)</li>
+<li>unordered_map：<code>&lt;br/&gt;</code> 优点： 因为内部实现了哈希表，因此其查找速度非常的快 缺点： 哈希表的建立比较耗费时间 适用处：<strong>对于查找问题，unordered_map会更加高效一些</strong>，因此遇到查找问题，常会考虑一下用<strong>unordered_map,基于哈希算法实现</strong>，由散列函数查找，查找的时间复杂度是常数级O(1)</li>
+</ul>
+<h3 id="方法">4.4方法</h3>
+<ul>
+<li>count:统计key出现的此数,不存在返回0</li>
+</ul>
+<h2 id="set">5.set</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/set/set/">set</a></p>
+<p>首先set，不像map那样是key-value对，它的key与value是相同的。关于set有两种说法，第一个是STL中的set，用的是红黑树；第二个是hash_set，底层用得是hash table。红黑树与hash table最大的不同是，<strong>红黑树是有序结构</strong>，而hash table不是。但不是说set就不能用hash，如果<strong>只是判断set中的元素是否存在，那么hash显然更合适</strong>，因为set 的访问操作时间复杂度是log(N)的，而使用hash底层实现的hash_set是近似O(1)的。然而，<strong>set应该更加被强调理解为“集合”，而集合所涉及的操作并、交、差等，即STL提供的如交集set_intersection()、并集set_union()、差集set_difference()和对称差集set_symmetric_difference()，都需要进行大量的比较工作，那么使用底层是有序结构的红黑树就十分恰当了</strong>，这也是其相对hash结构的优势所在。</p>
+<h3 id="构造-2">5.1构造</h3>
+<p>5种构造函数</p>
+<ul>
+<li>(1)默认</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::set&lt;<span class="type">int</span>&gt; first;                           <span class="comment">// empty set of ints</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>(2)从数组构建</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> myints[]= &#123;<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>&#125;;</span><br><span class="line"><span class="function">std::set&lt;<span class="type">int</span>&gt; <span class="title">second</span> <span class="params">(myints,myints+<span class="number">5</span>)</span></span>;        <span class="comment">// range</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>(3)从其他set构建</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::set&lt;<span class="type">int</span>&gt; <span class="title">third</span> <span class="params">(second)</span></span>;                  <span class="comment">// a copy of second</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>(4)取其他set/vector的一部分</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::set&lt;<span class="type">int</span>&gt; <span class="title">fourth</span> <span class="params">(second.begin(), second.end())</span></span>;  <span class="comment">// iterator ctor.</span></span><br><span class="line"></span><br><span class="line">vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="function">set&lt;<span class="type">int</span>&gt; <span class="title">ns</span><span class="params">(vec.begin(), vec.end())</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="unordered_set">6 unordered_set</h2>
+<p>基于<code>hash</code>算法实现，元素无序，查找更快<code>O(1)</code>。</p>
+<h3 id="构造方法">6.1构造方法</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">std::unordered_set&lt;std::string&gt; first;                                <span class="comment">// empty</span></span><br><span class="line"> <span class="function">std::unordered_set&lt;std::string&gt; <span class="title">second</span> <span class="params">( &#123;<span class="string">&quot;red&quot;</span>,<span class="string">&quot;green&quot;</span>,<span class="string">&quot;blue&quot;</span>&#125; )</span></span>;    <span class="comment">// init list</span></span><br><span class="line"> <span class="function">std::unordered_set&lt;std::string&gt; <span class="title">third</span> <span class="params">( &#123;<span class="string">&quot;orange&quot;</span>,<span class="string">&quot;pink&quot;</span>,<span class="string">&quot;yellow&quot;</span>&#125; )</span></span>; <span class="comment">// init list</span></span><br><span class="line"> <span class="function">std::unordered_set&lt;std::string&gt; <span class="title">fourth</span> <span class="params">( second )</span></span>;                    <span class="comment">// copy</span></span><br><span class="line"> <span class="function">std::unordered_set&lt;std::string&gt; <span class="title">fifth</span> <span class="params">( cmerge(third,fourth) )</span></span>;       <span class="comment">// move</span></span><br><span class="line"> <span class="function">std::unordered_set&lt;std::string&gt; <span class="title">sixth</span> <span class="params">( fifth.begin(), fifth.end() )</span></span>; <span class="comment">// range</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="find">6.2 find</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">const_iterator <span class="title">find</span> <span class="params">( <span class="type">const</span> key_type&amp; k )</span> <span class="type">const</span></span>;</span><br></pre></td></tr></table></figure>
+<h2 id="stack">7.stack</h2>
+<p>stack 栈是一种LIFO(后进先出last in first out)的数据结构, 它在stl 函数中是通过其它容器，如队列实现的，stack不能使用iterator迭代器。</p>
+<h3 id="构造函数">7.1构造函数</h3>
+<p>7种构造函数</p>
+<ul>
+<li>1.基于<code>vector</code>构建</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;<span class="type">int</span>&gt;<span class="built_in">tmp</span>(<span class="number">2</span>, <span class="number">100</span>);</span><br><span class="line">tmp[<span class="number">1</span>] = <span class="number">200</span>;</span><br><span class="line">stack&lt;<span class="type">int</span>, vector`&lt;<span class="type">int</span>&gt;`&gt; <span class="built_in">st</span>(tmp);</span><br></pre></td></tr></table></figure>
+<h3 id="top">7.2 top</h3>
+<p>获取栈顶元素的引用</p>
+<h3 id="pop-1">7.3 pop</h3>
+<p>移除栈顶元素</p>
+<h3 id="push-1">7.4 push</h3>
+<ul>
+<li><code>push</code>往栈顶追加元素</li>
+<li><code>emplace</code>构造并往栈顶追加元素</li>
+</ul>
+<h3 id="size">7.5 size</h3>
+<p>栈中元素的个数</p>
+<h3 id="empty">7.6 empty</h3>
+<p>栈是否为空</p>
+<h3 id="swap">7.7 swap</h3>
+<p>交换两个栈中元素</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::stack&lt;<span class="type">int</span>&gt; foo,bar;</span><br><span class="line">foo.<span class="built_in">push</span> (<span class="number">10</span>); foo.<span class="built_in">push</span>(<span class="number">20</span>); foo.<span class="built_in">push</span>(<span class="number">30</span>);</span><br><span class="line">bar.<span class="built_in">push</span> (<span class="number">111</span>); bar.<span class="built_in">push</span>(<span class="number">222</span>);</span><br><span class="line"></span><br><span class="line">foo.<span class="built_in">swap</span>(bar);</span><br></pre></td></tr></table></figure>
+<h2 id="list">8.list</h2>
+<p><strong>基于双向链表实现</strong>，<strong>能够实现线性O(1)时间的插入和删除</strong>，与 <code>forward_list</code>很像，<code>forward_list</code>是基于单向链表实现的。list根据迭代器来插入，提取，移动元素的效率比 <code>array\vector\deque</code>效率要高，在元素需要频繁移动时如排序性能表现比较好。</p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>1.因其内存是不连续的，所以不能通过下标获取元素，如取第2个元素等，必须使用迭代器从begin()开始访问</li>
+<li>2.因链表需要存储链接信息，故需额外的空间，list元素个数较大时影响无法忽略</li>
+</ul>
+<h3 id="splice">8.1splice</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">splice</span> <span class="params">(const_iterator position, list&amp; x, const_iterator i)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>将元素从一个list移动到另一个list, <code>list::splice()</code> 是一个很强大的功能，它可在任意位置在O（1）时间复杂度拼接两个 <code>list</code>，这正是 <code>list</code> 的优势。 ### 8.2emplace</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span>... Args&gt;</span><br><span class="line">  <span class="function">iterator <span class="title">emplace</span> <span class="params">(const_iterator position, Args&amp;&amp;... args)</span></span>;</span><br><span class="line"></span><br><span class="line">std::list&lt; std::pair&lt;<span class="type">int</span>,<span class="type">char</span>&gt; &gt; mylist;</span><br><span class="line"></span><br><span class="line">mylist.<span class="built_in">emplace</span> ( mylist.<span class="built_in">begin</span>(), <span class="number">100</span>, <span class="string">&#x27;x&#x27;</span> );</span><br><span class="line">mylist.<span class="built_in">emplace</span> ( mylist.<span class="built_in">begin</span>(), <span class="number">200</span>, <span class="string">&#x27;y&#x27;</span> );</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在<code>position</code>处插入新构造的元素，还有<code>emplace_front</code>,<code>emplace_back</code>方法</p>
+<h3 id="size-1">8.3size()</h3>
+<p><code>list</code>的<code>size</code>函数调用了<code>stl algorithm</code>中的<code>distance</code>函数，故时间复杂度是<code>O(N)</code></p>
+<h2 id="pair">9.pair</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/utility/make_pair/">pair</a></p>
+<h3 id="构造函数-1">9.1构造函数</h3>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">std::pair &lt;std::string,<span class="type">double</span>&gt; product1;</span><br><span class="line">product1 = std::<span class="built_in">make_pair</span>(std::<span class="built_in">string</span>(<span class="string">&quot;lightbulbs&quot;</span>),<span class="number">0.99</span>);   <span class="comment">// using make_pair (move)</span></span><br><span class="line">std::pair &lt;std::string,<span class="type">double</span>&gt; <span class="built_in">product2</span> (<span class="string">&quot;tomatoes&quot;</span>,<span class="number">2.30</span>);   <span class="comment">// value init</span></span><br><span class="line">std::pair &lt;std::string,<span class="type">double</span>&gt; <span class="built_in">product3</span> (product2);          <span class="comment">// copy constructor</span></span><br><span class="line">std::pair &lt;std::string,<span class="type">double</span>&gt; pair4 = <span class="built_in">make_pair</span>(<span class="number">10</span>, <span class="string">&quot;this&quot;</span>); <span class="comment">// make_pair</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/utility/make_pair/">cplusplus</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2022/04/19/3Yolov5Modules/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    (三) Modules of YOLOv5
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2022/04/18/2-add-mermaid-support/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(二)设置hexo支持mermaid</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>
