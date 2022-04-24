@@ -335,13 +335,6 @@
 
   
   <url>
-    <loc>https://foobarweb.net/tags/cuda-cudnn-cudatoolkit-nvidia-driver/</loc>
-    <lastmod>2022-04-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://foobarweb.net/tags/Detection/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -350,6 +343,13 @@
   
   <url>
     <loc>https://foobarweb.net/tags/GIT/</loc>
+    <lastmod>2022-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/tags/cuda-cudnn-cudatoolkit-nvidia-driver/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -407,13 +407,6 @@
 
   
   <url>
-    <loc>https://foobarweb.net/categories/CUDA/</loc>
-    <lastmod>2022-04-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://foobarweb.net/categories/Detection/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -422,6 +415,13 @@
   
   <url>
     <loc>https://foobarweb.net/categories/GIT/</loc>
+    <lastmod>2022-04-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/categories/CUDA/</loc>
     <lastmod>2022-04-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

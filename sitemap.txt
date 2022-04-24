@@ -35,9 +35,9 @@ https://foobarweb.net/2022/04/12/ExecutablePathIsNotAbsolute/
 https://foobarweb.net/tags/index.html
 https://foobarweb.net/about/index.html
 https://foobarweb.net/
-https://foobarweb.net/tags/cuda-cudnn-cudatoolkit-nvidia-driver/
 https://foobarweb.net/tags/Detection/
 https://foobarweb.net/tags/GIT/
+https://foobarweb.net/tags/cuda-cudnn-cudatoolkit-nvidia-driver/
 https://foobarweb.net/tags/linux/
 https://foobarweb.net/tags/OneShotLearning/
 https://foobarweb.net/tags/Python/
@@ -45,9 +45,9 @@ https://foobarweb.net/tags/C/
 https://foobarweb.net/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/
 https://foobarweb.net/tags/hexo/
 https://foobarweb.net/tags/tensorflow/
-https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/GIT/
+https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/Linux/
 https://foobarweb.net/categories/OneShotLearning/
 https://foobarweb.net/categories/Python/
