@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foobarweb.net/2022/04/24/5githubpush443/</loc>
+    
+    <lastmod>2022-04-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://foobarweb.net/2022/04/23/3OmniglotDataset/</loc>
     
     <lastmod>2022-04-23</lastmod>

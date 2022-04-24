@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foobarweb.net/"/>
-  <updated>2022-04-23T10:16:50.022Z</updated>
+  <updated>2022-04-24T13:39:50.683Z</updated>
   <id>https://foobarweb.net/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(五) github能访问ping不通push报443</title>
+    <link href="https://foobarweb.net/2022/04/24/5githubpush443/"/>
+    <id>https://foobarweb.net/2022/04/24/5githubpush443/</id>
+    <published>2022-04-24T13:25:26.000Z</published>
+    <updated>2022-04-24T13:39:50.683Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题描述">1.问题描述</h2><p><code>hexo</code>部署<code>github pages</code>时报错，<code>Failed to connect to github.com port 443:</code></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access <span class="string">&#x27;https://github.com/lx-r/lx-r.github.io.git/&#x27;</span>: Failed to connect to github.com port 443: Connection timed out</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (/media/lx/data/code/blog/blog/node_modules/hexo-util/lib/spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (node:events:526:28)</span><br></pre></td></tr></table></figure><p>使用浏览器访问了一下<code>github</code>网站是可以访问的，打开<code>linux</code>终端，<code>ping github.com</code>发现没有响应，ping不同，查了下应该是<code>dns</code>解析有问题。</p><h2 id="解决">2.解决</h2><p><code>linux</code>下打开<code>/etc/hosts</code>文件</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/hosts</span><br></pre></td></tr></table></figure><p>在这个文件中添加<code>github.com</code>对应的<code>ip</code>,</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">140.82.113.3 github.com</span><br></pre></td></tr></table></figure><p><code>github</code>对应的服务器<code>ip</code>可以在<a href="https://ipaddress.com/website/github.com">https://ipaddress.com/website/github.com</a>查到，如下图：</p><p>！<a href="/images/GIT/5githubpush443/githubip.png">github ip</a></p><p>添加后，执行</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/hosts</span><br></pre></td></tr></table></figure><p>再<code>ping github.com</code>发现可以<code>ping</code>通了，根本原因还是<code>dns</code>服务器解析不了<code>github.com</code>换成本地置换直接访问<code>github.com</code>域名对应服务器的<code>ip</code>。</p><p>执行<code>hexo g -d</code>发现<code>hexo</code>也可以部署成功了。</p><h2 id="参考资料">参考资料</h2><blockquote><ul><li><a href="https://cloud.tencent.com/developer/article/1680842">github 访问ping不通的解决办法</a></li><li><a href="https://www.ibm.com/docs/en/aix/7.2?topic=formats-hosts-file-format-tcpip">hosts File Format for TCP/IP</a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;问题描述&quot;&gt;1.问题描述&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;hexo&lt;/code&gt;部署&lt;code&gt;github pages&lt;/code&gt;时报错，&lt;code&gt;Failed to connect to github.com port 443:&lt;/code&gt;&lt;/p&gt;
+&lt;fig
+      
+    
+    </summary>
+    
+      <category term="GIT" scheme="https://foobarweb.net/categories/GIT/"/>
+    
+    
+      <category term="GIT" scheme="https://foobarweb.net/tags/GIT/"/>
+    
+  </entry>
   
   <entry>
     <title>(三)Omniglot Dataset介绍</title>
@@ -518,35 +545,6 @@ O[Oneshot] --&amp;gt;
     
     
       <category term="Python" scheme="https://foobarweb.net/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>(六)C++中的数组指针与指针数组</title>
-    <link href="https://foobarweb.net/2022/04/13/5cpp-array-pointer/"/>
-    <id>https://foobarweb.net/2022/04/13/5cpp-array-pointer/</id>
-    <published>2022-04-12T17:06:30.000Z</published>
-    <updated>2022-04-12T17:09:13.708Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="数组指针与指针数组">1.数组指针与指针数组</h1><ul><li>数组指针：是数组的指针，指向数组的指针，指针的类型是数组，其指向数组内存空间的首地址</li><li>指针数组：存放指针的数组，变量首先是一个数组，数组的元素是指针</li><li>所以，数组指针是数组的指针，指针数组是存放指针的数组，两者根本就是不同类型的变量。 # 2.数组指针 其实是数组的指针，指针指向数组的首地址。</li></ul><p><br><b>定义及使用：</b> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">char</span> (*pointer_for_arr)[<span class="number">4</span>];</span><br><span class="line"><span class="comment">// pointer_for_arr 是指向数组首地址的指针</span></span><br><span class="line"><span class="type">char</span> char_arr[<span class="number">4</span>] = &#123;<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>,<span class="string">&#x27;d&#x27;</span>&#125;;</span><br><span class="line">pointer_for_arr = char_arr;<span class="comment">// 将报错，因char_arr是指向数组首元素地址的指针，指针类型是char，而pointer_for_arr是指向数组的首地址的指针，指针地址是char[4],指针类型不同所以会报错</span></span><br><span class="line">pointer_for_arr = &amp;char_arr； <span class="comment">//正确，pointer_for_arr可以理解成二维数组的行指针，故可取char_arr地址给其赋值</span></span><br></pre></td></tr></table></figure></p><h1 id="指针数组">3.指针数组</h1><p>即存放指针的数组</p><p><br><b>定义及使用：</b> <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *pina[<span class="number">2</span>] = &#123;<span class="string">&quot;object&quot;</span>,<span class="string">&quot;detection&quot;</span>&#125;;<span class="comment">//这里pina是指向指针数组首元素的指针，数组pina存放了两个char类型字符串指针</span></span><br></pre></td></tr></table></figure> <code>char *pina[2]</code>数组是函数的普通变量，内存分配在栈区，常量<code>"object"</code>分配在只读数据区，不能通过<code>*(*pina+1)=’a'</code>的形式改数据。pina数组占了8个字节的内存，因1个指针占4个字节，数组共2个元素。</p><p><code>char *pina[2]</code>可参考类比<code>char **pina</code>二维数组</p><h1 id="数组指针与指针数组的使用">4.数组指针与指针数组的使用</h1><p>计算机的内存映像图：</p><table><thead><tr><th align="center">内存映像象图</th><th align="center">内容</th><th align="center">权限</th></tr></thead><tbody><tr><td align="center">栈区</td><td align="center">函数中的普通变量</td><td align="center">可读可写</td></tr><tr><td align="center">堆区</td><td align="center">动态申请的内存</td><td align="center">可读可写</td></tr><tr><td align="center">静态变量区</td><td align="center">static修饰的变量</td><td align="center">可读可写</td></tr><tr><td align="center">数据区</td><td align="center">用于初始化变量的常量</td><td align="center">只读</td></tr><tr><td align="center">代码区</td><td align="center">代码指令</td><td align="center">只读</td></tr></tbody></table><ul><li><p>指针数组和数组指针之所以容易混淆，和<code>*，[]</code>运算符的优先级有密切关系</p></li><li><p>指针数组： 用作函数的参数，调用函数时查传递二维数组的首地址而非将只读区的内存传过去，可以提高效率 如<code>main</code>函数： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc,char**argv)；</span><br><span class="line">// 或</span><br><span class="line">int main(int argc,char*argv[])；</span><br></pre></td></tr></table></figure></p></li><li><p>数组指针，作为函数的参数传递</p></li></ul><p>在使用数组的时候，编译器通常会将其转换成指针，<strong>使用数组的名字其实用的是一个指向数组首元素的指针</strong>，当对数组使用下标运算的时候，编译器会自动执行指针的运算操作。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void func(int (*P)[4]);</span><br><span class="line">int main(int argc,char*argv[]) &#123;</span><br><span class="line">    int arr[3][4] = &#123;0&#125;;</span><br><span class="line">    func(arr);// arr数组行指针</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;数组指针与指针数组&quot;&gt;1.数组指针与指针数组&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;数组指针：是数组的指针，指向数组的指针，指针的类型是数组，其指向数组内存空间的首地址&lt;/li&gt;
-&lt;li&gt;指针数组：存放指针的数组，变量首先是一个数组，数组的元素是指针&lt;/li&gt;
-&lt;li&gt;所以
-      
-    
-    </summary>
-    
-      <category term="C++" scheme="https://foobarweb.net/categories/C/"/>
-    
-    
-      <category term="C++" scheme="https://foobarweb.net/tags/C/"/>
     
   </entry>
   
