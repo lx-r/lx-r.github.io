@@ -380,6 +380,15 @@ mjx-container[display="true"] + br {
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
                     </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SiameseNetwork
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a></li>  </ul> 
+                    </li> 
                      <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
                     </li> 
                     
@@ -481,6 +490,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-4SiameseNetwork" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OneShotLearning/">OneShotLearning</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/OneShotLearning/SiameseNetwork/">SiameseNetwork</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/OneShotLearning/" rel="tag">OneShotLearning</a>, <a class="tag-link-link" href="/tags/SiameseNetwork/" rel="tag">SiameseNetwork</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/24/4SiameseNetwork/">
+            <time datetime="2022-04-24T15:42:11.000Z" itemprop="datePublished">2022-04-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OneShotLearning/4SiameseNetwork.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OneShotLearning/4SiameseNetwork.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OneShotLearning/4SiameseNetwork.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="孪生神经网络">1.孪生神经网络</h2>
+<p>在深度学习领域，神经网络取得了成功。但普通的神经网络模型的训练需要大量的数据，对于一些数据有限的场景，如人脸验证，签字验证，必须考虑其他方法。</p>
+<p><code>Siamese</code> 古语表示<code>瞿罗</code>，即现在的泰国，如<code>Siamese cat</code>，之所以<code>Siamese</code>表示孪生，是因为19世纪<code>瞿罗</code>出了一对连体双胞胎，在<code>美国玲玲马戏团</code>做演出比较出名，因此提起<code>Siamese</code>即表示孪生的意思。<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/35040994">1</a></p>
+<p>孪生神经网络<code>Siamese Network</code>,如其名字<code>孪生Siamese</code>的意思即存在连体，连体即彼此共享一部分。孪生神经网络的结构也包括两个子网络，两个子网络之间共享权重。</p>
+<center>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/24/4SiameseNetwork/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-5githubpush443" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1394,110 +1507,6 @@ mjx-container[display="true"] + br {
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/18/2-add-mermaid-support/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-1addLatexSupport" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/hexo/">hexo</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/hexo/" rel="tag">hexo</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/18/1addLatexSupport/">
-            <time datetime="2022-04-17T17:01:19.000Z" itemprop="datePublished">2022-04-18</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/hexo/1addLatexSupport.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/hexo/1addLatexSupport.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/hexo/1addLatexSupport.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="设置hexo支持latex公式">设置hexo支持Latex公式</h2>
-<p>网页上对<code>Latex</code>的支持需要借助能够解析<code>Latex</code>语法的插件引擎，将<code>Latex</code>语法转成<code>HTML</code>元素，常用的 <code>Latex</code>公式引擎有<code>Katex</code>,<code>mathjax</code>引擎等，如CSDN使用的就是<code>Katex</code>。</p>
-<ul>
-<li>渲染引擎改成<code>pandoc</code></li>
-</ul>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/18/1addLatexSupport/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
