@@ -396,6 +396,15 @@ mjx-container[display="true"] + br {
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
+                            OpenCV
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
                             Python
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  </ul> 
@@ -490,6 +499,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1opencv-blobimage" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OpenCV/">OpenCV</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/OpenCV/" rel="tag">OpenCV</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/27/1opencv-blobimage/">
+            <time datetime="2022-04-26T17:04:32.000Z" itemprop="datePublished">2022-04-27</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OpenCV/1opencv-blobimage.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OpenCV/1opencv-blobimage.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OpenCV/1opencv-blobimage.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="blobfromimage">1.blobFromImage</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Mat cv::dnn::<span class="built_in">blobFromImage</span>	(	</span><br><span class="line">    InputArray 	image,</span><br><span class="line">    <span class="type">double</span> 	scalefactor = <span class="number">1.0</span>,</span><br><span class="line">    <span class="type">const</span> Size &amp; 	size = <span class="built_in">Size</span>(),</span><br><span class="line">    <span class="type">const</span> Scalar &amp; 	mean = <span class="built_in">Scalar</span>(),</span><br><span class="line">    <span class="type">bool</span> 	swapRB = <span class="literal">false</span>,</span><br><span class="line">    <span class="type">bool</span> 	crop = <span class="literal">false</span>,</span><br><span class="line">    <span class="type">int</span> 	ddepth = CV_32F </span><br><span class="line">)	</span><br></pre></td></tr></table></figure>
+<p><code>OpenCV</code>中的<code>DNN</code>模块包含<code>blobFromImage</code>方法对输入神经网络的图像进行处理，<code>blobFromImage</code>函数执行的操作及顺序为：</p>
+<ul>
+<li>1.先相对于原图像中心resize,crop</li>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/27/1opencv-blobimage/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-4SiameseNetwork" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1403,110 +1516,6 @@ mjx-container[display="true"] + br {
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/19/8cppContainer/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-2-add-mermaid-support" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/hexo/">hexo</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/hexo/" rel="tag">hexo</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/18/2-add-mermaid-support/">
-            <time datetime="2022-04-18T12:55:33.000Z" itemprop="datePublished">2022-04-18</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/hexo/2-add-mermaid-support.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/hexo/2-add-mermaid-support.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/hexo/2-add-mermaid-support.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="mermaid">1.mermaid</h2>
-<p><a target="_blank" rel="noopener" href="https://mermaid-js.github.io/mermaid/#/"><code>mermaid</code></a>是一款支持在Markdown文档中使用的图表工具，可以用来画时序图，类图，流程图等。在<code>Markdown</code>中使用十分方便，常用的<code>Markdown</code>编辑工具<code>Typora</code>和博客网站<code>CSDN</code>都支持<code>mermaid</code>。<code>mermaid</code>是基于<code>javascript</code>实现的，将<code>Markdown</code>文档中的元素渲染成<code>HTML</code>元素。</p>
-<h2 id="配置hexo支持mermaid">2.配置hexo支持mermaid</h2>
-<p>基于<strong>Wikitten</strong>主题实现。</p>
-<ul>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/18/2-add-mermaid-support/#more">Read More</a>
             </div>
         
         <footer class="article-footer">

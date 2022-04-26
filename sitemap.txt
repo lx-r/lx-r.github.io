@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/04/27/1opencv-blobimage/
 https://foobarweb.net/2022/04/24/4SiameseNetwork/
 https://foobarweb.net/2022/04/24/5githubpush443/
 https://foobarweb.net/2022/04/23/3OmniglotDataset/
@@ -47,6 +48,7 @@ https://foobarweb.net/tags/Python/
 https://foobarweb.net/tags/hexo/
 https://foobarweb.net/tags/tensorflow/
 https://foobarweb.net/tags/SiameseNetwork/
+https://foobarweb.net/tags/OpenCV/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/
@@ -58,3 +60,4 @@ https://foobarweb.net/categories/hexo/
 https://foobarweb.net/categories/tensorflow/
 https://foobarweb.net/categories/OneShotLearning/MetaLearning/
 https://foobarweb.net/categories/OneShotLearning/SiameseNetwork/
+https://foobarweb.net/categories/OpenCV/
