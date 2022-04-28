@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '포스트',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: '카테고리',
-            TAGS: '태그',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>카테고리</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -363,6 +363,15 @@ mjx-container[display="true"] + br {
                             Linux
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -499,6 +508,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1DeepOneClassClassification" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OneClassLearning/">OneClassLearning</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/OneClassLearning/" rel="tag">OneClassLearning</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/27/1DeepOneClassClassification/">
+            <time datetime="2022-04-27T13:55:57.000Z" itemprop="datePublished">2022-04-27</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OneClassLearning/1DeepOneClassClassification.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OneClassLearning/1DeepOneClassClassification.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OneClassLearning/1DeepOneClassClassification.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="背景">背景</h2>
+<p>神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？实际生活中存在大量的此种应用场景，如异常检测，网络入侵检测，欺诈检测等。</p>
+<h2 id="简介">1.简介</h2>
+<blockquote>
+<p>论文：<a target="_blank" rel="noopener" href="https://proceedings.mlr.press/v80/ruff18a.html">Deep One-Class Classification Lukas</a> 代码：<a target="_blank" rel="noopener" href="https://github.com/lukasruff/Deep-SVDD-PyTorch">PyTorch Implementation of Deep SVDD</a></p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/27/1DeepOneClassClassification/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-1opencv-blobimage" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -589,7 +702,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/27/1opencv-blobimage/#more">자세히 보기</a>
+                <a href="/2022/04/27/1opencv-blobimage/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -693,7 +806,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/24/4SiameseNetwork/#more">자세히 보기</a>
+                <a href="/2022/04/24/4SiameseNetwork/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -797,7 +910,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/24/5githubpush443/#more">자세히 보기</a>
+                <a href="/2022/04/24/5githubpush443/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -901,7 +1014,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/23/3OmniglotDataset/#more">자세히 보기</a>
+                <a href="/2022/04/23/3OmniglotDataset/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1005,7 +1118,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/22/3hexo-latex-subscript/#more">자세히 보기</a>
+                <a href="/2022/04/22/3hexo-latex-subscript/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1104,7 +1217,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/22/2meta-learning-maml/#more">자세히 보기</a>
+                <a href="/2022/04/22/2meta-learning-maml/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1208,7 +1321,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/20/1l2-normalize/#more">자세히 보기</a>
+                <a href="/2022/04/20/1l2-normalize/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1312,7 +1425,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/#more">자세히 보기</a>
+                <a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1416,106 +1529,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/19/3Yolov5Modules/#more">자세히 보기</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-8cppContainer" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/C/">C++</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/19/8cppContainer/">
-            <time datetime="2022-04-18T17:07:16.000Z" itemprop="datePublished">2022-04-19</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/8cppContainer.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/8cppContainer.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/8cppContainer.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="vector">1.vector</h2>
-<p><code>vector</code>是动态数组</p>
-<h3 id="vecor的构造函数">1.1 Vecor的构造函数</h3>
-<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/vector/vector/">vector</a></p>
-<p><code>C++11</code>中六种构造方法</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/19/8cppContainer/#more">자세히 보기</a>
+                <a href="/2022/04/19/3Yolov5Modules/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1530,7 +1544,7 @@ mjx-container[display="true"] + br {
 
     
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">다음 &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
         </nav>
     
 </section>

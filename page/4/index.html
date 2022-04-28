@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '포스트',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: '카테고리',
-            TAGS: '태그',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>카테고리</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -363,6 +363,15 @@ mjx-container[display="true"] + br {
                             Linux
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -499,6 +508,105 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-ExecutablePathIsNotAbsolute" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Linux/">Linux</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/12/ExecutablePathIsNotAbsolute/">
+            <time datetime="2022-04-12T13:43:37.000Z" itemprop="datePublished">2022-04-12</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="systemd-udevd.service启动失败">1.systemd-udevd.service启动失败</h1>
+<ul>
+<li><strong>问题</strong></li>
+<li>Ubuntu下执行<code>sudo apt-get upgrade</code>时包报错， <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">systemd-udevd.service - idev Kernel Device Mangaer</span><br><span class="line">    Loaded: error(Reason: Exec format error)</span><br><span class="line">    Active: inactivate(dead)</span><br><span class="line">    Docs: man:systemd-udevd.service(8)</span><br><span class="line">          man:udev(7)</span><br><span class="line">/lib/systemd/system/systemd-udevd.service:26: Executable path is not absolute: udevadm control --rel</span><br></pre></td></tr></table></figure> <strong>解决</strong></li>
+</ul>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/12/ExecutablePathIsNotAbsolute/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-cuda-introduction" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -589,7 +697,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/12/cuda-introduction/#more">자세히 보기</a>
+                <a href="/2022/04/12/cuda-introduction/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -693,7 +801,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/12/2git-submit/#more">자세히 보기</a>
+                <a href="/2022/04/12/2git-submit/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -797,7 +905,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/12/1git-filemode/#more">자세히 보기</a>
+                <a href="/2022/04/12/1git-filemode/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -901,7 +1009,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/#more">자세히 보기</a>
+                <a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1005,7 +1113,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/#more">자세히 보기</a>
+                <a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
@@ -1020,7 +1128,7 @@ mjx-container[display="true"] + br {
 
     
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; 이전</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+        <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
         </nav>
     
 </section>

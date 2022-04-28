@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foobarweb.net/2022/04/27/1DeepOneClassClassification/</loc>
+    
+    <lastmod>2022-04-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://foobarweb.net/2022/04/27/1opencv-blobimage/</loc>
     
     <lastmod>2022-04-26</lastmod>
@@ -346,7 +355,7 @@
 
   <url>
     <loc>https://foobarweb.net/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -354,84 +363,91 @@
   
   <url>
     <loc>https://foobarweb.net/tags/Detection/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/cuda-cudnn-cudatoolkit-nvidia-driver/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/GIT/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/C/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/linux/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/OneShotLearning/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/Python/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/hexo/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/tensorflow/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/SiameseNetwork/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/tags/OpenCV/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/tags/OneClassLearning/</loc>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -440,84 +456,91 @@
   
   <url>
     <loc>https://foobarweb.net/categories/Detection/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/CUDA/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/GIT/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/C/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/Linux/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/OneShotLearning/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/Python/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/hexo/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/tensorflow/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/OneShotLearning/MetaLearning/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/OneShotLearning/SiameseNetwork/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://foobarweb.net/categories/OpenCV/</loc>
-    <lastmod>2022-04-26</lastmod>
+    <lastmod>2022-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/categories/OneClassLearning/</loc>
+    <lastmod>2022-04-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
