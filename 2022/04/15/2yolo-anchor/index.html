@@ -43,7 +43,7 @@
 <meta property="og:image" content="https://foobarweb.net/images/Detection/2yolo-anchor/3.png">
 <meta property="og:image" content="https://foobarweb.net/images/Detection/2yolo-anchor/4.png">
 <meta property="article:published_time" content="2022-04-15T12:54:13.000Z">
-<meta property="article:modified_time" content="2022-04-15T18:46:25.227Z">
+<meta property="article:modified_time" content="2022-05-03T09:14:26.839Z">
 <meta property="article:author" content="Alasky">
 <meta property="article:tag" content="Detection">
 <meta name="twitter:card" content="summary">
@@ -629,6 +629,14 @@ yolov2 网络对于检测框位置大小的输出是:
 <img src="/images/Detection/2yolo-anchor/4.png">
 </center>
 <p>上图中，<code>gt_box</code>时检测小人的检测框，其中心落在<code>cell1</code>中，且计算可知其与<code>anchor</code>锚框<code>ta11</code>的<code>IOU</code>最大，故<code>cell1</code>中的<code>ta11</code>负责预测<code>gt_box</code>。 找到<code>gt box</code>对应的<code>cell</code>和<code>anchor</code>后可根据<code>图1</code>反向计算得真值偏移量用以计算<code>loss</code>，在<code>shape</code>为<code>[batch_size, H*W*num_anchors,5+num_class]</code>的预测中除<code>cell_id,argmax_anchor_idx</code>对应的预测框外，其他对预测结果无用，边框回归和分类评估时都直接忽略(使用mask=0抑制)，计算<code>confidence</code>将其目标计为<code>0</code>。</p>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 <h2 id="参考资料">参考资料</h2>
 <blockquote>
 <ul>

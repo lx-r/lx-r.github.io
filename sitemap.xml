@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://foobarweb.net/2022/04/27/1DeepOneClassClassification/</loc>
+    <loc>https://foobarweb.net/2022/04/19/8cppContainer/</loc>
     
     <lastmod>2022-05-03</lastmod>
     
@@ -11,7 +11,16 @@
   </url>
   
   <url>
-    <loc>https://foobarweb.net/2022/04/19/8cppContainer/</loc>
+    <loc>https://foobarweb.net/2022/04/15/2yolo-anchor/</loc>
+    
+    <lastmod>2022-05-03</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/2022/04/27/1DeepOneClassClassification/</loc>
     
     <lastmod>2022-05-03</lastmod>
     
@@ -302,15 +311,6 @@
     <loc>https://foobarweb.net/2022/04/20/1l2-normalize/</loc>
     
     <lastmod>2022-05-03</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://foobarweb.net/2022/04/15/2yolo-anchor/</loc>
-    
-    <lastmod>2022-04-15</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

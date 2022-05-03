@@ -1,5 +1,6 @@
-https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
 https://foobarweb.net/2022/04/19/8cppContainer/
+https://foobarweb.net/2022/04/15/2yolo-anchor/
+https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
 https://foobarweb.net/2022/04/17/7memory-manage/
 https://foobarweb.net/2022/04/16/6array-initialize-error/
 https://foobarweb.net/2022/04/13/5cpp-array-pointer/
@@ -32,7 +33,6 @@ https://foobarweb.net/2022/04/14/3color-print/
 https://foobarweb.net/2022/04/13/2python-magic-method/
 https://foobarweb.net/2022/04/13/1pip-introduction/
 https://foobarweb.net/2022/04/20/1l2-normalize/
-https://foobarweb.net/2022/04/15/2yolo-anchor/
 https://foobarweb.net/categories/index.html
 https://foobarweb.net/2022/04/12/cuda-introduction/
 https://foobarweb.net/tags/index.html
