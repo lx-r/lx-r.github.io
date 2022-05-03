@@ -23,7 +23,7 @@
         </script>   <!-- 修改 结束位置 --> 
             
     
-    <title>カテゴリ: OpenCV | 知行空间</title>
+    <title>Category: OpenCV | 知行空间</title>
     
     
         <meta name="keywords" content="OpenCV" />
@@ -37,7 +37,7 @@
 <meta property="og:description" content="1.blobFromImage 123456789Mat cv::dnn::blobFromImage	(	    InputArray 	image,    double 	scalefactor &#x3D; 1.0,    const Size &amp; 	size &#x3D; Size(),    const Scalar &amp; 	mean &#x3D; Scalar(),    bool 	swapRB &#x3D;">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-04-26T17:04:32.000Z">
-<meta property="article:modified_time" content="2022-04-26T17:38:18.733Z">
+<meta property="article:modified_time" content="2022-05-03T08:48:05.370Z">
 <meta property="article:author" content="Alasky">
 <meta property="article:tag" content="OpenCV">
 <meta name="twitter:card" content="summary">
@@ -243,7 +243,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -262,10 +262,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '投稿',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'カテゴリ',
-            TAGS: 'タグ',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -298,7 +298,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -315,7 +315,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>カテゴリ</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -572,7 +572,7 @@ mjx-container[display="true"] + br {
         
             
                 <div id="toc" class="toc-article">
-                <strong class="toc-title">カタログ</strong>
+                <strong class="toc-title">Catalogue</strong>
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#blobfromimage"><span class="toc-number">1.</span> <span class="toc-text">1.blobFromImage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8Etorchvision%E5%AF%B9%E6%AF%94"><span class="toc-number">2.</span> <span class="toc-text">2.与torchvision对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">3.示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
                 </div>
             
@@ -600,6 +600,14 @@ mjx-container[display="true"] + br {
 <ul>
 <li>输入的标准化 <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.798ex" xmlns="http://www.w3.org/2000/svg" width="7.111ex" height="2.631ex" role="img" focusable="false" viewbox="0 -810.2 3143.3 1163"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,398) scale(0.707)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g><g data-mml-node="mo" transform="translate(572,0)"><path data-c="2212" d="M84 237T84 250T98 270H679Q694 262 694 250T679 230H98Q84 237 84 250Z"/></g><g data-mml-node="mi" transform="translate(1350,0)"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(2228,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"/></g><g data-mml-node="mi" transform="translate(2694,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"/></g><g data-mml-node="mi" transform="translate(3223,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"/></g></g><g data-mml-node="mrow" transform="translate(1094.3,-345) scale(0.707)"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"/></g><g data-mml-node="mi" transform="translate(830,0)"><path data-c="1D451" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"/></g></g><rect width="2903.3" height="60" x="120" y="220"/></g></g></g></svg></mjx-container></span></li>
 </ul>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 <h2 id="示例">3.示例</h2>
 <p>通过一段简单的程序介绍<code>cv2.dnn.blobFromImage</code>执行的操作与<code>torchvision</code>中的<code>ToTensor</code>+<code>Normalize</code>效果等同</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> transforms</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">dd = np.random.randint(<span class="number">0</span>, <span class="number">255</span>, (<span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>), dtype=np.uint8)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"dd: <span class="subst">{dd}</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"===&gt;&gt;&gt; by torch"</span>)</span><br><span class="line">tt = torch.tensor(dd)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"tt: <span class="subst">{tt}</span>"</span>)</span><br><span class="line"></span><br><span class="line">tp = Image.fromarray(dd)</span><br><span class="line"></span><br><span class="line">trans = transforms.Compose([</span><br><span class="line">    transforms.ToTensor(), <span class="comment"># HWC-&gt;CHW, 0-255-&gt; 0-1</span></span><br><span class="line">    transforms.Normalize((<span class="number">.5</span>, <span class="number">.5</span>, <span class="number">.5</span>), (<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>)) <span class="comment"># (x-mwan)/std</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">trans_tt = trans(tp)</span><br><span class="line"><span class="built_in">print</span>(trans_tt)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"trans_tt.shape: <span class="subst">{trans_tt.shape}</span>"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"===&gt;&gt;&gt; by opencv"</span>)</span><br><span class="line">blob = cv2.dnn.blobFromImage(dd, <span class="number">1</span>/<span class="number">255</span>, (<span class="number">4</span>,<span class="number">4</span>), (<span class="number">127.5</span>, <span class="number">127.5</span>, <span class="number">127.5</span>), <span class="literal">False</span>, <span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"blob: <span class="subst">{blob}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"blog.shape: <span class="subst">{blob.shape}</span>"</span>)</span><br></pre></td></tr></table></figure>
@@ -626,7 +634,7 @@ mjx-container[display="true"] + br {
 <nav id="article-nav">
     
         <a href="/2022/04/27/1DeepOneClassClassification/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">新しい記事</strong>
+            <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
                     (一)Deep-One-Class-Classification论文解读及代码分析
@@ -636,7 +644,7 @@ mjx-container[display="true"] + br {
     
     
         <a href="/2022/04/24/4SiameseNetwork/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">古い記事</strong>
+            <strong class="article-nav-caption">Older</strong>
             <div class="article-nav-title">4SiameseNetwork</div>
         </a>
     

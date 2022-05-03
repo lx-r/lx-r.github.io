@@ -23,7 +23,7 @@
         </script>   <!-- 修改 结束位置 --> 
             
     
-    <title>カテゴリ: Python | 知行空间</title>
+    <title>Category: Python | 知行空间</title>
     
     
         <meta name="keywords" content="Python" />
@@ -37,7 +37,7 @@
 <meta property="og:description" content="1.Pip是什么 pip 是 Python 中的标准包管理器。2011年问世，原作者Ian Bicking,以Python语言编写的开源软件包管理器。项目地址：见github。它允许你安装和管理不属于Python标准库 的其它软件包。pip之于Python如npm之于javascript,就是第三方包管理工具。现在，在安装Python3的3.4和Python2的2.7.9之后的版本Python时，">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-04-13T15:04:01.000Z">
-<meta property="article:modified_time" content="2022-04-13T15:12:33.662Z">
+<meta property="article:modified_time" content="2022-05-03T08:46:56.656Z">
 <meta property="article:author" content="Alasky">
 <meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
@@ -131,7 +131,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -150,10 +150,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '投稿',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'カテゴリ',
-            TAGS: 'タグ',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -186,7 +186,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -203,7 +203,7 @@
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>カテゴリ</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -460,8 +460,8 @@
         
             
                 <div id="toc" class="toc-article">
-                <strong class="toc-title">カタログ</strong>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pip%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1.Pip是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2.包管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pip%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1.Pip是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">2.包管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E5%AE%9A%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">3.指定源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">4.</span> <span class="toc-text">参考资料</span></a></li></ol>
                 </div>
             
         
@@ -481,7 +481,21 @@
 <li>安装文件中指定的包</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://pip.pypa.io/en/stable/user_guide/">requirements.txt格式</a> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从文件中安装</span></span><br><span class="line">python -m pip install -r requirements.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将已安装的包导出</span></span><br><span class="line">python -m pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure> - 安装<code>wheel</code>文件包</p>
-<p><code>wheel</code>是<code>Python</code>中用于加速安装的文档格式，详见<a target="_blank" rel="noopener" href="https://pip.pypa.io/en/stable/user_guide/">WheelDocs</a>,既相关的PEP（Python Enhancement Proposals）提案，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0427/">PEP427</a>,<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0425/">PEP425</a> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install SomePackage-1.0-py2.py3-none-any.whl</span><br></pre></td></tr></table></figure> - 从<code>pypi</code>下载包到本地，然后再安装 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python -m pip download --destination-directory DIR -r requirements.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定安装路径</span></span><br><span class="line">python -m pip wheel --wheel-dir DIR -r requirements.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅从本地安装</span></span><br><span class="line">python -m pip install --no-index --find-links=DIR -r requirements.txt</span><br></pre></td></tr></table></figure> - 包的安装路径 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看自带标准库的路径</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import sys</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; sys.prefix</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看通过pip安装的第三方库的安装路径</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import site</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; site.getsitepackages()</span></span><br></pre></td></tr></table></figure> # 3.指定源 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">常用的源：</span><br><span class="line">https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line">http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure> - 通过命令行指定 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip -i http://pypi.douban.com/simple install Flask -- trusted-host pypi.douban.com</span><br></pre></td></tr></table></figure> - 通过配置文件指定</p>
+<p><code>wheel</code>是<code>Python</code>中用于加速安装的文档格式，详见<a target="_blank" rel="noopener" href="https://pip.pypa.io/en/stable/user_guide/">WheelDocs</a>,既相关的PEP（Python Enhancement Proposals）提案，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0427/">PEP427</a>,<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0425/">PEP425</a> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install SomePackage-1.0-py2.py3-none-any.whl</span><br></pre></td></tr></table></figure> - 从<code>pypi</code>下载包到本地，然后再安装 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">python -m pip download --destination-directory DIR -r requirements.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定安装路径</span></span><br><span class="line">python -m pip wheel --wheel-dir DIR -r requirements.txt</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">仅从本地安装</span></span><br><span class="line">python -m pip install --no-index --find-links=DIR -r requirements.txt</span><br></pre></td></tr></table></figure> - 包的安装路径 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看自带标准库的路径</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import sys</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; sys.prefix</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看通过pip安装的第三方库的安装路径</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; import site</span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; site.getsitepackages()</span></span><br></pre></td></tr></table></figure></p>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h1 id="指定源">3.指定源</h1>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">常用的源：</span><br><span class="line">https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line">http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过命令行指定 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip -i http://pypi.douban.com/simple install Flask -- trusted-host pypi.douban.com</span><br></pre></td></tr></table></figure></li>
+<li>通过配置文件指定</li>
+</ul>
 <p>当前用户目录下创建<code>.pip</code>文件夹,在该目录下创建<code>pip.conf</code>文件填写，<a target="_blank" rel="noopener" href="https://pip.pypa.io/en/stable/user_guide/#config-file">pip.conf文件官方示例</a> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.pip</span><br></pre></td></tr></table></figure> pip.conf内容： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[global]trusted-host=mirrors.aliyun.com</span><br><span class="line">index-url=http://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure></p>
 <h1 id="参考资料">参考资料</h1>
 <blockquote>
@@ -504,7 +518,7 @@
 <nav id="article-nav">
     
         <a href="/2022/04/13/2python-magic-method/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">新しい記事</strong>
+            <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
                     (二)Python中的魔术方法
@@ -514,7 +528,7 @@
     
     
         <a href="/2022/04/13/5cpp-array-pointer/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">古い記事</strong>
+            <strong class="article-nav-caption">Older</strong>
             <div class="article-nav-title">(六)C++中的数组指针与指针数组</div>
         </a>
     

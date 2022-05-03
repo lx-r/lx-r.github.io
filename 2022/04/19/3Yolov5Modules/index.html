@@ -23,7 +23,7 @@
         </script>   <!-- 修改 结束位置 --> 
             
     
-    <title>カテゴリ: Detection | 知行空间</title>
+    <title>Category: Detection | 知行空间</title>
     
     
         <meta name="keywords" content="Detection" />
@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2a175deda9a84c769b5ca15a5cd4c15d.png#pic_center">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/43e5d07f67e94c2e8dc12a0fe7704a70.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbHhfcm9z,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center">
 <meta property="article:published_time" content="2022-04-19T12:20:57.000Z">
-<meta property="article:modified_time" content="2022-04-19T12:25:09.943Z">
+<meta property="article:modified_time" content="2022-05-03T08:51:15.309Z">
 <meta property="article:author" content="Alasky">
 <meta property="article:tag" content="Detection">
 <meta name="twitter:card" content="summary">
@@ -256,7 +256,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -275,10 +275,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: '投稿',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'カテゴリ',
-            TAGS: 'タグ',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -311,7 +311,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="検索" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -328,7 +328,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>カテゴリ</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -585,7 +585,7 @@ mjx-container[display="true"] + br {
         
             
                 <div id="toc" class="toc-article">
-                <strong class="toc-title">カタログ</strong>
+                <strong class="toc-title">Catalogue</strong>
                     <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bottleneck"><span class="toc-number">1.</span> <span class="toc-text">1.Bottleneck</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bottlenetcsp"><span class="toc-number">2.</span> <span class="toc-text">2.BottlenetCSP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#c3bottleneck-with-3-convolutional-blocks"><span class="toc-number">3.</span> <span class="toc-text">3. C3:Bottleneck with 3 Convolutional Blocks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#focus"><span class="toc-number">4.</span> <span class="toc-text">4. Focus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spp"><span class="toc-number">5.</span> <span class="toc-text">5.SPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dwconv-depth-wise-convolution"><span class="toc-number">6.</span> <span class="toc-text">6.DWConv, Depth Wise Convolution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ghostconv"><span class="toc-number">7.</span> <span class="toc-text">7.GhostConv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ghostbottleneck"><span class="toc-number">8.</span> <span class="toc-text">8.GhostBottleneck</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mixconv"><span class="toc-number">9.</span> <span class="toc-text">9.MixConv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crossconv"><span class="toc-number">10.</span> <span class="toc-text">10.CrossConv</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fpnpan"><span class="toc-number">11.</span> <span class="toc-text">11.FPN+PAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">12.</span> <span class="toc-text">参考资料</span></a></li></ol>
                 </div>
             
@@ -622,6 +622,14 @@ mjx-container[display="true"] + br {
 <p><code>YoloV5</code>中使用了<code>Feature Pyramid Network</code>(<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1612.03144">FPN</a>)与<code>Path Aggregation Network</code>(<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1803.01534">PAN</a>)网络结构，用于检测不同尺度的目标和特征融合。<strong>FPN</strong>是<code>FAIR</code>的何凯明团队2016年提交<code>preprint version</code>并发表在<code>CVPR2017</code>上的论文，融入了特征金字塔，提高了目标检测的准确率，尤其体现在小物体的检测上。<code>P2\P3\P4</code>等对应的是<code>C2\C3\C4</code>是特征图大小发生变化的卷积层对应的输出，具体可参考论文<code>Section 3</code>。<strong>PAN</strong>是香港中文大学发表在<code>CVPR2018</code>上的论文，基于高层的特征具有更多的语义信息，低层特征具有更多的细节信息来做特征融合，取得了更好的语义分割效果。与<code>FPN</code>的<code>Bottom-Up</code>的做法不同，其在<code>FPN</code>的基础上又增加了从顶向下的路径。</p>
 <p><code>Goole Brain</code>2019年提交的<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1911.09070">论文<code>EfficientDet</code></a>中提出了<code>BiFPN</code>结构，最终发表在了<code>CVPR2020</code>上，后续可将其应用到<code>YoloV5</code>上实验看一下效果。</p>
 <p><img src="https://img-blog.csdnimg.cn/43e5d07f67e94c2e8dc12a0fe7704a70.png?x-oss-process=image/watermark,type_ZHJvaWRzYW5zZmFsbGJhY2s,shadow_50,text_Q1NETiBAbHhfcm9z,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center"></p>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 <h2 id="参考资料">参考资料</h2>
 <blockquote>
 <ul>
@@ -641,7 +649,7 @@ mjx-container[display="true"] + br {
 <nav id="article-nav">
     
         <a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">新しい記事</strong>
+            <strong class="article-nav-caption">Newer</strong>
             <div class="article-nav-title">
                 
                     (四)已提交的文件gitignore
@@ -651,7 +659,7 @@ mjx-container[display="true"] + br {
     
     
         <a href="/2022/04/19/8cppContainer/" id="article-nav-older" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">古い記事</strong>
+            <strong class="article-nav-caption">Older</strong>
             <div class="article-nav-title">(八)C++的常用容器简析</div>
         </a>
     
