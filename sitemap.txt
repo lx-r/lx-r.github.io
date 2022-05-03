@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
 https://foobarweb.net/2022/04/19/8cppContainer/
 https://foobarweb.net/2022/04/17/7memory-manage/
 https://foobarweb.net/2022/04/16/6array-initialize-error/
@@ -20,7 +21,6 @@ https://foobarweb.net/2022/04/18/1addLatexSupport/
 https://foobarweb.net/2022/04/12/ExecutablePathIsNotAbsolute/
 https://foobarweb.net/2022/04/12/3env-variable/
 https://foobarweb.net/2022/04/12/2software-install/
-https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
 https://foobarweb.net/2022/04/24/4SiameseNetwork/
 https://foobarweb.net/2022/04/23/3OmniglotDataset/
 https://foobarweb.net/2022/04/22/2meta-learning-maml/

@@ -29,16 +29,16 @@
         <meta name="keywords" content="OneClassLearning" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="(adsbygoogle &#x3D; window.adsbygoogle || []).push({});   背景 神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？">
+    <meta name="description" content="背景 神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？实际生活中存在大量的此种应用场景，如异常检测，网络入侵检测，欺诈检测等。 1.简介  论文：Deep One-Class C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="(一)Deep-One-Class-Classification论文解读及代码分析">
 <meta property="og:url" content="https://foobarweb.net/2022/04/27/1DeepOneClassClassification/index.html">
 <meta property="og:site_name" content="知行空间">
-<meta property="og:description" content="(adsbygoogle &#x3D; window.adsbygoogle || []).push({});   背景 神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？">
+<meta property="og:description" content="背景 神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？实际生活中存在大量的此种应用场景，如异常检测，网络入侵检测，欺诈检测等。 1.简介  论文：Deep One-Class C">
 <meta property="og:locale">
 <meta property="og:image" content="https://foobarweb.net/images/OneClassLearning/1DeepOneClassClassification/1DeepSVDD.png">
 <meta property="article:published_time" content="2022-04-27T13:55:57.000Z">
-<meta property="article:modified_time" content="2022-05-03T08:49:11.080Z">
+<meta property="article:modified_time" content="2022-05-03T09:14:16.025Z">
 <meta property="article:author" content="Alasky">
 <meta property="article:tag" content="OneClassLearning">
 <meta name="twitter:card" content="summary">
@@ -580,15 +580,7 @@ mjx-container[display="true"] + br {
             
         
         
-            <div>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
-<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
-</ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-</div>
-<h2 id="背景">背景</h2>
+            <h2 id="背景">背景</h2>
 <p>神经网络在多类别数据上取得了不错的成果，如图像分类，目标检测，图像分割中，但面对实际中的应用，往往面对训练数据少，缺少某个类别数据的挑战。考虑如医学图像的辅助诊断，有可能只能提供健康类别的图像，但要算法识别出异常的图像，这时应用神经网络做分类，面对单个类别该如何训练呢？实际生活中存在大量的此种应用场景，如异常检测，网络入侵检测，欺诈检测等。</p>
 <h2 id="简介">1.简介</h2>
 <blockquote>
@@ -615,6 +607,14 @@ mjx-container[display="true"] + br {
 <h2 id="deep-svdd">3.Deep SVDD</h2>
 <h3 id="目标函数">3.1目标函数</h3>
 <p>与单分类目标一起同时学习数据的表征，使用两个神经网络的联合训练以把数据映射到最小包围超球面上。</p>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
 <h2 id="参考资料">参考资料</h2>
 <blockquote>
 <ul>
