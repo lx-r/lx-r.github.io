@@ -1,4 +1,5 @@
 https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
+https://foobarweb.net/2022/04/22/3hexo-latex-subscript/
 https://foobarweb.net/2022/04/19/8cppContainer/
 https://foobarweb.net/2022/04/15/2yolo-anchor/
 https://foobarweb.net/2022/04/17/7memory-manage/
@@ -16,7 +17,6 @@ https://foobarweb.net/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%
 https://foobarweb.net/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/
 https://foobarweb.net/2022/04/12/2git-submit/
 https://foobarweb.net/2022/04/12/1git-filemode/
-https://foobarweb.net/2022/04/22/3hexo-latex-subscript/
 https://foobarweb.net/2022/04/18/2-add-mermaid-support/
 https://foobarweb.net/2022/04/18/1addLatexSupport/
 https://foobarweb.net/2022/04/12/ExecutablePathIsNotAbsolute/
