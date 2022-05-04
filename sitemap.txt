@@ -1,3 +1,5 @@
+https://foobarweb.net/2022/05/05/7decorator/
+https://foobarweb.net/2022/05/04/6PythonStaticmethodAndClassmethod/
 https://foobarweb.net/2022/04/19/8cppContainer/
 https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
 https://foobarweb.net/2022/04/22/3hexo-latex-subscript/

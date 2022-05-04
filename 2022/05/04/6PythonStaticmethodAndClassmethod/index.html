@@ -23,18 +23,23 @@
         </script>   <!-- 修改 结束位置 --> 
             
     
-    <title>Tag: linux | 知行空间</title>
+    <title>Category: Python | 知行空间</title>
     
     
-        <meta name="keywords" content="知行空间" />
+        <meta name="keywords" content="Python" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta property="og:type" content="website">
-<meta property="og:title" content="知行空间">
-<meta property="og:url" content="https://foobarweb.net/tags/linux/index.html">
+    <meta name="description" content="1.说明 先熟悉几个名词：  类对象：如class Dog:定义的Dog就是类对象 类属性：如 12class Dog:     age&#x3D;10 直接在类中定义的属性就是类属性 实例对象：如d&#x3D;Dog(“Tom”)通过类对象创建的对象 实例属性：在__init__中定义在self上的属性,self即对象实例 类方法：使用@classmethod装饰器修饰的方法，第一个超参数为cls指向类对象，@cl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(六)Python中的&#96;staticmethod&#96;和&#96;classmethod&#96;">
+<meta property="og:url" content="https://foobarweb.net/2022/05/04/6PythonStaticmethodAndClassmethod/index.html">
 <meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="1.说明 先熟悉几个名词：  类对象：如class Dog:定义的Dog就是类对象 类属性：如 12class Dog:     age&#x3D;10 直接在类中定义的属性就是类属性 实例对象：如d&#x3D;Dog(“Tom”)通过类对象创建的对象 实例属性：在__init__中定义在self上的属性,self即对象实例 类方法：使用@classmethod装饰器修饰的方法，第一个超参数为cls指向类对象，@cl">
 <meta property="og:locale">
+<meta property="article:published_time" content="2022-05-04T15:43:26.000Z">
+<meta property="article:modified_time" content="2022-05-04T16:13:37.324Z">
 <meta property="article:author" content="Alasky">
+<meta property="article:tag" content="Python">
 <meta name="twitter:card" content="summary">
     
 
@@ -298,13 +303,13 @@
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
                     </li> 
                     
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             Python
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">7decorator</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file active"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">7decorator</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -395,50 +400,143 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#linux</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-6PythonStaticmethodAndClassmethod" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2022/04/12/3env-variable/">(三)Linux环境变量</a>
-        </h1>
-    
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
 
-                <div class="article-meta">
-                    
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2022/04/12/3env-variable/">
-            <time datetime="2022-04-12T13:59:00.000Z" itemprop="datePublished">2022-04-12</time>
+        <a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">
+            <time datetime="2022-05-04T15:43:26.000Z" itemprop="datePublished">2022-05-04</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Linux/">Linux</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/linux/" rel="tag">linux</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
     
+        <h1 class="article-title" itemprop="name">
+            (六)Python中的`staticmethod`和`classmethod`
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">1.</span> <span class="toc-text">1.说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">2.示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="说明">1.说明</h2>
+<p>先熟悉几个名词：</p>
+<ul>
+<li><strong>类对象</strong>：如<code>class Dog:</code>定义的<code>Dog</code>就是类对象</li>
+<li><strong>类属性</strong>：如 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>: </span><br><span class="line">    age=<span class="number">10</span></span><br></pre></td></tr></table></figure> 直接在类中定义的属性就是类属性</li>
+<li><strong>实例对象</strong>：如<code>d=Dog(“Tom”)</code>通过类对象创建的对象</li>
+<li><strong>实例属性</strong>：在<code>__init__</code>中定义在<code>self</code>上的属性,<code>self</code>即对象实例</li>
+<li><strong>类方法</strong>：使用<code>@classmethod</code>装饰器修饰的方法，第一个超参数为<code>cls</code>指向类对象，<span class="citation" data-cites="classmethod因为持有cls参数">@classmethod因为持有cls参数</span>，可以来调用类的属性，类的方法，实例化对象等，避免硬编码。<code>classmethod</code>常<strong>用做工厂方法</strong>。</li>
+<li><strong>静态方法</strong>：使用<code>@staticmethod</code>装饰器修饰的方法，没有<code>self</code>和<code>cls</code>超参数，staticmethod相当于定义了一个局部域函数为该类专门服务，通常使用静态方法创建工具函数。在@staticmethod中要调用到类的一些属性方法，只能直接类名.属性名或类名.方法名，这在继承和派生关系时是十分不友好的。</li>
+</ul>
+<h2 id="示例">2.示例</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>:</span><br><span class="line">    age = <span class="number">0</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name</span>): <span class="comment"># 实例属性</span></span><br><span class="line">        self.name = name </span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">x1, x2</span>):</span><br><span class="line">        <span class="comment"># print(self.name) # error 不能访问实例属性</span></span><br><span class="line">        <span class="built_in">print</span>(Dog.age) <span class="comment"># 没有cls参数，仅能通过类名访问类的属性或方法</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;static method&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> x1 + x2</span><br><span class="line">    </span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">dog_add</span>(<span class="params">cls, x1, x2</span>): <span class="comment"># 有cls参数指像类对象，可通过cls访问类属性age</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;class method&quot;</span>) <span class="comment"># 便于继承与派生</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;cls name&quot;</span>, cls.age)</span><br><span class="line">        <span class="keyword">return</span> cls.add(x1, x2)</span><br><span class="line"></span><br><span class="line">d = Dog(<span class="string">&quot;Tom&quot;</span>)</span><br><span class="line">d.add(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">d.dog_add(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(Dog.add(<span class="number">1</span>,<span class="number">20</span>))</span><br><span class="line"><span class="built_in">print</span>(Dog.dog_add(<span class="number">1</span>,<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
 </div>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/28010894">1.https://zhuanlan.zhihu.com/p/28010894</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/class-method-vs-static-method-python/#:~:text=A%20class%20method%20takes%20cls,nothing%20about%20the%20class%20state.">2.Class method vs Static method in Python</a></li>
+<li><a target="_blank" rel="noopener" href="https://refactoringguru.cn/design-patterns/factory-method">3.工厂方法模式</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/2022/05/05/7decorator/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    7decorator
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2022/04/27/1DeepOneClassClassification/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(一)Deep-One-Class-Classification论文解读及代码分析</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
 </section>
         </div>
         <footer id="footer">
