@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foobarweb.net/2022/04/19/8cppContainer/</loc>
+    
+    <lastmod>2022-05-04</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://foobarweb.net/2022/04/27/1DeepOneClassClassification/</loc>
     
     <lastmod>2022-05-04</lastmod>
@@ -14,15 +23,6 @@
     <loc>https://foobarweb.net/2022/04/22/3hexo-latex-subscript/</loc>
     
     <lastmod>2022-05-04</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://foobarweb.net/2022/04/19/8cppContainer/</loc>
-    
-    <lastmod>2022-05-03</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
