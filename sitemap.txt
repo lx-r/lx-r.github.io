@@ -1,3 +1,5 @@
+https://foobarweb.net/2022/05/06/1gcn/
+https://foobarweb.net/2022/05/05/1sum/
 https://foobarweb.net/2022/05/05/8conda/
 https://foobarweb.net/2022/05/05/1gan/
 https://foobarweb.net/2022/04/27/5pilerror/
@@ -59,6 +61,7 @@ https://foobarweb.net/tags/OneClassLearning/
 https://foobarweb.net/tags/numpy/
 https://foobarweb.net/tags/PIL/
 https://foobarweb.net/tags/GAN/
+https://foobarweb.net/tags/Pytorch/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/
@@ -74,3 +77,5 @@ https://foobarweb.net/categories/OpenCV/
 https://foobarweb.net/categories/OneClassLearning/
 https://foobarweb.net/categories/GAN/
 https://foobarweb.net/categories/Python/PIL/
+https://foobarweb.net/categories/MechineLearning/
+https://foobarweb.net/categories/Pytorch/

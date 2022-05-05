@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foobarweb.net/2022/05/06/1gcn/</loc>
+    
+    <lastmod>2022-05-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/2022/05/05/1sum/</loc>
+    
+    <lastmod>2022-05-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://foobarweb.net/2022/05/05/8conda/</loc>
     
     <lastmod>2022-05-05</lastmod>
@@ -518,6 +536,13 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://foobarweb.net/tags/Pytorch/</loc>
+    <lastmod>2022-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
@@ -620,6 +645,20 @@
   
   <url>
     <loc>https://foobarweb.net/categories/Python/PIL/</loc>
+    <lastmod>2022-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/categories/MechineLearning/</loc>
+    <lastmod>2022-05-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://foobarweb.net/categories/Pytorch/</loc>
     <lastmod>2022-05-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
