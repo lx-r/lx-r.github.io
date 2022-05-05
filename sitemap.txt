@@ -1,3 +1,6 @@
+https://foobarweb.net/2022/05/05/8conda/
+https://foobarweb.net/2022/05/05/1gan/
+https://foobarweb.net/2022/04/27/5pilerror/
 https://foobarweb.net/2022/05/05/7decorator/
 https://foobarweb.net/2022/05/04/6PythonStaticmethodAndClassmethod/
 https://foobarweb.net/2022/04/19/8cppContainer/
@@ -53,6 +56,9 @@ https://foobarweb.net/tags/tensorflow/
 https://foobarweb.net/tags/SiameseNetwork/
 https://foobarweb.net/tags/OpenCV/
 https://foobarweb.net/tags/OneClassLearning/
+https://foobarweb.net/tags/numpy/
+https://foobarweb.net/tags/PIL/
+https://foobarweb.net/tags/GAN/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/
@@ -66,3 +72,5 @@ https://foobarweb.net/categories/OneShotLearning/MetaLearning/
 https://foobarweb.net/categories/OneShotLearning/SiameseNetwork/
 https://foobarweb.net/categories/OpenCV/
 https://foobarweb.net/categories/OneClassLearning/
+https://foobarweb.net/categories/GAN/
+https://foobarweb.net/categories/Python/PIL/

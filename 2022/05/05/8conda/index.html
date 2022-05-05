@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>(八) Conda常用指令 | 知行空间</title>
+    
+    
+        <meta name="keywords" content="(八) Conda常用指令" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.Conda是什么？ Conda是Anaconda中的一个开源的包和环境管理工具，可以在终端窗口通过命令行使用，也可以在Anaconda Navigator中通过图形化界面使用,对编程创建独立的环境和包管理，最初是为Python语言开发，现在已不限制语言，支持Python, R, Ruby, Lua, Scala, Java, JavaScript, C&#x2F; C++, FORTRAN等。 2.管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(八) Conda常用指令">
+<meta property="og:url" content="https://foobarweb.net/2022/05/05/8conda/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="1.Conda是什么？ Conda是Anaconda中的一个开源的包和环境管理工具，可以在终端窗口通过命令行使用，也可以在Anaconda Navigator中通过图形化界面使用,对编程创建独立的环境和包管理，最初是为Python语言开发，现在已不限制语言，支持Python, R, Ruby, Lua, Scala, Java, JavaScript, C&#x2F; C++, FORTRAN等。 2.管理">
+<meta property="og:locale">
+<meta property="og:image" content="https://foobarweb.net/images/Python/8conda/1.png">
+<meta property="og:image" content="https://foobarweb.net/images/Python/8conda/2.png">
+<meta property="og:image" content="https://foobarweb.net/images/Python/8conda/3.png">
+<meta property="og:image" content="https://foobarweb.net/images/Python/8conda/4.png">
+<meta property="og:image" content="https://foobarweb.net/images/Python/8conda/5.png">
+<meta property="article:published_time" content="2022-05-05T15:37:34.000Z">
+<meta property="article:modified_time" content="2022-05-05T15:45:16.545Z">
+<meta property="article:author" content="Alasky">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://foobarweb.net/images/Python/8conda/1.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GAN
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SiameseNetwork
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OpenCV
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PIL
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/5pilerror/">5pilerror TypeError Cannot handle this data type</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">(七)Python中的装饰器</a></li>  <li class="file active"><a href="/2022/05/05/8conda/">(八) Conda常用指令</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-8conda" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/05/8conda/">
+            <time datetime="2022-05-05T15:37:34.000Z" itemprop="datePublished">2022-05-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/8conda.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/8conda.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/8conda.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            (八) Conda常用指令
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#conda%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.</span> <span class="toc-text">1.Conda是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86conda"><span class="toc-number">2.</span> <span class="toc-text">2.管理Conda</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86"><span class="toc-number">3.</span> <span class="toc-text">5.配置管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%89%8B%E5%86%8C"><span class="toc-number">4.</span> <span class="toc-text">6.查询手册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="conda是什么">1.Conda是什么？</h2>
+<p>Conda是Anaconda中的一个开源的包和环境管理工具，可以在终端窗口通过命令行使用，也可以在<code>Anaconda Navigator</code>中通过图形化界面使用,对编程创建独立的环境和包管理，最初是为<code>Python</code>语言开发，现在已不限制语言，支持<code>Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN等</code>。</p>
+<h2 id="管理conda">2.管理Conda</h2>
+<ul>
+<li>查看版本 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure></li>
+<li>更新至最新版本 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update conda</span><br></pre></td></tr></table></figure></li>
+<li>更新<code>anaconda</code> <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update anaconda</span><br></pre></td></tr></table></figure> ## 3.使用conda实现环境管理 默认创建<code>base</code>环境</li>
+<li>创建环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name your-env</span><br></pre></td></tr></table></figure></li>
+<li>创建环境并同时安装指定包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create --name your-env your-pkg</span><br><span class="line">conda create --name snakes python=3.5</span><br></pre></td></tr></table></figure></li>
+<li>激活环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate your-env</span><br></pre></td></tr></table></figure></li>
+<li>取消激活环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda deactivate</span><br></pre></td></tr></table></figure></li>
+<li>查看已经创建的环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda info --envs</span><br></pre></td></tr></table></figure></li>
+<li>完整的删除一个环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda remove --name ENVNAME --all</span><br></pre></td></tr></table></figure></li>
+<li>复制1个环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --clone ENVNAME --name NEWENV</span><br></pre></td></tr></table></figure></li>
+<li>将环境导出到yaml文件，用于创建新的环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda env export --name ENVNAME &gt; envname.yml</span><br><span class="line">conda env create -f=/path/to/environment.yml -n your-env-name</span><br></pre></td></tr></table></figure></li>
+<li>查看某个环境的修订版 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list --revisions</span><br></pre></td></tr></table></figure></li>
+<li>将一个环境恢复到指定版本 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda list --name ENVNAME --revisions</span><br><span class="line">conda install --name ENVNAME --revision</span><br><span class="line">REV_NUMBER</span><br></pre></td></tr></table></figure> ## 4.包管理</li>
+<li>查看一个未安装的包在<code>Anaconda</code>库中是否存在 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda search pkg-name</span><br></pre></td></tr></table></figure></li>
+<li>安装一个包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pkg-name</span><br></pre></td></tr></table></figure></li>
+<li>查看刚安装的包是否存在 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list</span><br></pre></td></tr></table></figure></li>
+<li>查看某个环境下的包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda list --name ENVNAME</span><br></pre></td></tr></table></figure></li>
+<li>将当前环境下包的列表导出指定文件，用于创建新的环境 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name NEWENV --file pkgs.txt</span><br></pre></td></tr></table></figure></li>
+<li>更新某个环境下的所有包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda update --all --name ENVNAME</span><br></pre></td></tr></table></figure></li>
+<li>删除某个环境下的包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda uninstall PKGNAME --name ENVNAME</span><br></pre></td></tr></table></figure></li>
+<li>一次安装多个包 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install --yes PKG1 PKG2</span><br></pre></td></tr></table></figure></li>
+<li><p>安装指定版本的包 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在当前通道查找大于3.1.0小于3.2的包</span></span><br><span class="line">conda search PKGNAME=<span class="number">3.1</span> <span class="string">&quot;PKGNAME</span></span><br><span class="line"><span class="string">[version=&#x27;&gt;=3.1.0,&lt;3.2&#x27;]&quot;</span></span><br><span class="line"><span class="comment"># 使用ananconda 客户端，在所有通道下模糊查找某个包</span></span><br><span class="line">anaconda search FUZZYNAME</span><br><span class="line"><span class="comment"># 从指定通道中安装某个包</span></span><br><span class="line">conda install conda-forge::PKGNAME</span><br><span class="line"><span class="comment"># 安装指定版本的包</span></span><br><span class="line">conda install PKGNAME==<span class="number">3.1</span><span class="number">.4</span></span><br><span class="line"><span class="comment"># 限定包的版本范围</span></span><br><span class="line">conda install <span class="string">&quot;PKGNAME[version=&#x27;3.1.2|3.1.4&#x27;]&quot;</span></span><br><span class="line">conda install <span class="string">&quot;PKGNAME&gt;2.5,&lt;3.2&quot;</span></span><br></pre></td></tr></table></figure></p></li>
+<li><p>导出一个环境中的包用以创建环境</p></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install conda-pack</span><br><span class="line">conda pack -n env-name</span><br><span class="line">tar -zxvf env-name.tar.gz -&gt; /xxx/anaconda3/envs</span><br><span class="line">conda info -e</span><br></pre></td></tr></table></figure>
+<h2 id="配置管理">5.配置管理</h2>
+<ul>
+<li>conda使用的源管理，查看 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --show channels</span><br></pre></td></tr></table></figure></li>
+<li>增加源，解决下载慢的问题 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br></pre></td></tr></table></figure></li>
+<li>移除源 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config --remove channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br></pre></td></tr></table></figure></li>
+<li>清除索引缓存 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda clean -i</span><br></pre></td></tr></table></figure></li>
+<li><p>常用源 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">默认源：</span><br><span class="line">https://repo.anaconda.com/</span><br><span class="line"></span><br><span class="line">清华源：</span><br><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: true</span><br><span class="line">default_channels:</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">  - https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  msys2: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  bioconda: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  menpo: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br><span class="line">  simpleitk: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud</span><br></pre></td></tr></table></figure></p></li>
+<li><p>使用<code>yaml</code>形式的配置文件<code>.condarc</code> <br> <code>.condarc</code>文件通常在这些目录下： 支持的配置见<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/user-guide/configuration/use-condarc.html#config-channels">手册</a></p></li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">if on_win:</span><br><span class="line"> SEARCH_PATH = (</span><br><span class="line">     &#x27;C:/ProgramData/conda/.condarc&#x27;,</span><br><span class="line">     &#x27;C:/ProgramData/conda/condarc&#x27;,</span><br><span class="line">     &#x27;C:/ProgramData/conda/condarc.d&#x27;,</span><br><span class="line"> )</span><br><span class="line"> else:</span><br><span class="line"> SEARCH_PATH = (</span><br><span class="line">     &#x27;/etc/conda/.condarc&#x27;,</span><br><span class="line">     &#x27;/etc/conda/condarc&#x27;,</span><br><span class="line">     &#x27;/etc/conda/condarc.d/&#x27;,</span><br><span class="line">     &#x27;/var/lib/conda/.condarc&#x27;,</span><br><span class="line">     &#x27;/var/lib/conda/condarc&#x27;,</span><br><span class="line">     &#x27;/var/lib/conda/condarc.d/&#x27;,</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line"> SEARCH_PATH += (</span><br><span class="line">     &#x27;$CONDA_ROOT/.condarc&#x27;,</span><br><span class="line">     &#x27;$CONDA_ROOT/condarc&#x27;,</span><br><span class="line">     &#x27;$CONDA_ROOT/condarc.d/&#x27;,</span><br><span class="line">     &#x27;~/.conda/.condarc&#x27;,</span><br><span class="line">     &#x27;~/.conda/condarc&#x27;,</span><br><span class="line">     &#x27;~/.conda/condarc.d/&#x27;,</span><br><span class="line">     &#x27;~/.condarc&#x27;,</span><br><span class="line">     &#x27;$CONDA_PREFIX/.condarc&#x27;,</span><br><span class="line">     &#x27;$CONDA_PREFIX/condarc&#x27;,</span><br><span class="line">     &#x27;$CONDA_PREFIX/condarc.d/&#x27;,</span><br><span class="line">     &#x27;$CONDARC&#x27;,</span><br><span class="line"> )</span><br></pre></td></tr></table></figure>
+<h2 id="查询手册">6.查询手册</h2>
+<p><img src="/images/Python/8conda/1.png"> <img src="/images/Python/8conda/2.png"> <img src="/images/Python/8conda/3.png"> <img src="/images/Python/8conda/4.png"> <img src="/images/Python/8conda/5.png"></p>
+<ul>
+<li><code>yaml</code>文件示例 参考<a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/configuration.html">官方示例文件</a></li>
+</ul>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.conda.io/projects/conda/en/latest/commands.html">1.https://docs.conda.io/projects/conda/en/latest/commands.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">2.https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/</a></li>
+<li><a target="_blank" rel="noopener" href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">3.https://conda.io/projects/conda/en/latest/user-guide/getting-started.html</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2022/05/05/1gan/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(一)生成对抗网络Generative Adversarial Networks</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>
