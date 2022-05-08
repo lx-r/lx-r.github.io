@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://foobarweb.net/2022/05/08/2sklearn-avg-classification-report/</loc>
+    
+    <lastmod>2022-05-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://foobarweb.net/2022/05/08/2BatchNorm/</loc>
     
     <lastmod>2022-05-08</lastmod>

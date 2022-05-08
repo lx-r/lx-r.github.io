@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/05/08/2sklearn-avg-classification-report/
 https://foobarweb.net/2022/05/08/2BatchNorm/
 https://foobarweb.net/2022/05/06/1gcn/
 https://foobarweb.net/2022/05/05/1sum/
