@@ -1,5 +1,6 @@
-https://foobarweb.net/2022/05/08/2sklearn-avg-classification-report/
+https://foobarweb.net/2022/05/09/2ganomaly/
 https://foobarweb.net/2022/05/08/2BatchNorm/
+https://foobarweb.net/2022/05/08/2sklearn-avg-classification-report/
 https://foobarweb.net/2022/05/06/1gcn/
 https://foobarweb.net/2022/05/05/1sum/
 https://foobarweb.net/2022/05/05/8conda/
@@ -65,7 +66,6 @@ https://foobarweb.net/tags/PIL/
 https://foobarweb.net/tags/GAN/
 https://foobarweb.net/tags/Pytorch/
 https://foobarweb.net/tags/MachineLearning/
-https://foobarweb.net/tags/pytorch/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/
@@ -83,4 +83,3 @@ https://foobarweb.net/categories/GAN/
 https://foobarweb.net/categories/Python/PIL/
 https://foobarweb.net/categories/Pytorch/
 https://foobarweb.net/categories/MachineLearning/
-https://foobarweb.net/categories/pytorch/

@@ -353,7 +353,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             GAN
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -452,7 +452,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             Pytorch
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -462,15 +462,6 @@ mjx-container[display="true"] + br {
                             hexo
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            pytorch
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -553,6 +544,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1opencv-blobimage" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/OpenCV/">OpenCV</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/OpenCV/" rel="tag">OpenCV</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/27/1opencv-blobimage/">
+            <time datetime="2022-04-26T17:04:32.000Z" itemprop="datePublished">2022-04-27</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OpenCV/1opencv-blobimage.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OpenCV/1opencv-blobimage.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OpenCV/1opencv-blobimage.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="blobfromimage">1.blobFromImage</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Mat cv::dnn::<span class="built_in">blobFromImage</span>	(	</span><br><span class="line">    InputArray 	image,</span><br><span class="line">    <span class="type">double</span> 	scalefactor = <span class="number">1.0</span>,</span><br><span class="line">    <span class="type">const</span> Size &amp; 	size = <span class="built_in">Size</span>(),</span><br><span class="line">    <span class="type">const</span> Scalar &amp; 	mean = <span class="built_in">Scalar</span>(),</span><br><span class="line">    <span class="type">bool</span> 	swapRB = <span class="literal">false</span>,</span><br><span class="line">    <span class="type">bool</span> 	crop = <span class="literal">false</span>,</span><br><span class="line">    <span class="type">int</span> 	ddepth = CV_32F </span><br><span class="line">)	</span><br></pre></td></tr></table></figure>
+<p><code>OpenCV</code>中的<code>DNN</code>模块包含<code>blobFromImage</code>方法对输入神经网络的图像进行处理，<code>blobFromImage</code>函数执行的操作及顺序为：</p>
+<ul>
+<li>1.先相对于原图像中心resize,crop</li>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/27/1opencv-blobimage/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-5pilerror" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1471,105 +1566,6 @@ mjx-container[display="true"] + br {
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/19/3Yolov5Modules/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-8cppContainer" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/C/">C++</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/19/8cppContainer/">
-            <time datetime="2022-04-18T17:07:16.000Z" itemprop="datePublished">2022-04-19</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/8cppContainer.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/8cppContainer.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/8cppContainer.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="vector">1.vector</h2>
-<p><code>vector</code>是动态数组</p>
-<h3 id="vecor的构造函数">1.1 Vecor的构造函数</h3>
-<p><a target="_blank" rel="noopener" href="https://www.cplusplus.com/reference/vector/vector/">vector</a></p>
-<p><code>C++11</code>中六种构造方法</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/19/8cppContainer/#more">Read More</a>
             </div>
         
         <footer class="article-footer">

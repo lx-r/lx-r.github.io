@@ -241,7 +241,7 @@
                             &nbsp;
                             GAN
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -340,7 +340,7 @@
                             &nbsp;
                             Pytorch
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -350,15 +350,6 @@
                             hexo
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
-                    </li> 
-                    
-                    <li class="directory">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
-                            &nbsp;
-                            pytorch
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -441,6 +432,110 @@
 </aside>
             
             <section id="main">
+        <article id="post-3jupyter-notebook" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Python/">Python</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/14/3jupyter-notebook/">
+            <time datetime="2022-04-14T14:12:29.000Z" itemprop="datePublished">2022-04-14</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/3jupyter-notebook.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/3jupyter-notebook.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/3jupyter-notebook.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="成配置件">1.⽣成配置⽂件</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<h2 id="配置密码-远程登录时需要输">2.配置密码， 远程登录时需要输⼊</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> notebook.auth <span class="keyword">import</span> passwd passwd(<span class="string">&quot;mypassword&quot;</span>)</span><br><span class="line"><span class="comment">#&#x27;sha1:67c9e60bb8b6:9ffede0825894254b2e042ea597d771089e11aed&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="修改配置件-.jupyterjupyter_notebook_config.py">3.修改配置⽂件 ~/.jupyter/jupyter_notebook_config.py</h2>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/14/3jupyter-notebook/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-2python-magic-method" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1354,105 +1449,6 @@
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/12/2software-install/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-ExecutablePathIsNotAbsolute" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Linux/">Linux</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/12/ExecutablePathIsNotAbsolute/">
-            <time datetime="2022-04-12T13:43:37.000Z" itemprop="datePublished">2022-04-12</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Linux/ExecutablePathIsNotAbsolute.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><div>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
-<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
-</ins>
-<script>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/12/ExecutablePathIsNotAbsolute/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
