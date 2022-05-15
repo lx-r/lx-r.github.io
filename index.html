@@ -380,7 +380,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             MachineLearning
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -452,7 +452,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             Pytorch
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">3INTERPOLATE</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -544,6 +544,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-3transposedConv" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/MachineLearning/">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MachineLearning/" rel="tag">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/15/3transposedConv/">
+            <time datetime="2022-05-15T08:57:15.000Z" itemprop="datePublished">2022-05-15</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/MachineLearning/3transposedConv.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/MachineLearning/3transposedConv.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/MachineLearning/3transposedConv.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/05/15/3transposedConv/">（三）转置卷积</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="基础情况介绍">1.基础情况介绍</h2>
+<p>在语义分割任务使用的网络结构中，除了使用卷积神经网络进行降采样，为了恢复图像的大小，还需要使用转置卷积。转置卷积被称为<code>transposed convolution</code>，<code>fractionally-strided convolution</code>也有些地方称为<code>deconvolution</code>。转置卷积只是恢复的<code>feature map</code>的空间尺寸并不等同于卷积的逆运算，所以称之为<code>deconvolution</code>是不合适的。</p>
+<p>为了简化介绍，假设通道<code>channle=1</code>,对于<span class="math inline">\(n_h\times n_\omega\)</span>的输入和<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核，对于<code>stride=1, padding=0</code>的转置卷积，其计算过程为，将<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核在的输入的每一行每一列上滑动，得到<span class="math inline">\(n_h n_\omega\)</span>个中间结果，每个中间结果的空间尺寸为<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>,其值初时化为0，然后<strong>对于输入中的每个元素，与卷积核相乘得到<span class="math inline">\(k_h \times k_\omega\)</span>的结果替换掉<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>矩阵中的对应部分，最后将所有的中间结果相加得到最后的输出</strong>。</p>
+<p><img src="/images/MachineLearning/3transposedConv/412d.png"></p>
+<p>使用<code>numpy</code>数组实现上述过程为：</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/05/15/3transposedConv/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-3INTERPOLATE" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -592,7 +696,7 @@ mjx-container[display="true"] + br {
                 
     
         <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/10/3INTERPOLATE/">3INTERPOLATE</a>
+            <a class="article-title" href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a>
         </h1>
     
 
@@ -1462,110 +1566,6 @@ mjx-container[display="true"] + br {
             </div>   
             <div class="article-more-link">
                 <a href="/2022/05/05/7decorator/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-6PythonStaticmethodAndClassmethod" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">
-            <time datetime="2022-05-04T15:43:26.000Z" itemprop="datePublished">2022-05-04</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/6PythonStaticmethodAndClassmethod.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="说明">1.说明</h2>
-<p>先熟悉几个名词：</p>
-<ul>
-<li><strong>类对象</strong>：如<code>class Dog:</code>定义的<code>Dog</code>就是类对象</li>
-<li><strong>类属性</strong>：如 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span>: </span><br><span class="line">    age=<span class="number">10</span></span><br></pre></td></tr></table></figure> 直接在类中定义的属性就是类属性</li>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/04/6PythonStaticmethodAndClassmethod/#more">Read More</a>
             </div>
         
         <footer class="article-footer">

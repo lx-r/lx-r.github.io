@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: MachineLearning | 知行空间</title>
+    
+    
+        <meta name="keywords" content="MachineLearning" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.基础情况介绍 在语义分割任务使用的网络结构中，除了使用卷积神经网络进行降采样，为了恢复图像的大小，还需要使用转置卷积。转置卷积被称为transposed convolution，fractionally-strided convolution也有些地方称为deconvolution。转置卷积只是恢复的feature map的空间尺寸并不等同于卷积的逆运算，所以称之为deconvolution是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（三）转置卷积">
+<meta property="og:url" content="https://foobarweb.net/2022/05/15/3transposedConv/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="1.基础情况介绍 在语义分割任务使用的网络结构中，除了使用卷积神经网络进行降采样，为了恢复图像的大小，还需要使用转置卷积。转置卷积被称为transposed convolution，fractionally-strided convolution也有些地方称为deconvolution。转置卷积只是恢复的feature map的空间尺寸并不等同于卷积的逆运算，所以称之为deconvolution是">
+<meta property="og:locale">
+<meta property="og:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/412d.png">
+<meta property="og:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/42di.png">
+<meta property="og:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/42dip.png">
+<meta property="og:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/dilatedconv.gif">
+<meta property="og:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/42dilationtc.png">
+<meta property="article:published_time" content="2022-05-15T08:57:15.000Z">
+<meta property="article:modified_time" content="2022-05-15T14:25:21.015Z">
+<meta property="article:author" content="Alasky">
+<meta property="article:tag" content="MachineLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://foobarweb.net/images/MachineLearning/3transposedConv/412d.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GAN
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            MachineLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file active"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SiameseNetwork
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OpenCV
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PIL
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/5pilerror/">5pilerror TypeError Cannot handle this data type</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">(七)Python中的装饰器</a></li>  <li class="file"><a href="/2022/05/05/8conda/">(八) Conda常用指令</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Pytorch
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-3transposedConv" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/MachineLearning/">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MachineLearning/" rel="tag">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/15/3transposedConv/">
+            <time datetime="2022-05-15T08:57:15.000Z" itemprop="datePublished">2022-05-15</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/MachineLearning/3transposedConv.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/MachineLearning/3transposedConv.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/MachineLearning/3transposedConv.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            （三）转置卷积
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%83%85%E5%86%B5%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">1.基础情况介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8padddingstridedilation%E5%A4%9A%E9%80%9A%E9%81%93%E6%97%B6"><span class="toc-number">2.</span> <span class="toc-text">2.使用paddding&#x2F;stride&#x2F;dilation&#x2F;多通道时</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stride"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 stride</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#padding"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 padding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dilation"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 dilation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multi-channles"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 multi-channles</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="基础情况介绍">1.基础情况介绍</h2>
+<p>在语义分割任务使用的网络结构中，除了使用卷积神经网络进行降采样，为了恢复图像的大小，还需要使用转置卷积。转置卷积被称为<code>transposed convolution</code>，<code>fractionally-strided convolution</code>也有些地方称为<code>deconvolution</code>。转置卷积只是恢复的<code>feature map</code>的空间尺寸并不等同于卷积的逆运算，所以称之为<code>deconvolution</code>是不合适的。</p>
+<p>为了简化介绍，假设通道<code>channle=1</code>,对于<span class="math inline">\(n_h\times n_\omega\)</span>的输入和<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核，对于<code>stride=1, padding=0</code>的转置卷积，其计算过程为，将<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核在的输入的每一行每一列上滑动，得到<span class="math inline">\(n_h n_\omega\)</span>个中间结果，每个中间结果的空间尺寸为<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>,其值初时化为0，然后<strong>对于输入中的每个元素，与卷积核相乘得到<span class="math inline">\(k_h \times k_\omega\)</span>的结果替换掉<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>矩阵中的对应部分，最后将所有的中间结果相加得到最后的输出</strong>。</p>
+<p><img src="/images/MachineLearning/3transposedConv/412d.png"></p>
+<p>使用<code>numpy</code>数组实现上述过程为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">X = np.array([[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]])</span><br><span class="line">K = np.array([[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]])</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">trans_conv</span>(<span class="params">X, K</span>):</span><br><span class="line">    K = K.reshape((<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">    X = X.reshape((<span class="number">2</span>, <span class="number">2</span>))</span><br><span class="line">    h, w = X.shape</span><br><span class="line">    kh, kw = K.shape</span><br><span class="line">    o = np.zeros((h + kh - <span class="number">1</span>, w + kw - <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(h):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(w):</span><br><span class="line">            o[i : i + h, j : j + w] += X[i][j] * K</span><br><span class="line">    <span class="keyword">return</span> o</span><br><span class="line">    </span><br><span class="line">trans_conv(X, K)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">array([[ 0.,  0.,  1.],</span></span><br><span class="line"><span class="string">       [ 0.,  4.,  6.],</span></span><br><span class="line"><span class="string">       [ 4., 12.,  9.]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>可见程序的输出与上图计算过程的结果一致。</p>
+<p>借用<code>pytorch</code>中的<code>ConvTranspose2d</code>实现的计算的过程为:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"></span><br><span class="line">X = torch.tensor([[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]])</span><br><span class="line">K = torch.tensor([[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]])</span><br><span class="line">X, K = X.reshape(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>), K.reshape(<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">tconv = nn.ConvTranspose2d(<span class="number">1</span>, <span class="number">1</span>, kernel_size=<span class="number">2</span>, bias=<span class="literal">False</span>)</span><br><span class="line">tconv.weight.data = K</span><br><span class="line">tconv(X)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">tensor([[[[ 0.,  0.,  1.],</span></span><br><span class="line"><span class="string">          [ 0.,  4.,  6.],</span></span><br><span class="line"><span class="string">          [ 4., 12.,  9.]]]], grad_fn=&lt;SlowConvTranspose2DBackward&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>可见这三个地方计算的结果是一致的。</p>
+<h2 id="使用padddingstridedilation多通道时">2.使用paddding/stride/dilation/多通道时</h2>
+<h3 id="stride">2.1 stride</h3>
+<p><code>stride</code>表示的是卷积核在输出张量上滑动的步长，前面的例子中使用的是<code>stride=1</code>的场景，在使用<code>stride</code>时，输出张量的空间尺寸<span class="math inline">\(o_h\)</span>和<span class="math inline">\(o_\omega\)</span>的计算方式为<span class="math inline">\(o_h = (n_h - 1)\times stride + (k_h - 1) + 1\)</span>， 如下图：</p>
+<p><img src="/images/MachineLearning/3transposedConv/42di.png"></p>
+<p>如上图中<span class="math inline">\(n_h=n_\omega =3, k_h=k_\omega = 2\)</span>,则<span class="math inline">\(o_h=o_\omega = 6\)</span></p>
+<p>使用<code>pytorch</code>验证上述计算过程，则</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">X = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">8</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">K = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">3</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">tconv = nn.ConvTranspose2d(<span class="number">1</span>, <span class="number">1</span>, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, bias=<span class="literal">False</span>)</span><br><span class="line">tconv.weight.data = K</span><br><span class="line">Y = tconv(X)</span><br><span class="line"><span class="built_in">print</span>(Y.shape)</span><br><span class="line"><span class="built_in">print</span>(Y)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">torch.Size([1, 1, 6, 6])</span></span><br><span class="line"><span class="string">tensor([[[[ 0.,  0.,  0.,  1.,  0.,  2.],</span></span><br><span class="line"><span class="string">          [ 0.,  0.,  2.,  3.,  4.,  6.],</span></span><br><span class="line"><span class="string">          [ 0.,  3.,  0.,  4.,  0.,  5.],</span></span><br><span class="line"><span class="string">          [ 6.,  9.,  8., 12., 10., 15.],</span></span><br><span class="line"><span class="string">          [ 0.,  6.,  0.,  7.,  0.,  8.],</span></span><br><span class="line"><span class="string">          [12., 18., 14., 21., 16., 24.]]]],</span></span><br><span class="line"><span class="string">       grad_fn=&lt;SlowConvTranspose2DBackward&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h3 id="padding">2.2 padding</h3>
+<p><code>padding</code>是在<code>transpose convolution</code>计算过程中作用在输出张量上面的，因此计算结束后需要裁剪掉<code>padding</code>的大小。</p>
+<p>如 (2.1)[### 2.1 stride]中的例子，假设<code>padding=1</code>，则输出张量的最外围一圈将被裁剪掉，如下图：</p>
+<p><img src="/images/MachineLearning/3transposedConv/42dip.png"></p>
+<p>此时 <span class="math display">\[o_h = (n_h - 1)\times stride + (k_h - 1) + 1 - 2\times padding
+\]</span> 使用<code>pytorch ConvTranspose2d API</code>时，只需要加入<code>padding=1</code>参数即可，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">X = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">8</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">K = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">3</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">tconv = nn.ConvTranspose2d(<span class="number">1</span>, <span class="number">1</span>, kernel_size=<span class="number">2</span>, padding=<span class="number">1</span>, stride=<span class="number">2</span>, bias=<span class="literal">False</span>)</span><br><span class="line">tconv.weight.data = K</span><br><span class="line">Y = tconv(X)</span><br><span class="line"><span class="built_in">print</span>(Y.shape)</span><br><span class="line"><span class="built_in">print</span>(Y)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">torch.Size([1, 1, 4, 4])</span></span><br><span class="line"><span class="string">tensor([[[[ 0.,  2.,  3.,  4.],</span></span><br><span class="line"><span class="string">          [ 3.,  0.,  4.,  0.],</span></span><br><span class="line"><span class="string">          [ 9.,  8., 12., 10.],</span></span><br><span class="line"><span class="string">          [ 6.,  0.,  7.,  0.]]]], grad_fn=&lt;SlowConvTranspose2DBackward&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>此外还有<code>output_padding</code>,这个是对转置卷积后输出的张量进行的扩充，这会增大输出张量的尺寸，不过<code>pytorch ConvTranspose2d API</code>的实现只对输出张量的一边(H,W较大的那一边)进行了扩充，因此其对输出张量空间尺寸的影响为：</p>
+<p><span class="math display">\[
+o_h = (n_h - 1)\times stride + (k_h - 1) + 1 - 2\times padding + output\_padding
+\]</span></p>
+<h3 id="dilation">2.3 dilation</h3>
+<p><code>dilation</code>即扩张卷积，卷积核中存在空洞，因此也称空洞卷积。如下图是<code>dilation=2</code>的<code>dilated convolution</code>：</p>
+<p><img src="/images/MachineLearning/3transposedConv/dilatedconv.gif"></p>
+<p>在<code>Transposed Convolution</code>中使用<code>dilation</code>时，输出的空间尺寸计算可参考下图：</p>
+<p><img src="/images/MachineLearning/3transposedConv/42dilationtc.png"></p>
+<p>由上图可得:</p>
+<p><span class="math display">\[o_h = (n_h - 1)\times stride + dilation\times (k_h - 1) + 1 - 2\times padding
+\]</span></p>
+<p><span class="math display">\[
+o_h = 2 \times 2 + 2 \times 1 + 1 = 7
+\]</span></p>
+<p>使用<code>pytorch</code>验证上图中的例子，可得</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">X = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">8</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">K = torch.<span class="built_in">range</span>(<span class="number">0</span>, <span class="number">3</span>).reshape((<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">tconv = nn.ConvTranspose2d(<span class="number">1</span>, <span class="number">1</span>, kernel_size=<span class="number">2</span>, dilation=<span class="number">2</span>, stride=<span class="number">2</span>, bias=<span class="literal">False</span>)</span><br><span class="line">tconv.weight.data = K</span><br><span class="line">Y = tconv(X)</span><br><span class="line"><span class="built_in">print</span>(Y.shape)</span><br><span class="line"><span class="built_in">print</span>(Y)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">torch.Size([1, 1, 7, 7])</span></span><br><span class="line"><span class="string">tensor([[[[ 0.,  0.,  0.,  0.,  1.,  0.,  2.],</span></span><br><span class="line"><span class="string">          [ 0.,  0.,  0.,  0.,  0.,  0.,  0.],</span></span><br><span class="line"><span class="string">          [ 0.,  0.,  5.,  0., 11.,  0., 11.],</span></span><br><span class="line"><span class="string">          [ 0.,  0.,  0.,  0.,  0.,  0.,  0.],</span></span><br><span class="line"><span class="string">          [ 6.,  0., 23.,  0., 29.,  0., 23.],</span></span><br><span class="line"><span class="string">          [ 0.,  0.,  0.,  0.,  0.,  0.,  0.],</span></span><br><span class="line"><span class="string">          [12.,  0., 32.,  0., 37.,  0., 24.]]]],</span></span><br><span class="line"><span class="string">       grad_fn=&lt;SlowConvTranspose2DBackward&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>综上，对于由<code>padding/stride/dilation/output_padding</code>时，输出张量的计算方式为：</p>
+<p><span class="math display">\[
+o_h = (n_h - 1)\times stride + dilation\times(k_h - 1) + 1 - 2\times padding + output\_padding
+\]</span></p>
+<h3 id="multi-channles">2.4 multi-channles</h3>
+<p>同常规的卷积操作，转置卷积对多通道的处理，同样是将每个卷积核在输入张量的各个维度上进行卷积，然后在将各个维度上的卷积结果相加求和即可。</p>
+<p>如下代码示例，可见最后的输出正是两个通道上卷积结果求和所得：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">X = torch.tensor([[[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]],[[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]]])</span><br><span class="line">K = torch.tensor([[[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]],[[<span class="number">0.0</span>, <span class="number">1.0</span>], [<span class="number">2.0</span>, <span class="number">3.0</span>]]])</span><br><span class="line">X, K = X.reshape(<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>), K.reshape(<span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">tconv = nn.ConvTranspose2d(<span class="number">2</span>, <span class="number">1</span>, kernel_size=<span class="number">2</span>, bias=<span class="literal">False</span>)</span><br><span class="line">tconv.weight.data = K</span><br><span class="line">tconv(X)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">tensor([[[[ 0.,  0.,  2.],</span></span><br><span class="line"><span class="string">          [ 0.,  8., 12.],</span></span><br><span class="line"><span class="string">          [ 8., 24., 18.]]]], grad_fn=&lt;SlowConvTranspose2DBackward&gt;)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html">1.https://pytorch.org/docs/stable/generated/torch.nn.ConvTranspose2d.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/onnx/onnx/pull/2343/commits/09b3b64c99c1e18947b310d2688dc0187dcdccac">2.https://github.com/onnx/onnx/pull/2343/commits/09b3b64c99c1e18947b310d2688dc0187dcdccac</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md">3.https://github.com/vdumoulin/conv_arithmetic/blob/master/README.md</a></li>
+<li><a target="_blank" rel="noopener" href="https://d2l.ai/chapter_computer-vision/transposed-conv.html">4.https://d2l.ai/chapter_computer-vision/transposed-conv.html</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2022/05/10/3INTERPOLATE/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>
