@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/05/17/1ThunderbirdMail/
 https://foobarweb.net/2022/05/15/3transposedConv/
 https://foobarweb.net/2022/05/10/3INTERPOLATE/
 https://foobarweb.net/2022/05/09/2ganomaly/
@@ -85,3 +86,4 @@ https://foobarweb.net/categories/GAN/
 https://foobarweb.net/categories/Python/PIL/
 https://foobarweb.net/categories/Pytorch/
 https://foobarweb.net/categories/MachineLearning/
+https://foobarweb.net/categories/utils/
