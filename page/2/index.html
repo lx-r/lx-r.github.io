@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Entradas',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Categorias</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -479,7 +479,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             utils
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a></li>  <li class="file"><a href="/2022/05/17/2GoogleSearchTips/">2.Useful Tricks and Tips to Search Google Better</a></li>  </ul> 
                     </li> 
                      </ul> 
     </div>
@@ -553,6 +553,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1gan" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/GAN/">GAN</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/GAN/" rel="tag">GAN</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/05/1gan/">
+            <time datetime="2022-05-05T13:21:39.000Z" itemprop="datePublished">2022-05-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/GAN/1gan.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/GAN/1gan.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/GAN/1gan.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="简介">1.简介</h2>
+<p>生成对抗网络Generative Adversarial Networks是法国蒙特利尔大学发表在<code>2014</code>年<code>NIPS</code>上的文章，提出了非常有意思的生成对抗网络。关于生成模型的介绍可以参考<code>MIT</code>的<a target="_blank" rel="noopener" href="http://introtodeeplearning.com/"><code>DeepLearning</code>课程</a>。</p>
+<h2 id="背景">2.背景</h2>
+<h3 id="生成模型">2.1生成模型</h3>
+<p>生成模型是这样的模型，其从一个数据分布中采样一部分点作为输入，然后训练模型来表征训练数据分布。</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/05/05/1gan/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-7decorator" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1489,107 +1593,8 @@ mjx-container[display="true"] + br {
 
 
     
-        <article id="post-2meta-learning-maml" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/OneShotLearning/">OneShotLearning</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/OneShotLearning/MetaLearning/">MetaLearning</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/22/2meta-learning-maml/">
-            <time datetime="2022-04-21T16:01:03.000Z" itemprop="datePublished">2022-04-22</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OneShotLearning/2meta-learning-maml.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OneShotLearning/2meta-learning-maml.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OneShotLearning/2meta-learning-maml.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><blockquote>
-<p>论文： <a target="_blank" rel="noopener" href="http://arxiv.org/abs/1703.03400">Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks Chelsea</a><br> 代码： <a target="_blank" rel="noopener" href="https://github.com/cbfinn/maml">https://github.com/cbfinn/maml</a></p>
-</blockquote>
-<p>ICML2017的一篇论文，作者<code>Chelsea Finn</code>是斯坦福的老师，一不小心去<a target="_blank" rel="noopener" href="http://ai.stanford.edu/~cbfinn/">作者主页</a>看了下，MIT和伯克利的学生，真强。^_^</p>
-<p>元学习MAML论文介绍</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/22/2meta-learning-maml/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&amp;laquo; Anterior</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Siguiente  &amp;raquo;</a>
         </nav>
     
 </section>
