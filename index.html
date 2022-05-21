@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Entradas',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categorias',
-            TAGS: 'Etiquetas',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>Categorias</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -452,7 +452,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             Pytorch
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  <li class="file"><a href="/2022/05/19/4IntroductionAboutTorchGradient/">4.Introduction About Torch Gradient</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -553,6 +553,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-4IntroductionAboutTorchGradient" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Pytorch/">Pytorch</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Pytorch/" rel="tag">Pytorch</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/19/4IntroductionAboutTorchGradient/">
+            <time datetime="2022-05-19T13:52:19.000Z" itemprop="datePublished">2022-05-19</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/05/19/4IntroductionAboutTorchGradient/">4.Introduction About Torch Gradient</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="get-gradients-of-the-intermediate-variables">(1) Get Gradients of the Intermediate Variables</h2>
+<p>To save the memory cost of the intermediate variables, pytorch will not save the gradient of the intermediate variables, it only saves the gradient of the leaf tensor. So we can not get the gradient of the intermediate node in the compution graph after backward function. autograd module is provided to get values of the intermediate gradients.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">C = A * B </span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line"></span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(C.grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">None</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>With torch.autograd module:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">C = A * B </span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">C_grad = autograd.grad(D, C, retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(C_grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">(tensor([1., 1., 1.]),)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/05/19/4IntroductionAboutTorchGradient/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-2GoogleSearchTips" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1484,107 +1588,8 @@ mjx-container[display="true"] + br {
 
 
     
-        <article id="post-8conda" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/05/8conda/">
-            <time datetime="2022-05-05T15:37:34.000Z" itemprop="datePublished">2022-05-05</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/8conda.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/8conda.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/8conda.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/05/8conda/">(八) Conda常用指令</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="conda是什么">1.Conda是什么？</h2>
-<p>Conda是Anaconda中的一个开源的包和环境管理工具，可以在终端窗口通过命令行使用，也可以在<code>Anaconda Navigator</code>中通过图形化界面使用,对编程创建独立的环境和包管理，最初是为<code>Python</code>语言开发，现在已不限制语言，支持<code>Python, R, Ruby, Lua, Scala, Java, JavaScript, C/ C++, FORTRAN等</code>。</p>
-<h2 id="管理conda">2.管理Conda</h2>
-<ul>
-<li>查看版本 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda --version</span><br></pre></td></tr></table></figure></li>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/05/8conda/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Siguiente  &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
         </nav>
     
 </section>

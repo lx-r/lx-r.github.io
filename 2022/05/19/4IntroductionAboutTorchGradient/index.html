@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: pytorch | 知行空间</title>
+    
+    
+        <meta name="keywords" content="Pytorch" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="(1) Get Gradients of the Intermediate Variables To save the memory cost of the intermediate variables, pytorch will not save the gradient of the intermediate variables, it only saves the gradient of t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.Introduction About Torch Gradient">
+<meta property="og:url" content="https://foobarweb.net/2022/05/19/4IntroductionAboutTorchGradient/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="(1) Get Gradients of the Intermediate Variables To save the memory cost of the intermediate variables, pytorch will not save the gradient of the intermediate variables, it only saves the gradient of t">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-05-19T13:52:19.000Z">
+<meta property="article:modified_time" content="2022-05-21T04:33:16.153Z">
+<meta property="article:author" content="Alasky">
+<meta property="article:tag" content="Pytorch">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GAN
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MachineLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SiameseNetwork
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OpenCV
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PIL
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/5pilerror/">5pilerror TypeError Cannot handle this data type</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">(七)Python中的装饰器</a></li>  <li class="file"><a href="/2022/05/05/8conda/">(八) Conda常用指令</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Pytorch
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  <li class="file active"><a href="/2022/05/19/4IntroductionAboutTorchGradient/">4.Introduction About Torch Gradient</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            utils
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a></li>  <li class="file"><a href="/2022/05/17/2GoogleSearchTips/">2.Useful Tricks and Tips to Search Google Better</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-4IntroductionAboutTorchGradient" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Pytorch/">Pytorch</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Pytorch/" rel="tag">Pytorch</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/19/4IntroductionAboutTorchGradient/">
+            <time datetime="2022-05-19T13:52:19.000Z" itemprop="datePublished">2022-05-19</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/pytorch/4IntroductionAboutTorchGradient.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            4.Introduction About Torch Gradient
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#get-gradients-of-the-intermediate-variables"><span class="toc-number">1.</span> <span class="toc-text">(1) Get Gradients of the Intermediate Variables</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cannot-modifiy-variables-needed-for-gradient-compution-by-an-inplace-operation"><span class="toc-number">2.</span> <span class="toc-text">(2) Cannot Modifiy Variables Needed for Gradient Compution by An Inplace Operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#need-retaining-compute-graph-to-call-backward-method-a-second-time"><span class="toc-number">3.</span> <span class="toc-text">（3）Need Retaining Compute Graph to Call Backward Method A Second Time</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set-requires_grad-false"><span class="toc-number">4.</span> <span class="toc-text">(4) Set requires_grad &#x3D; False</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="get-gradients-of-the-intermediate-variables">(1) Get Gradients of the Intermediate Variables</h2>
+<p>To save the memory cost of the intermediate variables, pytorch will not save the gradient of the intermediate variables, it only saves the gradient of the leaf tensor. So we can not get the gradient of the intermediate node in the compution graph after backward function. autograd module is provided to get values of the intermediate gradients.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">C = A * B </span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line"></span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(C.grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">None</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>With torch.autograd module:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">C = A * B </span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">C_grad = autograd.grad(D, C, retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(C_grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">(tensor([1., 1., 1.]),)</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="cannot-modifiy-variables-needed-for-gradient-compution-by-an-inplace-operation">(2) Cannot Modifiy Variables Needed for Gradient Compution by An Inplace Operation</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line">C = A * B + B </span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">A[<span class="number">0</span>] = <span class="number">.1</span></span><br><span class="line">D.backward()</span><br><span class="line"><span class="string">&quot;&quot;&quot;exception</span></span><br><span class="line"><span class="string">RuntimeError: one of the variables needed for gradient computation has been modified by an inplace operation: [torch.LongTensor [3]] is at version 1; expected version 0 instead. Hint: enable anomaly detection to find the operation that failed to compute its gradient, with torch.autograd.set_detect_anomaly(True).</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>The code above will throw exception since tensor A was modified before backward operation and after computation of C. As the following code, if the modification of A was before the use, the code will work successfully but get wrong results.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">A[<span class="number">0</span>] = <span class="number">.1</span></span><br><span class="line"></span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">C = A * B + B</span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(B.grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">tensor([1., 3., 4.])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>tensor([1., 3., 4.]) is the wrong result since gradient of tensor B should be tensor([2., 3., 4.]). C = A * B + B, so the gradient of tensor B is related to tensor A, expressed as (A + 1). If A was modified, then the gradient of tensor B in the compute graph would be changed at the same time, this would cause the wrong result.</p>
+<h2 id="need-retaining-compute-graph-to-call-backward-method-a-second-time">（3）Need Retaining Compute Graph to Call Backward Method A Second Time</h2>
+<p>To reduce memory usage, during the .backward() call with no argument, all the intermediary results are removed when they are not needed anymore. Hence, if you call the .backward() method again, the intermediary results are not existed anymore and so the backward pass can not be performed, the programs would throw error exception as the following code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">A[<span class="number">0</span>] = <span class="number">.1</span></span><br><span class="line"></span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># first backward</span></span><br><span class="line">C = A * B + B</span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(B.grad)</span><br><span class="line"><span class="comment"># second backward</span></span><br><span class="line">B.grad = <span class="literal">None</span></span><br><span class="line">C.grad = <span class="literal">None</span></span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(B.grad)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">RuntimeError: Trying to backward through the graph a second time, but the saved intermediate results have already been freed. Specify retain_graph=True when calling backward the first time.</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>The comute graph for the above example is quite simple, C = A * B + B, D = torch.sum(C), however, after the .backward() function, the graph would not be retained, thus when do the backward pass a second time, the gradient back propagation can not be processed without the intermediary values. To perform backward pass a second time, there can be two options, one is to invoke the .backward() function with parameter retain_graph being equal to True, this may consume more memory. The other option is to build the compute graph again to do the .backward() pass.Seeing the code below,</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torch.autograd <span class="keyword">as</span> autograd</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">A[<span class="number">0</span>] = <span class="number">.1</span></span><br><span class="line"></span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">C = A * B + B</span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line"></span><br><span class="line"><span class="comment"># first option</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">tensor([1., 3., 4.])</span></span><br><span class="line"><span class="string">tensor([1., 3., 4.])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">D.backward(retain_graph=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(B.grad)</span><br><span class="line"></span><br><span class="line"><span class="comment"># second option</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">tensor([1., 3., 4.])</span></span><br><span class="line"><span class="string">tensor([1., 3., 4.])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line">C = A * B + B</span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">B.grad = <span class="literal">None</span></span><br><span class="line">C.grad = <span class="literal">None</span></span><br><span class="line">D.backward()</span><br><span class="line"><span class="built_in">print</span>(B.grad)</span><br></pre></td></tr></table></figure>
+<h2 id="set-requires_grad-false">(4) Set requires_grad = False</h2>
+<p>Conceptually, autograd keeps a recond of tensors and all executed operations in a directed acyclic graph(DAG) consisting of Function objects. In this DAG, leaves are the input tensors, roots are the output tensors. By tracing this DAG from roots to leaves, the gradients can be calculated automatically with chain rule.</p>
+<p>autograd automatically track computations on all the tensors which have the requires_grad flag set to true. For tensors that dont need to calculate the gradients, setting this attribute to false will disable their gradients computing in the DAG. The output tensor of an operation will require gradients only if one of the input tensors has the attribute requires_grad set to true.</p>
+<p>Parameters that don't need to compute gradients are usually called <strong>frozen parameters</strong>. It's useful to freeze part of your model if you know in advance that you don't want those parameters to be updated. Another common usecase where exclusion from the DAG is important is for finetuning a pretrained network.</p>
+<p>In finetuning, we freeze most of the parameters, and typically only modify the classifier layers to make predictions on new labels. In the following, we will work through a small example to demonstrate this.</p>
+<p>Firstly, we load a pre-trained mobilenet model, and freeze all the parameters. Let's assume that we are going to finetune this model on a new dataset with 2 classes, in mobilenet, the classifier is the last Linear layer model.classifier[1], we can simply replace it with a new liner layer as our classifer. Now all parameters in the model, except the parameters of the classifier are frozen. Only parameters of the linear layer as new classifier are needed to compute gradients. As we can see, although we register all the parameters in the optimizer, The only parameters being updated in gradient descent are the weights and bias of the classifier.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn, optim</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">model = models.mobilenet_v2(pretrained=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">for</span> param <span class="keyword">in</span> model.parameters():</span><br><span class="line">    param.requires_grad = <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">model.classifier[<span class="number">1</span>] = nn.Linear(in_features=<span class="number">1280</span>, out_features=<span class="number">2</span>, bias=<span class="literal">True</span>)</span><br><span class="line">optim = optim.SGD(model.parameters(), lr=<span class="number">1e-2</span>, momentum=<span class="number">0.9</span>)</span><br><span class="line">x = torch.rand(<span class="number">4</span>, <span class="number">3</span>, <span class="number">224</span>, <span class="number">224</span>)</span><br><span class="line">y_p = model(x)</span><br><span class="line">y_t = torch.randint(<span class="number">2</span>, (<span class="number">4</span>,))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;before update&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(model.features[<span class="number">1</span>].state_dict()[<span class="string">&#x27;conv.0.0.weight&#x27;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(model.classifier[<span class="number">1</span>].state_dict()[<span class="string">&#x27;weight&#x27;</span>][<span class="number">0</span>][:<span class="number">10</span>])</span><br><span class="line">loss = nn.functional.cross_entropy(y_p, y_t)</span><br><span class="line">loss.backward()</span><br><span class="line">optim.step()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\nafter update&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(model.features[<span class="number">1</span>].state_dict()[<span class="string">&#x27;conv.0.0.weight&#x27;</span>][<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(model.classifier[<span class="number">1</span>].state_dict()[<span class="string">&#x27;weight&#x27;</span>][<span class="number">0</span>][:<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">before update</span></span><br><span class="line"><span class="string">tensor([[[-0.0091, -0.0109, -0.0089],</span></span><br><span class="line"><span class="string">         [-0.0183,  0.0038,  0.1027],</span></span><br><span class="line"><span class="string">         [-0.0102, -0.0084,  0.0075]]])</span></span><br><span class="line"><span class="string">tensor([-0.0234,  0.0231,  0.0003, -0.0230,  0.0057,  0.0165,  0.0163,  0.0257,</span></span><br><span class="line"><span class="string">        -0.0085, -0.0010])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">after update</span></span><br><span class="line"><span class="string">tensor([[[-0.0091, -0.0109, -0.0089],</span></span><br><span class="line"><span class="string">         [-0.0183,  0.0038,  0.1027],</span></span><br><span class="line"><span class="string">         [-0.0102, -0.0084,  0.0075]]])</span></span><br><span class="line"><span class="string">tensor([-0.0240,  0.0206, -0.0001, -0.0231,  0.0028,  0.0139,  0.0140,  0.0230,</span></span><br><span class="line"><span class="string">        -0.0121, -0.0015])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<p>Another way to set requires_grad equal to false is torch.no_grad, this API is a context manager that disabled grdient calcution which is helpful for model inference, when you are sure you are not going to call .backward. In this mode, the result of every computation will have requires_grad = false, even though the input has attribute requires_grad = true. with torch.no_grad, this will reduce the memory cost for the model computation.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">A = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">B = torch.tensor([<span class="number">2</span>,<span class="number">3</span>,<span class="number">4.</span>], requires_grad=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">C = A * B + B</span><br><span class="line">D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;before set no_grad: &quot;</span>, D.requires_grad)</span><br><span class="line"></span><br><span class="line"><span class="comment"># model.eval()</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():</span><br><span class="line">    C = A * B + B</span><br><span class="line">    D = torch.<span class="built_in">sum</span>(C)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;after set no_grad: &quot;</span>, D.requires_grad)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">before set no_grad:  True</span></span><br><span class="line"><span class="string">after set no_grad:  False</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/issues/39141">1.https://github.com/pytorch/pytorch/issues/39141</a></li>
+<li><a target="_blank" rel="noopener" href="https://discuss.pytorch.org/t/runtimeerror-trying-to-backward-through-the-graph-a-second-time-but-the-buffers-have-already-been-freed-specify-retain-graph-true-when-calling-backward-the-first-time/6795">2.https://discuss.pytorch.org/t/runtimeerror-trying-to-backward-through-the-graph-a-second-time-but-the-buffers-have-already-been-freed-specify-retain-graph-true-when-calling-backward-the-first-time/6795</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/generated/torch.no_grad.html">3.https://pytorch.org/docs/stable/generated/torch.no_grad.html</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2022/05/17/2GoogleSearchTips/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">2.Useful Tricks and Tips to Search Google Better</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>
