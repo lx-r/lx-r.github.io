@@ -277,7 +277,7 @@
                             &nbsp;
                             OneClassLearning
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  <li class="file"><a href="/2022/05/22/2OGNet/">(二)OGNet 论文笔记</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -441,6 +441,110 @@
 </aside>
             
             <section id="main">
+        <article id="post-4cpp-compilier" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/C/">C++</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/13/4cpp-compilier/">
+            <time datetime="2022-04-12T17:04:01.000Z" itemprop="datePublished">2022-04-13</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/4cpp-compilier.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/4cpp-compilier.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/4cpp-compilier.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h1 id="c标准库">1.<code>C++</code>标准库</h1>
+<p><code>C++</code>标准库是<code>C++</code>标准中规定的<code>C++</code>语言必须实现的<code>库函数API</code>,c++标准库的标准化始于1989年，由国际标准化组织（the International Organization for Standardization,ISO)推动制定。</p>
+<p><code>ISO 14882</code>标准中，在条款20到33和附加章节D中定义的<code>C++</code>应该实现的内容。 这部分内容是<code>C++</code>标准库应该要实现的内容。有了这个标准定义，世界上各个组织才能实现具体的<code>C++</code>标准库。<code>C++</code>标准库的实现必须依赖操作系统所提供的函数（读写文件，内存分配，线程创建等系统调用）来实现标准库，因此每一个操作系统都有自己的标准库实现，有时它是系统的一个核心部分，有时它作为附加部分——编译器，必须单独下载安装。</p>
+<p>有影响力的组织及其实现有3个：<code>GNU的libstdc++</code>、<code>LLVM的libc++</code>、其他。 - 在<code>GNU/Linux</code>上，我们使用的<code>C++</code>库都是GNU实现的<code>libstdc++（/usr/lib/gcc/x86_64-linux-gnu/9/libstdc++.so、/usr/lib/gcc/x86_64-linux-gnu/9/libstdc++.a）</code>,<strong>默认情况下，所有常用的Linux发行版都将使用<code>libstdc++</code></strong> - 在<code>MacOS</code>、<code>iOS</code>上，我们使用的<code>C++</code>库都是<code>LLVM</code>项目实现的<code>libc++（/usr/lib/libc++.dylib）</code> - 在<code>Android</code>上，我们使用的<code>C++</code>库为<code>LLVM</code>的<code>libc++</code>（NDK r18以前还是支持GNU的libstdc++的，在r18上被完全去除）；注意这可不是系统库，你需要将库文件包含在apk中（Android上的系统库是/system/lib/libstdc++.so，这不是GNU的那个，只包含了最小的C++ runtime实现，如new delete等）； - 在Windows中，标准库的实现一直严格绑定到Visual Studio中。他们称其为 C/C++ Run-time Library(CRT)，其中同时实现了C和C++标准库 <code>g++</code>编译时带上<code>-v</code>参数，日志就会清楚的显示编译的时候默认使用了什么库。 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -v preprocessor_test.cpp -o main</span><br></pre></td></tr></table></figure> - 动态编译 程序编译完成之后已经成为了<code>ELF</code>文件，这个时候它就可以在<code>Linux</code>上被执行了,由于我们的程序默认链接的是动态库，因此在运行时会对包括C++标准库在内的一些动态库产生依赖，使用ldd命令可以看到这些依赖: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ldd main</span><br><span class="line">        linux-vdso.so.1 (0x00007ffde61c6000)</span><br><span class="line">        libstdc++.so.6 =&gt; /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f94c658e000)</span><br><span class="line">        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f94c639c000)</span><br><span class="line">        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007f94c624d000)</span><br><span class="line">        /lib64/ld-linux-x86-64.so.2 (0x00007f94c67ba000)</span><br><span class="line">        libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f94c6232000)</span><br></pre></td></tr></table></figure> - 静态编译 如果想静态链接的话，加上<code>-static</code>关键字, <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ -v -static gemfield.cpp -o gemfield</span><br></pre></td></tr></table></figure> 如此一来，这个库在运行的时候就不依赖任何库了，但不推荐这么做，bug fix, 物理内存占用、安全相关功能将无法使用等。</p>
+<p>不是每个系统上的C++编译都使用了标准的C++特性。这里的系统主要是手机操作系统，比如Android。ndk-build可能默认将异常、RTTI等功能停用</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/13/4cpp-compilier/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-3cpp-preprocess" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1349,110 +1453,6 @@
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/12/1git-filemode/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-3git换行符号" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/GIT/">GIT</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/GIT/" rel="tag">GIT</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">
-            <time datetime="2022-04-11T18:40:07.000Z" itemprop="datePublished">2022-04-12</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/GIT/3git换行符号.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/GIT/3git换行符号.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/GIT/3git换行符号.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="crlf">1.CRLF</h2>
-<ul>
-<li>1.<code>CR</code>回⻋符号<code>Carriage Return</code>， 将光标移动到⾏⾸， 但不换⾏，转义符号<code>\r</code>,十进制数<code>13</code>或十六进制<code>0x0d</code></li>
-<li>2.<code>LF</code>换⾏符<code>Line Feed(newline)</code>， 将光标移动到下⼀⾏，转义符号<code>\n</code>, 十进制数<code>10</code>,十六进制数<code>0x0a</code></li>
-<li>3.<code>Windows</code>使⽤<code>CRLF</code>表⽰下⼀⾏， <code>UNIX</code>和<code>LINUX</code>使⽤<code>LF</code> 表⽰下⼀⾏， <code>MACOS</code>使⽤<code>CR</code>表⽰下⼀⾏</li>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
