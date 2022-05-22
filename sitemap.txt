@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/04/22/3hexo-latex-subscript/
 https://foobarweb.net/2022/05/19/4IntroductionAboutTorchGradient/
 https://foobarweb.net/2022/05/17/2GoogleSearchTips/
 https://foobarweb.net/2022/05/17/1ThunderbirdMail/
@@ -15,7 +16,6 @@ https://foobarweb.net/2022/05/05/7decorator/
 https://foobarweb.net/2022/05/04/6PythonStaticmethodAndClassmethod/
 https://foobarweb.net/2022/04/19/8cppContainer/
 https://foobarweb.net/2022/04/27/1DeepOneClassClassification/
-https://foobarweb.net/2022/04/22/3hexo-latex-subscript/
 https://foobarweb.net/2022/04/15/2yolo-anchor/
 https://foobarweb.net/2022/04/17/7memory-manage/
 https://foobarweb.net/2022/04/16/6array-initialize-error/
