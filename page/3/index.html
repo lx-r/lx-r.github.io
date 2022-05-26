@@ -342,6 +342,15 @@ mjx-container[display="true"] + br {
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
+                            ComputerVision
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/27/1homograpyMatrix/">(一)单应矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
                             Detection
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  </ul> 
@@ -553,6 +562,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-5githubpush443" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/GIT/">GIT</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/GIT/" rel="tag">GIT</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/24/5githubpush443/">
+            <time datetime="2022-04-24T13:25:26.000Z" itemprop="datePublished">2022-04-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/GIT/5githubpush443.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/GIT/5githubpush443.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/GIT/5githubpush443.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="问题描述">1.问题描述</h2>
+<p><code>hexo</code>部署<code>github pages</code>时报错，<code>Failed to connect to github.com port 443:</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access <span class="string">&#x27;https://github.com/lx-r/lx-r.github.io.git/&#x27;</span>: Failed to connect to github.com port 443: Connection timed out</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (/media/lx/data/code/blog/blog/node_modules/hexo-util/lib/spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (node:events:526:28)</span><br></pre></td></tr></table></figure>
+<p>使用浏览器访问了一下<code>github</code>网站是可以访问的，打开<code>linux</code>终端，<code>ping github.com</code>发现没有响应，ping不同，查了下应该是<code>dns</code>解析有问题。</p>
+<h2 id="解决">2.解决</h2>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/24/5githubpush443/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-3OmniglotDataset" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1466,110 +1579,6 @@ mjx-container[display="true"] + br {
             </div>   
             <div class="article-more-link">
                 <a href="/2022/04/18/1addLatexSupport/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-1oneshot-learning-semantic-segmentation" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/OneShotLearning/">OneShotLearning</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/OneShotLearning/" rel="tag">OneShotLearning</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">
-            <time datetime="2022-04-17T16:17:01.000Z" itemprop="datePublished">2022-04-18</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/OneShotLearning/1oneshot-learning-semantic-segmentation.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/OneShotLearning/1oneshot-learning-semantic-segmentation.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/OneShotLearning/1oneshot-learning-semantic-segmentation.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><p>2017年佐治亚理工大学的团队发表在CVPR上的工作。</p>
-<h2 id="总结">1.总结</h2>
-<p>One-Shot Learning 的常用方法：</p>
-<pre class="mermaid">flowchart LR
-O[Oneshot] --&gt; A
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/18/1oneshot-learning-semantic-segmentation/#more">Read More</a>
             </div>
         
         <footer class="article-footer">
