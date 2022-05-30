@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://foobarweb.net/"/>
-  <updated>2022-05-30T14:53:39.549Z</updated>
+  <updated>2022-05-30T16:14:06.875Z</updated>
   <id>https://foobarweb.net/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>9.strftime With Microseconds</title>
+    <link href="https://foobarweb.net/2022/05/31/8strftimeWithMicroseconds/"/>
+    <id>https://foobarweb.net/2022/05/31/8strftimeWithMicroseconds/</id>
+    <published>2022-05-30T16:04:40.000Z</published>
+    <updated>2022-05-30T16:14:06.875Z</updated>
+    
+    <content type="html"><![CDATA[<p>The method <code>strftime</code> in ‵time<code>module does not support format time with microseconds. Instead, one can use another method</code>strftime` in standard module ‵datetime‵ which support format time with microseconds.</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">now = datetime.now()</span><br><span class="line">now.strftime(<span class="string">&quot;%y/%m/%d %H:%M:%S.%f&quot;</span>)</span><br><span class="line"><span class="string">&quot;&quot;&quot;output</span></span><br><span class="line"><span class="string">&#x27;22/05/31 00:11:49.279957&#x27;</span></span><br><span class="line"><span class="string">”“”</span></span><br></pre></td></tr></table></figure><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661"></ins><script>    (adsbygoogle = window.adsbygoogle || []).push({});</script></div><h2 id="参考资料">参考资料</h2><blockquote><ul><li><a href="https://stackoverflow.com/questions/6677332/using-f-with-strftime-in-python-to-get-microseconds">1.https://stackoverflow.com/questions/6677332/using-f-with-strftime-in-python-to-get-microseconds</a></li></ul></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;The method &lt;code&gt;strftime&lt;/code&gt; in ‵time&lt;code&gt;module does not support format time with microseconds. Instead, one can use another method
+      
+    
+    </summary>
+    
+      <category term="Python" scheme="https://foobarweb.net/categories/Python/"/>
+    
+    
+      <category term="Python" scheme="https://foobarweb.net/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>3 Make VSCode MarkdownPdf Plugin Support Latex Math Formula</title>
@@ -515,37 +540,6 @@
     
     
       <category term="OpenCV" scheme="https://foobarweb.net/tags/OpenCV/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>5pilerror TypeError Cannot handle this data type</title>
-    <link href="https://foobarweb.net/2022/04/27/5pilerror/"/>
-    <id>https://foobarweb.net/2022/04/27/5pilerror/</id>
-    <published>2022-04-26T16:52:33.000Z</published>
-    <updated>2022-05-05T14:06:08.210Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="问题描述">1.问题描述</h2><p>PIL的<code>Image.fromarray</code>使用<code>numpy array</code>生成数组时报错，</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;/media/lx/data/code/test_python/pil_test.py&quot;</span>, line 8, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    <span class="built_in">print</span>(Image.fromarray(img_array))</span><br><span class="line">  File <span class="string">&quot;/home/lx/anaconda3/envs/Python36/lib/python3.6/site-packages/PIL/Image.py&quot;</span>, line 2766, <span class="keyword">in</span> fromarray</span><br><span class="line">    raise TypeError(<span class="string">&quot;Cannot handle this data type: %s, %s&quot;</span> % typekey) from e</span><br><span class="line">TypeError: Cannot handle this data <span class="built_in">type</span>: (1, 1), &lt;i8</span><br></pre></td></tr></table></figure><h2 id="解决方式">2.解决方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将numpy array转成np.uint8类型</span></span><br><span class="line">img_array = img_array.astype(np.uint8)</span><br><span class="line">img_array = np.random.randint(<span class="number">0</span>, <span class="number">34</span>, (<span class="number">5</span>, <span class="number">4</span>), dtype=np.uint8)</span><br><span class="line">Image.fromarray(img_array)</span><br></pre></td></tr></table></figure><div><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script><ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661"></ins><script>    (adsbygoogle = window.adsbygoogle || []).push({});</script></div><h2 id="参考资料">参考资料</h2><blockquote><ul><li><a href="https://stackoverflow.com/questions/55319949/pil-typeerror-cannot-handle-this-data-type">1.https://stackoverflow.com/questions/55319949/pil-typeerror-cannot-handle-this-data-type</a></li></ul></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;问题描述&quot;&gt;1.问题描述&lt;/h2&gt;
-&lt;p&gt;PIL的&lt;code&gt;Image.fromarray&lt;/code&gt;使用&lt;code&gt;numpy array&lt;/code&gt;生成数组时报错，&lt;/p&gt;
-&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;
-      
-    
-    </summary>
-    
-      <category term="Python" scheme="https://foobarweb.net/categories/Python/"/>
-    
-      <category term="PIL" scheme="https://foobarweb.net/categories/Python/PIL/"/>
-    
-    
-      <category term="numpy" scheme="https://foobarweb.net/tags/numpy/"/>
-    
-      <category term="PIL" scheme="https://foobarweb.net/tags/PIL/"/>
     
   </entry>
   
