@@ -23,23 +23,23 @@
         </script>   <!-- 修改 结束位置 --> 
             
     
-    <title>Category: GIT | 知行空间</title>
+    <title>5. Shell Function 自定义命令传参 | 知行空间</title>
     
     
-        <meta name="keywords" content="GIT" />
+        <meta name="keywords" content="Linux" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="已提交的文件如何应用gitignore .gitignore只能忽略未跟踪的文件，已提交的文件需先删除。.gitignore 只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则 修改.gitignore是无效的。 1234git rm --cached &lt;file&gt;git commit -a -m &quot;删除不需要的文件&quot;# add .git">
+    <meta name="description" content="背景 以往想快捷打开某个软件的时候，通常会在.bashrcshell 文件中添加alias word&#x3D;&quot;bash &#x2F;opt&#x2F;bin&#x2F;word.sh&quot;,现在需要定义一个命令，并且可以在这个命令后面传递参数，这个时候alias就无法满足要求了。 Solution 在shell中定义函数 12345OpenBrower () &amp;#123;     bash openbrower.sh $1 #取Open">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(四)已提交的文件gitignore">
-<meta property="og:url" content="https://foobarweb.net/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/index.html">
+<meta property="og:title" content="5. Shell Function 自定义命令传参">
+<meta property="og:url" content="https://foobarweb.net/2022/05/31/5ShellFunction/index.html">
 <meta property="og:site_name" content="知行空间">
-<meta property="og:description" content="已提交的文件如何应用gitignore .gitignore只能忽略未跟踪的文件，已提交的文件需先删除。.gitignore 只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则 修改.gitignore是无效的。 1234git rm --cached &lt;file&gt;git commit -a -m &quot;删除不需要的文件&quot;# add .git">
+<meta property="og:description" content="背景 以往想快捷打开某个软件的时候，通常会在.bashrcshell 文件中添加alias word&#x3D;&quot;bash &#x2F;opt&#x2F;bin&#x2F;word.sh&quot;,现在需要定义一个命令，并且可以在这个命令后面传递参数，这个时候alias就无法满足要求了。 Solution 在shell中定义函数 12345OpenBrower () &amp;#123;     bash openbrower.sh $1 #取Open">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-04-19T12:53:12.000Z">
-<meta property="article:modified_time" content="2022-05-03T08:50:43.592Z">
+<meta property="article:published_time" content="2022-05-30T16:20:52.000Z">
+<meta property="article:modified_time" content="2022-05-30T16:30:21.209Z">
 <meta property="article:author" content="Alasky">
-<meta property="article:tag" content="GIT">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
     
 
@@ -258,22 +258,22 @@
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
                     </li> 
                     
-                    <li class="directory open">
-                        <a href="#" data-role="directory">
-                            <i class="fa fa-folder-open"></i>
-                            &nbsp;
-                            GIT
-                        </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file active"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
-                    </li> 
-                    
                     <li class="directory">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
                             &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  <li class="file"><a href="/2022/05/31/5ShellFunction/">5. Shell Function 自定义命令传参</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  <li class="file active"><a href="/2022/05/31/5ShellFunction/">5. Shell Function 自定义命令传参</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -454,7 +454,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-4已提交的文件gitignore" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-5ShellFunction" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -464,20 +464,20 @@
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/GIT/">GIT</a>
+        <a class="article-category-link" href="/categories/Linux/">Linux</a>
     </div>
 
                         
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/GIT/" rel="tag">GIT</a>
+        <a class="tag-link-link" href="/tags/Linux/" rel="tag">Linux</a>
     </div>
 
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">
-            <time datetime="2022-04-19T12:53:12.000Z" itemprop="datePublished">2022-04-19</time>
+        <a href="/2022/05/31/5ShellFunction/">
+            <time datetime="2022-05-30T16:20:52.000Z" itemprop="datePublished">2022-05-31</time>
         </a>
     </div>
 
@@ -488,13 +488,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/GIT/4已提交的文件gitignore.md'> Source </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Linux/5ShellFunction.md'> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/GIT/4已提交的文件gitignore.md'> Edit </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Linux/5ShellFunction.md'> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/GIT/4已提交的文件gitignore.md'> History </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Linux/5ShellFunction.md'> History </a>
                             </div>
                         
                     </div>
@@ -502,7 +502,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-            (四)已提交的文件gitignore
+            5. Shell Function 自定义命令传参
         </h1>
     
 
@@ -515,14 +515,17 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">Catalogue</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8gitignore"><span class="toc-number">1.</span> <span class="toc-text">已提交的文件如何应用gitignore</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">2.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
                 </div>
             
         
         
-            <h2 id="已提交的文件如何应用gitignore">已提交的文件如何应用gitignore</h2>
-<p><code>.gitignore</code>只能忽略未跟踪的文件，已提交的文件需先删除。<code>.gitignore</code> 只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则 修改.gitignore是无效的。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">rm</span> --cached &lt;file&gt;</span><br><span class="line">git commit -a -m <span class="string">&quot;删除不需要的文件&quot;</span></span><br><span class="line"><span class="comment"># add .gitignore rule</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <h2 id="背景">背景</h2>
+<p>以往想快捷打开某个软件的时候，通常会在<code>.bashrc</code>shell 文件中添加<code>alias word="bash /opt/bin/word.sh"</code>,现在需要定义一个命令，并且可以在这个命令后面传递参数，这个时候<code>alias</code>就无法满足要求了。</p>
+<h2 id="solution">Solution</h2>
+<p><strong>在shell中定义函数</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OpenBrower () &#123;</span><br><span class="line">     bash openbrower.sh $1 #取OpenBrower命令后的第一个参数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">OpenBrower</span><br></pre></td></tr></table></figure>
+<p>如此，重新执行<code>source .bashrc</code>后就可使用<code>OpenBrower chrome</code>和<code>OpenBrower firefox</code>来打开不同的浏览器了。</p>
 <div>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
 <ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
@@ -534,7 +537,7 @@
 <h2 id="参考资料">参考资料</h2>
 <blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1274057/how-can-i-make-git-forget-about-a-file-that-was-tracked-but-is-now-in-gitign">How can I make Git "forget" about a file that was tracked, but is now in .gitignore?</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-shell-func.html">1.https://www.runoob.com/linux/linux-shell-func.html</a></li>
 </ul>
 </blockquote>
 
@@ -549,19 +552,10 @@
     
 <nav id="article-nav">
     
-        <a href="/2022/04/20/1l2-normalize/" id="article-nav-newer" class="article-nav-link-wrap">
-            <strong class="article-nav-caption">Newer</strong>
-            <div class="article-nav-title">
-                
-                    (一)L2归一化
-                
-            </div>
-        </a>
     
-    
-        <a href="/2022/04/19/3Yolov5Modules/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2022/05/31/8strftimeWithMicroseconds/" id="article-nav-older" class="article-nav-link-wrap">
             <strong class="article-nav-caption">Older</strong>
-            <div class="article-nav-title">(三) Modules of YOLOv5</div>
+            <div class="article-nav-title">9.strftime With Microseconds</div>
         </a>
     
 </nav>

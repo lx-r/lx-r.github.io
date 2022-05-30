@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/05/31/5ShellFunction/
 https://foobarweb.net/2022/05/31/8strftimeWithMicroseconds/
 https://foobarweb.net/2022/05/30/3vscodeMarkdownPdf/
 https://foobarweb.net/2022/05/22/2OGNet/
@@ -78,6 +79,7 @@ https://foobarweb.net/tags/MachineLearning/
 https://foobarweb.net/tags/Google-Search-Tips/
 https://foobarweb.net/tags/ComputerVision/
 https://foobarweb.net/tags/vscode/
+https://foobarweb.net/tags/Linux/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/
