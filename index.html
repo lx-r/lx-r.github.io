@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Entradas',
+            POSTS: 'Posts',
             PAGES: 'Pages',
-            CATEGORIES: 'Categorias',
-            TAGS: 'Etiquetas',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>Categorias</span>
+            <span>categories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -389,7 +389,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             MachineLearning
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  <li class="file"><a href="/2022/07/05/4ce/">(四)带权重和ignore_index的交叉商损失函数</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -562,6 +562,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-4ce" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/MachineLearning/">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/MachineLearning/" rel="tag">MachineLearning</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/07/05/4ce/">
+            <time datetime="2022-07-05T14:16:56.000Z" itemprop="datePublished">2022-07-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/MachineLearning/4ce.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/MachineLearning/4ce.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/MachineLearning/4ce.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/07/05/4ce/">(四)带权重和ignore_index的交叉商损失函数</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="背景">背景</h2>
+<p>使用<code>ADE20K</code>数据集进行验证的分割算法，因这个数据集是<code>exausted annotated</code>，也就是图像中的每个像素都标注了类别，因此背景只占了很少的一部分，因此训练时会设置<code>ignore_index=255</code>,在商汤的框架<code>mmsegmentation</code>中的<a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmsegmentation/blob/master/configs/_base_/datasets/ade20k.py"><code>ade20k.py</code></a>中的<code>educe_zero_label=True</code>参数，正是为了实现<code>ignore index</code>忽略背景</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">train_pipeline = [</span><br><span class="line">    <span class="built_in">dict</span>(<span class="built_in">type</span>=<span class="string">'LoadImageFromFile'</span>),</span><br><span class="line">    <span class="built_in">dict</span>(<span class="built_in">type</span>=<span class="string">'LoadAnnotations'</span>, reduce_zero_label=<span class="literal">True</span>),</span><br><span class="line">    <span class="built_in">dict</span>(<span class="built_in">type</span>=<span class="string">'Resize'</span>, img_scale=(<span class="number">2048</span>, <span class="number">512</span>), ratio_range=(<span class="number">0.5</span>, <span class="number">2.0</span>))]</span><br></pre></td></tr></table></figure>
+<h2 id="解析">解析</h2>
+<p>正常的交叉熵计算公式为：</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/07/05/4ce/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-6定时任务crontabs设置" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1493,112 +1597,8 @@ n^TP + d = 0
 
 
     
-        <article id="post-3transposedConv" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/MachineLearning/">MachineLearning</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/MachineLearning/" rel="tag">MachineLearning</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/15/3transposedConv/">
-            <time datetime="2022-05-15T08:57:15.000Z" itemprop="datePublished">2022-05-15</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/MachineLearning/3transposedConv.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/MachineLearning/3transposedConv.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/MachineLearning/3transposedConv.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/15/3transposedConv/">（三）转置卷积</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="基础情况介绍">1.基础情况介绍</h2>
-<p>在语义分割任务使用的网络结构中，除了使用卷积神经网络进行降采样，为了恢复图像的大小，还需要使用转置卷积。转置卷积被称为<code>transposed convolution</code>，<code>fractionally-strided convolution</code>也有些地方称为<code>deconvolution</code>。转置卷积只是恢复的<code>feature map</code>的空间尺寸并不等同于卷积的逆运算，所以称之为<code>deconvolution</code>是不合适的。</p>
-<p>为了简化介绍，假设通道<code>channle=1</code>,对于<span class="math inline">\(n_h\times n_\omega\)</span>的输入和<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核，对于<code>stride=1, padding=0</code>的转置卷积，其计算过程为，将<span class="math inline">\(k_h \times k_\omega\)</span>的卷积核在的输入的每一行每一列上滑动，得到<span class="math inline">\(n_h n_\omega\)</span>个中间结果，每个中间结果的空间尺寸为<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>,其值初时化为0，然后<strong>对于输入中的每个元素，与卷积核相乘得到<span class="math inline">\(k_h \times k_\omega\)</span>的结果替换掉<span class="math inline">\((n_h + k_h - 1) \times (n_\omega + k_\omega - 1)\)</span>矩阵中的对应部分，最后将所有的中间结果相加得到最后的输出</strong>。</p>
-<p><img src="/images/MachineLearning/3transposedConv/412d.png"></p>
-<p>使用<code>numpy</code>数组实现上述过程为：</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/15/3transposedConv/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Siguiente  &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
         </nav>
     
 </section>
