@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,9 +257,9 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Articles',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
+            CATEGORIES: 'Catégories',
             TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Catégories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -345,6 +345,15 @@ mjx-container[display="true"] + br {
                             ComputerVision
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/27/1homograpyMatrix/">(一)单应矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Datasets
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -562,6 +571,105 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1ThunderbirdMail" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/utils/">utils</a>
+    </div>
+
+                        
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/05/17/1ThunderbirdMail/">
+            <time datetime="2022-05-17T13:11:24.000Z" itemprop="datePublished">2022-05-17</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/utils/1ThunderbirdMail.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/utils/1ThunderbirdMail.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/utils/1ThunderbirdMail.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><p>比较好用的邮件客户端有<code>outlook</code>,<code>Thunderbird Mail</code>,这里介绍下如何使用<code>Thunderbird Mail</code>接收<code>QQ</code>邮箱中的邮件。</p>
+<h2 id="qq邮箱设置">1.QQ邮箱设置</h2>
+<p>先登陆QQ邮箱,进入<strong>邮箱设置</strong>,开启<code>POP3/SMTP服务</code>和<code>IMAP/SMTP服务</code>，同时获得<code>授权码</code>备用。</p>
+<p><img src="/images/utils/1ThunderbirdMail/1qq1.png"> <img src="/images/utils/1ThunderbirdMail/1qq2.png"></p>
+<p>如上图设置开启<code>IMAP/SMTP</code>服务，<code>IMAP</code>是Internet Message Access Protocol（互联网邮件访问协议），您可以通过这种协议从邮件服务器上获取邮件的信息、下载邮件等。IMAP与POP类似，都是一种邮件获取协议。<strong>IMAP和POP有什么区别？</strong>POP允许电子邮件客户端下载服务器上的邮件，但是您在电子邮件客户端的操作（如：移动邮件、标记已读等），这是不会反馈到服务器上的，比如：您通过电子邮件客户端收取了QQ邮箱中的3封邮件并移动到了其他文件夹，这些移动动作是不会反馈到服务器上的，也就是说，QQ邮箱服务器上的这些邮件是没有同时被移动的 。但是IMAP就不同了，电子邮件客户端的操作都会反馈到服务器上，您对邮件进行的操作（如：移动邮件、标记已读等），服务器上的邮件也会做相应的动作。也就是说，IMAP是“双向”的。同时，IMAP可以只下载邮件的主题，只有当您真正需要的时候，才会下载邮件的所有内容。</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/05/17/1ThunderbirdMail/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-3transposedConv" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -652,7 +760,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/15/3transposedConv/#more">Read More</a>
+                <a href="/2022/05/15/3transposedConv/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -756,7 +864,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/10/3INTERPOLATE/#more">Read More</a>
+                <a href="/2022/05/10/3INTERPOLATE/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -860,7 +968,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/09/2ganomaly/#more">Read More</a>
+                <a href="/2022/05/09/2ganomaly/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -964,7 +1072,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/08/2sklearn-avg-classification-report/#more">Read More</a>
+                <a href="/2022/05/08/2sklearn-avg-classification-report/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1068,7 +1176,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/08/2BatchNorm/#more">Read More</a>
+                <a href="/2022/05/08/2BatchNorm/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1172,7 +1280,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/06/1gcn/#more">Read More</a>
+                <a href="/2022/05/06/1gcn/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1276,7 +1384,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/05/1sum/#more">Read More</a>
+                <a href="/2022/05/05/1sum/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1375,7 +1483,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/05/8conda/#more">Read More</a>
+                <a href="/2022/05/05/8conda/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1479,111 +1587,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/05/1gan/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-7decorator" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Python/">Python</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/05/7decorator/">
-            <time datetime="2022-05-04T16:12:50.000Z" itemprop="datePublished">2022-05-05</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Python/7decorator.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Python/7decorator.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Python/7decorator.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/05/7decorator/">(七)Python中的装饰器</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="通过函数定义装饰器">1.通过函数定义装饰器</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyObj</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, value</span>):</span><br><span class="line">        self.value = value;</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_value</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;set value:&quot;</span>,value)</span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_set_value_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(self.set_value.__name__)</span><br><span class="line">        </span><br><span class="line">o = MyObj(<span class="number">10</span>)</span><br><span class="line">o.set_value(<span class="number">12</span>)</span><br><span class="line">o.get_set_value_name()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 想在set_value之前打印一个日志</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">log</span>(<span class="params">f</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">w</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;begin to log&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span> f(*args, **kwargs)</span><br><span class="line">    <span class="keyword">return</span> w</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObj</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, value</span>):</span><br><span class="line">        self.value = value;</span><br><span class="line"><span class="meta">    @log </span><span class="comment"># 等同于 set_value = log(set_value)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_value</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="built_in">print</span>(set_value.__name__)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;set value:&quot;</span>,value)</span><br><span class="line">        self.value = value</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_set_value_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(self.set_value.__name__)</span><br><span class="line">        </span><br><span class="line">o = MyObj(<span class="number">10</span>)</span><br><span class="line">o.set_value(<span class="number">120</span>)</span><br><span class="line">o.get_set_value_name()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义带入参的装饰器</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">log</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kw</span>):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %s():&#x27;</span> % (text, func.__name__))</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kw)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObj</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, value</span>):</span><br><span class="line">        self.value = value;</span><br><span class="line">        </span><br><span class="line"><span class="meta">    @log(<span class="params"><span class="string">&quot;MyObj&quot;</span></span>) </span><span class="comment"># 等同于 set_value = log(&#x27;MyObj&#x27;)(set_value)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_value</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;set value:&quot;</span>,value)</span><br><span class="line">        self.value = value</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_set_value_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(self.set_value.__name__)</span><br><span class="line">        </span><br><span class="line">o = MyObj(<span class="number">10</span>)</span><br><span class="line">o.set_value(<span class="number">120</span>)</span><br><span class="line">o.get_set_value_name()</span><br><span class="line"></span><br><span class="line"><span class="comment"># set_value的函数签名被修改了， 对于依赖函数签名的代码将报错</span></span><br><span class="line"><span class="comment"># 不需要编写wrapper.__name__ = func.__name__这样的代码</span></span><br><span class="line"><span class="comment"># 可使用Python内置的functools.wraps模块</span></span><br><span class="line"><span class="comment"># 定义带入参的装饰器</span></span><br><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">log</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">decorator</span>(<span class="params">func</span>):</span><br><span class="line"><span class="meta">        @functools.wraps(<span class="params">func</span>)</span></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kw</span>):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;%s %s():&#x27;</span> % (text, func.__name__))</span><br><span class="line">            <span class="keyword">return</span> func(*args, **kw)</span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line">    <span class="keyword">return</span> decorator</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyObj</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, value</span>):</span><br><span class="line">        self.value = value;</span><br><span class="line">        </span><br><span class="line"><span class="meta">    @log(<span class="params"><span class="string">&quot;MyObj&quot;</span></span>) </span><span class="comment"># 等同于 set_value = log(&#x27;MyObj&#x27;)(set_value)</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">set_value</span>(<span class="params">self, value</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;set value:&quot;</span>,value)</span><br><span class="line">        self.value = value</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get_set_value_name</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(self.set_value.__name__)</span><br><span class="line">        </span><br><span class="line">o = MyObj(<span class="number">10</span>)</span><br><span class="line">o.set_value(<span class="number">120</span>)</span><br><span class="line">o.get_set_value_name()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>输出</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> value: 12</span><br><span class="line">set_value</span><br><span class="line">begin to <span class="built_in">log</span></span><br><span class="line">set_value</span><br><span class="line"><span class="built_in">set</span> value: 120</span><br><span class="line">w</span><br><span class="line">MyObj set_value():</span><br><span class="line"><span class="built_in">set</span> value: 120</span><br><span class="line">wrapper</span><br><span class="line">MyObj set_value():</span><br><span class="line"><span class="built_in">set</span> value: 120</span><br><span class="line">set_value</span><br></pre></td></tr></table></figure>
-<h2 id="定义装饰器类">2.定义装饰器类</h2>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/05/7decorator/#more">Read More</a>
+                <a href="/2022/05/05/1gan/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1598,7 +1602,7 @@ mjx-container[display="true"] + br {
 
     
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+        <a class="extend prev" rel="prev" href="/">&amp;laquo; Préc</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Suiv &amp;raquo;</a>
         </nav>
     
 </section>

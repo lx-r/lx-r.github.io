@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,9 +257,9 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Articles',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
+            CATEGORIES: 'Catégories',
             TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Catégories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -345,6 +345,15 @@ mjx-container[display="true"] + br {
                             ComputerVision
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/27/1homograpyMatrix/">(一)单应矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Datasets
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -562,6 +571,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-1ade20k" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Datasets/">Datasets</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/ADE20K/" rel="tag">ADE20K</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/07/06/1ade20k/">
+            <time datetime="2022-07-06T14:01:17.000Z" itemprop="datePublished">2022-07-06</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Datasets/1ade20k.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Datasets/1ade20k.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Datasets/1ade20k.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/07/06/1ade20k/">1.ADE20K数据集</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="背景简介">1.背景简介</h2>
+<p>ADE20K数据集是<strong>2016年MIT</strong>开放的场景理解的数据集，可用于实例分割，语义分割和零部件分割。利用图像信息进行场景理解 <code>scene understanding</code>和 <code>scene parsing</code>。</p>
+<p><code>语义分割 Semantic Segmentation</code>即最常见的任务，将图像的不同像素按对象类别 <code>object category</code>进行分类，<code>实例分割Instance Segmentation</code>不仅要识别不同物体所属的类别，还需识别出同类的不同物体。<code>零部件分割 Part Segmentation</code>是在识别出的物体上分割出不同部分所属的零部件类别，这对于理解场景帮助机器人与环境交互十分重要，如在某个 <code>scene</code>中分割出来 <code>chair</code>或者 <code>cup</code>,为了坐下或者拿起杯⼦需要找到 <code>objects</code>中对应的 <code>parts</code>,如 <code>chair</code>可以坐的部分， <code>cup</code>的杯柄， 以实现机器⼈与知行特定的任务。</p>
+<p>已有分割公开数据集的现状:</p>
+<ul>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/07/06/1ade20k/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-4ce" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -652,7 +765,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/07/05/4ce/#more">Read More</a>
+                <a href="/2022/07/05/4ce/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -756,7 +869,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/31/6%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontabs%E8%AE%BE%E7%BD%AE/#more">Read More</a>
+                <a href="/2022/05/31/6%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontabs%E8%AE%BE%E7%BD%AE/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -860,7 +973,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/31/5ShellFunction/#more">Read More</a>
+                <a href="/2022/05/31/5ShellFunction/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -964,7 +1077,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/31/8strftimeWithMicroseconds/#more">Read More</a>
+                <a href="/2022/05/31/8strftimeWithMicroseconds/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1068,7 +1181,7 @@ mjx-container[display="true"] + br {
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/30/3vscodeMarkdownPdf/#more">Read More</a>
+                <a href="/2022/05/30/3vscodeMarkdownPdf/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1172,7 +1285,7 @@ n^TP + d = 0
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/27/1homograpyMatrix/#more">Read More</a>
+                <a href="/2022/05/27/1homograpyMatrix/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1276,7 +1389,7 @@ n^TP + d = 0
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/22/2OGNet/#more">Read More</a>
+                <a href="/2022/05/22/2OGNet/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1380,7 +1493,7 @@ n^TP + d = 0
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/19/4IntroductionAboutTorchGradient/#more">Read More</a>
+                <a href="/2022/05/19/4IntroductionAboutTorchGradient/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1484,106 +1597,7 @@ n^TP + d = 0
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/05/17/2GoogleSearchTips/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-1ThunderbirdMail" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/utils/">utils</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/17/1ThunderbirdMail/">
-            <time datetime="2022-05-17T13:11:24.000Z" itemprop="datePublished">2022-05-17</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/utils/1ThunderbirdMail.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/utils/1ThunderbirdMail.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/utils/1ThunderbirdMail.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><p>比较好用的邮件客户端有<code>outlook</code>,<code>Thunderbird Mail</code>,这里介绍下如何使用<code>Thunderbird Mail</code>接收<code>QQ</code>邮箱中的邮件。</p>
-<h2 id="qq邮箱设置">1.QQ邮箱设置</h2>
-<p>先登陆QQ邮箱,进入<strong>邮箱设置</strong>,开启<code>POP3/SMTP服务</code>和<code>IMAP/SMTP服务</code>，同时获得<code>授权码</code>备用。</p>
-<p><img src="/images/utils/1ThunderbirdMail/1qq1.png"> <img src="/images/utils/1ThunderbirdMail/1qq2.png"></p>
-<p>如上图设置开启<code>IMAP/SMTP</code>服务，<code>IMAP</code>是Internet Message Access Protocol（互联网邮件访问协议），您可以通过这种协议从邮件服务器上获取邮件的信息、下载邮件等。IMAP与POP类似，都是一种邮件获取协议。<strong>IMAP和POP有什么区别？</strong>POP允许电子邮件客户端下载服务器上的邮件，但是您在电子邮件客户端的操作（如：移动邮件、标记已读等），这是不会反馈到服务器上的，比如：您通过电子邮件客户端收取了QQ邮箱中的3封邮件并移动到了其他文件夹，这些移动动作是不会反馈到服务器上的，也就是说，QQ邮箱服务器上的这些邮件是没有同时被移动的 。但是IMAP就不同了，电子邮件客户端的操作都会反馈到服务器上，您对邮件进行的操作（如：移动邮件、标记已读等），服务器上的邮件也会做相应的动作。也就是说，IMAP是“双向”的。同时，IMAP可以只下载邮件的主题，只有当您真正需要的时候，才会下载邮件的所有内容。</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/17/1ThunderbirdMail/#more">Read More</a>
+                <a href="/2022/05/17/2GoogleSearchTips/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1598,7 +1612,7 @@ n^TP + d = 0
 
     
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Suiv &amp;raquo;</a>
         </nav>
     
 </section>

@@ -126,7 +126,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -145,9 +145,9 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Articles',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
+            CATEGORIES: 'Catégories',
             TAGS: 'Tags',
             UNTITLED: '(Untitled)',
         },
@@ -181,7 +181,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Rechercher" />
     </div>
 
                 </td>
@@ -198,7 +198,7 @@
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Catégories</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -233,6 +233,15 @@
                             ComputerVision
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/27/1homograpyMatrix/">(一)单应矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Datasets
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -450,6 +459,110 @@
 </aside>
             
             <section id="main">
+        <article id="post-1map-compution" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Detection/">Detection</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Detection/" rel="tag">Detection</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/14/1map-compution/">
+            <time datetime="2022-04-14T15:04:44.000Z" itemprop="datePublished">2022-04-14</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Detection/1map-compution.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Detection/1map-compution.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Detection/1map-compution.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="map是什么">1.MAP是什么</h2>
+<p><strong>在目标检测任务中，<code>MAP</code>是对算法模型检测结果一个广泛使用的评判标准</strong>。<code>MAP</code>是<code>Mean Average Precision</code>，即在各个类别上的检测结果的平均精准率（<code>AP,Average Precision</code>）的平均，如果文字描述不清楚，下面看具体计算过程。理解<code>MAP</code>前需先弄明白平均精准率<code>AP(Average Precision)</code>、召回率<code>Recall</code>、精准率<code>Precision</code>、由<code>Recall</code>和<code>Precision</code>组成的<code>PR</code>曲线及曲线下面积<code>AUC(Area Under the Curve)</code>。</p>
+<h2 id="recallprecisionpr曲线auc和ap">2.Recall/Precision/PR曲线/AUC和AP</h2>
+二分类预测问题，对于某个具体样本的预测结果有两种，要么是预测正确，要么是预测错误。而预测正确又可细分为样本标签是正值预测为正值（<code>TP,True Positive</code>）、样本标签是负值预测为负值(<code>TN,True Negative</code>)； 而预测错误的场景亦可细分为样本标签为正预测为负(<code>FN,False Negative</code>)、样本标签为负预测为正(<code>FP,False Positive</code>),如下表：
+<center>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/14/1map-compution/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-4python-args" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -540,7 +653,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/14/4python-args/#more">Read More</a>
+                <a href="/2022/04/14/4python-args/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -639,7 +752,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/14/3color-print/#more">Read More</a>
+                <a href="/2022/04/14/3color-print/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -743,7 +856,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/14/3jupyter-notebook/#more">Read More</a>
+                <a href="/2022/04/14/3jupyter-notebook/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -847,7 +960,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/2python-magic-method/#more">Read More</a>
+                <a href="/2022/04/13/2python-magic-method/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -951,7 +1064,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/1pip-introduction/#more">Read More</a>
+                <a href="/2022/04/13/1pip-introduction/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1055,7 +1168,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/5cpp-array-pointer/#more">Read More</a>
+                <a href="/2022/04/13/5cpp-array-pointer/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1159,7 +1272,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/4cpp-compilier/#more">Read More</a>
+                <a href="/2022/04/13/4cpp-compilier/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1263,7 +1376,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/3cpp-preprocess/#more">Read More</a>
+                <a href="/2022/04/13/3cpp-preprocess/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1367,106 +1480,7 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/2022/04/13/2cpp-pointer-and-function/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-1c-string" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/C/">C++</a>
-    </div>
-
-                        
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/13/1c-string/">
-            <time datetime="2022-04-12T16:50:10.000Z" itemprop="datePublished">2022-04-13</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/1c-string.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/1c-string.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/1c-string.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/13/1c-string/">(二)C++中的string</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h1 id="char-与-char">1.char* 与 char[]</h1>
-<p>C是C++的子集，在C中没有 <code>string</code>类型，只能使用间接的形式表示。<code>C</code>中的字符串处理函数包含文件 <code>#include&lt;cstring&gt;</code>处理的类型是 <code>const char*</code>类型,所以不能用来处理 <code>std::string</code>类型的字符串</p>
-<ul>
-<li>C中字符串表示</li>
-</ul>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/13/1c-string/#more">Read More</a>
+                <a href="/2022/04/13/2cpp-pointer-and-function/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">
@@ -1481,7 +1495,7 @@
 
     
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Préc</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Suiv &amp;raquo;</a>
         </nav>
     
 </section>
