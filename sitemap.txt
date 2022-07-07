@@ -1,3 +1,4 @@
+https://foobarweb.net/2022/07/07/2cityscapes/
 https://foobarweb.net/2022/07/06/1ade20k/
 https://foobarweb.net/2022/07/05/4ce/
 https://foobarweb.net/2022/05/31/6%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontabs%E8%AE%BE%E7%BD%AE/
@@ -84,6 +85,7 @@ https://foobarweb.net/tags/ComputerVision/
 https://foobarweb.net/tags/vscode/
 https://foobarweb.net/tags/Linux/
 https://foobarweb.net/tags/ADE20K/
+https://foobarweb.net/tags/Cityscapes/
 https://foobarweb.net/categories/Detection/
 https://foobarweb.net/categories/CUDA/
 https://foobarweb.net/categories/GIT/

@@ -98,7 +98,119 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body>
     <div id="container">
@@ -126,7 +238,7 @@
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -145,10 +257,10 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Entradas',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -181,7 +293,7 @@
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
     </div>
 
                 </td>
@@ -198,7 +310,7 @@
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Categorias</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -241,7 +353,7 @@
                             &nbsp;
                             Datasets
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  <li class="file"><a href="/2022/07/07/2cityscapes/">(二)Cityscapes数据集简介</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -459,6 +571,110 @@
 </aside>
             
             <section id="main">
+        <article id="post-2yolo-anchor" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Detection/">Detection</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Detection/" rel="tag">Detection</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/04/15/2yolo-anchor/">
+            <time datetime="2022-04-15T12:54:13.000Z" itemprop="datePublished">2022-04-15</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Detection/2yolo-anchor.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Detection/2yolo-anchor.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Detection/2yolo-anchor.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="简略描述">0.简略描述</h2>
+<ul>
+<li>1.将真值检测框变换到特征图尺度上</li>
+<li>2.计算以特征图每个网格中心为中心点时所有锚框与真值检测框的交并比</li>
+<li>3.取与真值检测框交并比最大的锚框的id,及真值检测框中心所在cell的id,有此，可将真值检测框与预测结果对应起来</li>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/04/15/2yolo-anchor/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-1map-compution" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1390,112 +1606,8 @@
 
 
     
-        <article id="post-2cpp-pointer-and-function" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/C/">C++</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/C/" rel="tag">C++</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/04/13/2cpp-pointer-and-function/">
-            <time datetime="2022-04-12T16:54:52.000Z" itemprop="datePublished">2022-04-13</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/cpp/2cpp-pointer-and-function.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/cpp/2cpp-pointer-and-function.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/cpp/2cpp-pointer-and-function.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h1 id="指针做函数的形参">1指针做函数的形参</h1>
-<p>指针变量可以做函数的形参，对应的实参用地址或指针变量。函数调用时传入的是数据的地址，因此形参和实参指向主调函数中的同一片内存空间，函数改变形参指向的变量的值，则对应实参指向的值也将改变。因此，尽管被调函数不能改变实参指针的值，但可改变实参指针所指变量的值。</p>
-<h1 id="返回指针值的函数">2.返回指针值的函数</h1>
-<p>函数的返回值可以是指针，返回值类型是指针的函数也被称为指针函数。因本函数执行完毕返回主调函数后，函数中的局部变量将被全部释放，<strong>因此指针函数的返回值不能是本函数中的局部变量的地址。</strong></p>
-<h1 id="指向函数的指针">3.指向函数的指针</h1>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/04/13/2cpp-pointer-and-function/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Anterior</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Siguiente  &amp;raquo;</a>
         </nav>
     
 </section>

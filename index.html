@@ -238,7 +238,7 @@ mjx-container[display="true"] + br {
             <div id="search-form-wrap">
 
     <form class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
         <button type="submit" class="search-form-submit"></button>
     </form>
     <div class="ins-search">
@@ -257,10 +257,10 @@ mjx-container[display="true"] + br {
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
+            POSTS: 'Entradas',
             PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
+            CATEGORIES: 'Categorias',
+            TAGS: 'Etiquetas',
             UNTITLED: '(Untitled)',
         },
         ROOT_URL: '/',
@@ -293,7 +293,7 @@ mjx-container[display="true"] + br {
                 <td>
                     
     <div class="search-form">
-        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <input type="text" class="ins-search-input search-form-input" placeholder="Buscar" />
     </div>
 
                 </td>
@@ -310,7 +310,7 @@ mjx-container[display="true"] + br {
         
     <div class="widget-wrap" id='categories'>
         <h3 class="widget-title">
-            <span>categories</span>
+            <span>Categorias</span>
             &nbsp;
             <a id='allExpand' href="#">
                 <i class="fa fa-angle-double-down fa-2x"></i>
@@ -353,7 +353,7 @@ mjx-container[display="true"] + br {
                             &nbsp;
                             Datasets
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  <li class="file"><a href="/2022/07/07/2cityscapes/">(二)Cityscapes数据集简介</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -571,6 +571,110 @@ mjx-container[display="true"] + br {
 </aside>
             
             <section id="main">
+        <article id="post-2cityscapes" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Datasets/">Datasets</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Cityscapes/" rel="tag">Cityscapes</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/07/07/2cityscapes/">
+            <time datetime="2022-07-07T12:46:04.000Z" itemprop="datePublished">2022-07-07</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Datasets/2cityscapes.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Datasets/2cityscapes.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Datasets/2cityscapes.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/2022/07/07/2cityscapes/">(二)Cityscapes数据集简介</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p><h2 id="简介">1.简介</h2>
+<p><code>Daimler AG</code>现在称为<code>Mercedes-Benz</code>研发中心和达姆施塔特工业大学（德语：<code>Technische Universität Darmstadt</code>）研究人员开放的数据集，论文发表在2016年的<code>CVPR</code>。<code>cityscapess</code>采集自德国及附近国家的50个城市，包括了春夏秋三个季节的街区场景，且使用双目相机的获取了立体视觉视频序列。研究人员认为雨雪等极端天气需要特殊的处理方法和数据集进行研究，因此在<code>cityscapess</code>数据集中没有采集此类数据。数据采集使用的是<code>1/3</code>英寸 CMOS 2MP sensors (OnSemi安森美 AR0331)，帧率为<code>17</code>的卷帘相机，包括左目和右目，基线距离<code>22cm</code>，采集的是色彩深度为<code>16</code>位的的HDR图像。</p>
+<p>数据集有选自<code>27</code>个城市的<code>5000</code>张图像进行了<code>pixel-level</code>像素级的语义和实例标注，可用于训练语义分割网络，这5000张中的每一张都取自于对应的一个包含30帧的视频序列的第20帧，剩余<code>23</code>个城市的<code>20000</code>张图像进行了粗略标注，这20000张图像是每间隔20s或汽车行驶20m采集一张得到的。精标一张数据平均<code>1.5h</code>，粗标一张数据<code>7min</code>。不同的标注人员对选出来的30张数据进行重复标注，像素一致性达<code>96%</code>,去除可标注为<code>unclear</code>的类别后，像素一致性达<code>98%</code>。</p>
+<p>分割数据集包含了<code>33</code>个类,因部分类别数据量过于稀少，在验证数据集上，只有<strong>19</strong>个语义分割类，因此要根据<code>*_polygons.json</code>文件生成<code>*_labelTrainIds.png</code>用以训练语义分割网络，可借助<code>cityscapesScripts</code>工程中的<code>cityscapesscripts/preparation/createTrainIdLabelImgs.py</code>脚本，在语义分割的<code>5000</code>张图像的标注文件中，转换后训练时设置成<code>ignore_indexe</code>的类别<code>255</code>的像素个数分布为<code>max: 1105427.0, min: 114462.0, avg: 263878.772</code>，图像大小是<code>2048x1024</code>,<code>255</code>的占比最高大于<code>50%</code>。<strong>有个问题就是，使用语义分割模型测试输入一张图像，其输出每个像素的类别，这些类别都在<code>0-18</code>上，是无法预测出<code>255</code>这种类别的，对于在标签文件上本来属于<code>255</code>类别的像素也会被预测成<code>0-18</code>,这是否会影响模型的推理输出呢？</strong></p>
+<p>语义分割数据集以城市为单位划分，分成了<code>train:2975</code>张，<code>validation:500</code>张,<code>test:1525</code>张, 与<code>KITTI/CamVid/DUS</code>数据集进行对比，</p>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/2022/07/07/2cityscapes/#more">Read More</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <article id="post-1ade20k" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1507,112 +1611,8 @@ n^TP + d = 0
 
 
     
-        <article id="post-2GoogleSearchTips" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/utils/">utils</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Google-Search-Tips/" rel="tag">Google Search Tips</a>
-    </div>
-
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/2022/05/17/2GoogleSearchTips/">
-            <time datetime="2022-05-17T15:52:22.000Z" itemprop="datePublished">2022-05-17</time>
-        </a>
-    </div>
-
-
-                        
-                            <i class="fa fa-bar-chart"></i>
-                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
-                        
-                        
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/utils/2GoogleSearchTips.md'> Source </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/utils/2GoogleSearchTips.md'> Edit </a>
-                            </div>
-                            <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/utils/2GoogleSearchTips.md'> History </a>
-                            </div>
-                        
-                    </div>
-                
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="/2022/05/17/2GoogleSearchTips/">2.Useful Tricks and Tips to Search Google Better</a>
-        </h1>
-    
-
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p><h2 id="background">1.Background</h2>
-<p>Google Search Services have been the most commonly used tools for everyone on the Internet. When you encounter a problem and need to find information online, your first reaction may be typing the keywords on the problem in Goole Search input box, and then most of the case, you can find the answer what you expected. However, when there is more and more information related to the topic of the problem, it is quite likely to encount that Google Search could show some irrelevant content to you. This situation is really annoying, we'll be lost in the information ocean full of random content. Luckily, Google Search provided many helpful tricks to use the search service, as long as we make some small specified calibration in the search text field, we can find the content we want faster, better and greatly improve the work efficiency. In this article, I will explain some useful skills on how to use Google Search more effective.</p>
-<h2 id="tip-1-use-site-for-specified-site-searh">2.Tip 1: Use [site] for Specified Site Searh</h2>
-<p>It's quite often to use the function of searching on the site for many website. How to use Goole to search on the specified site by the key words ? The Operation can be really simple, One can use the function of searhing on the specified site by adding "site: URL" after the keyword to only search for the related information on a certain site.</p>
-<p>For example, if you wanted to use Goole Search Engine to find knowledges about deep learning on Twitter site, what you should do is to type "deep learning site https://twitter.com/" to the input box and then click Enter. Then you will find that only articles on Twitter about deep learning showing in the search results.</p>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/2022/05/17/2GoogleSearchTips/#more">Read More</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Siguiente  &amp;raquo;</a>
         </nav>
     
 </section>
