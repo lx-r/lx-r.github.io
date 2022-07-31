@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang=cn>
+<head>
+    <meta charset="utf-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385"
+     crossorigin="anonymous"></script>
+       <!--  修改 开始位置-->
+        
+<script src="/libs/mermaid/mermaid.min.js"></script>
+  <!-- 或者使用CDN -->
+        <script>
+            $(document).ready(function() {
+                var mermaid_config = {
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart:{
+                        useMaxWidth: false,
+                        htmlLabels: true
+                    }                
+                }
+                mermaid.initialize(mermaid_config);
+            });
+        </script>   <!-- 修改 结束位置 --> 
+            
+    
+    <title>Category: Detection | 知行空间</title>
+    
+    
+        <meta name="keywords" content="Detection" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="roLabelImg 工具仓库地址:https:&#x2F;&#x2F;github.com&#x2F;cgvict&#x2F;roLabelImg  1.进入可以画旋转检测框的模式  2.标注文件样式 roLabelImg标注旋转检测框时是先画一个常规的矩形框，然后绕矩形的中心点顺时针和逆时针旋转一定的角度来实现的。标注文件中对旋转检测框的定义是使用(cx, cy, width, height, angle)的格式定义的，如下： 1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="（四）旋转物体检测数据roLabelImg转DOTA格式">
+<meta property="og:url" content="https://foobarweb.net/2022/07/31/4roLabelImg2DOTA/index.html">
+<meta property="og:site_name" content="知行空间">
+<meta property="og:description" content="roLabelImg 工具仓库地址:https:&#x2F;&#x2F;github.com&#x2F;cgvict&#x2F;roLabelImg  1.进入可以画旋转检测框的模式  2.标注文件样式 roLabelImg标注旋转检测框时是先画一个常规的矩形框，然后绕矩形的中心点顺时针和逆时针旋转一定的角度来实现的。标注文件中对旋转检测框的定义是使用(cx, cy, width, height, angle)的格式定义的，如下： 1">
+<meta property="og:locale">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/roLabelImg.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/box.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/rbox.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/roLabelImgc.png">
+<meta property="og:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/roLabelImg1.png">
+<meta property="article:published_time" content="2022-07-30T16:31:51.000Z">
+<meta property="article:modified_time" content="2022-07-31T16:38:07.319Z">
+<meta property="article:author" content="Alasky">
+<meta property="article:tag" content="Detection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://foobarweb.net/images/Detection/4roLabelImg2DOTA/roLabelImg.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="知行空间" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BDK0Y9WWLP');
+</script>
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">知行空间</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">首页</a>
+                
+                    <a class="main-nav-link" href="/archives">归档</a>
+                
+                    <a class="main-nav-link" href="/categories">分类</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>categories</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            C++
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/11/0C-%E4%B8%AD%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0/">(一)C++中的随机数</a></li>  <li class="file"><a href="/2022/04/13/1c-string/">(二)C++中的string</a></li>  <li class="file"><a href="/2022/04/13/2cpp-pointer-and-function/">(三)C++中的指针与函数</a></li>  <li class="file"><a href="/2022/04/13/3cpp-preprocess/">(四)C++编译之预处理</a></li>  <li class="file"><a href="/2022/04/13/4cpp-compilier/">(五) C++编译器</a></li>  <li class="file"><a href="/2022/04/13/5cpp-array-pointer/">(六)C++中的数组指针与指针数组</a></li>  <li class="file"><a href="/2022/04/16/6array-initialize-error/">(六)C++ variable-sized object may not be initialized</a></li>  <li class="file"><a href="/2022/04/17/7memory-manage/">(七)C++中的内存管理</a></li>  <li class="file"><a href="/2022/04/19/8cppContainer/">(八)C++的常用容器简析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CUDA
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/cuda-introduction/">cudatoolkit介绍及配置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            ComputerVision
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/27/1homograpyMatrix/">(一)单应矩阵</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Datasets
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/07/06/1ade20k/">1.ADE20K数据集</a></li>  <li class="file"><a href="/2022/07/07/2cityscapes/">(二)Cityscapes数据集简介</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Detection
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/14/1map-compution/">(一)目标检测指标VOC MAP的计算</a></li>  <li class="file"><a href="/2022/04/15/2yolo-anchor/">(二)Yolov2训练时anchor是如何使用的</a></li>  <li class="file"><a href="/2022/04/19/3Yolov5Modules/">(三) Modules of YOLOv5</a></li>  <li class="file active"><a href="/2022/07/31/4roLabelImg2DOTA/">（四）旋转物体检测数据roLabelImg转DOTA格式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GAN
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1gan/">(一)生成对抗网络Generative Adversarial Networks</a></li>  <li class="file"><a href="/2022/05/09/2ganomaly/">(二)GANomaly论文及代码解析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/3git%E6%8D%A2%E8%A1%8C%E7%AC%A6%E5%8F%B7/">(三)git换行符</a></li>  <li class="file"><a href="/2022/04/12/1git-filemode/">(一)git filemode 设置</a></li>  <li class="file"><a href="/2022/04/12/2git-submit/">(二)git提交常用操作</a></li>  <li class="file"><a href="/2022/04/19/4%E5%B7%B2%E6%8F%90%E4%BA%A4%E7%9A%84%E6%96%87%E4%BB%B6gitignore/">(四)已提交的文件gitignore</a></li>  <li class="file"><a href="/2022/04/24/5githubpush443/">(五) github能访问ping不通push报443</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Linux
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/12/ExecutablePathIsNotAbsolute/">(一)ExecutablePathIsNotAbsolute及Linux内核升级和dist-upgrade</a></li>  <li class="file"><a href="/2022/04/12/2software-install/">(二)Linux软件管理与PPA</a></li>  <li class="file"><a href="/2022/04/12/3env-variable/">(三)Linux环境变量</a></li>  <li class="file"><a href="/2022/05/31/5ShellFunction/">5. Shell Function 自定义命令传参</a></li>  <li class="file"><a href="/2022/05/31/6%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontabs%E8%AE%BE%E7%BD%AE/">6定时任务crontabs设置</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MachineLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/06/1gcn/">(一)Global Contrast Normalization</a></li>  <li class="file"><a href="/2022/05/08/2sklearn-avg-classification-report/">(二)sklearn.metrics.classification_report中的Micro/Macro/Weighted Average指标</a></li>  <li class="file"><a href="/2022/05/15/3transposedConv/">（三）转置卷积</a></li>  <li class="file"><a href="/2022/07/05/4ce/">(四)带权重和ignore_index的交叉商损失函数</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneClassLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1DeepOneClassClassification/">(一)Deep-One-Class-Classification论文解读及代码分析</a></li>  <li class="file"><a href="/2022/05/22/2OGNet/">(二)OGNet 论文笔记</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OneShotLearning
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MetaLearning
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/22/2meta-learning-maml/">(二)元学习算法MAML简介及代码分析</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            SiameseNetwork
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/24/4SiameseNetwork/">4SiameseNetwork</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/18/1oneshot-learning-semantic-segmentation/">(一)One-Shot Learning for Semantic Segmentation论文阅读笔记</a></li>  <li class="file"><a href="/2022/04/23/3OmniglotDataset/">(三)Omniglot Dataset介绍</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            OpenCV
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/1opencv-blobimage/">1通过Opencv blobFromImage实现数据标准化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Python
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PIL
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/27/5pilerror/">5pilerror TypeError Cannot handle this data type</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2022/04/13/1pip-introduction/">(一)PIP使用简介</a></li>  <li class="file"><a href="/2022/04/13/2python-magic-method/">(二)Python中的魔术方法</a></li>  <li class="file"><a href="/2022/04/14/3jupyter-notebook/">(三)jupyter-notebook配置远程访问</a></li>  <li class="file"><a href="/2022/04/14/3color-print/">(四) Python Color Print</a></li>  <li class="file"><a href="/2022/04/14/4python-args/">(五)*args和**kargs</a></li>  <li class="file"><a href="/2022/05/04/6PythonStaticmethodAndClassmethod/">(六)Python中的`staticmethod`和`classmethod`</a></li>  <li class="file"><a href="/2022/05/05/7decorator/">(七)Python中的装饰器</a></li>  <li class="file"><a href="/2022/05/05/8conda/">(八) Conda常用指令</a></li>  <li class="file"><a href="/2022/05/31/8strftimeWithMicroseconds/">9.strftime With Microseconds</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Pytorch
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/05/1sum/">1sum</a></li>  <li class="file"><a href="/2022/05/08/2BatchNorm/">(二)详解Pytorch中的BatchNorm模块</a></li>  <li class="file"><a href="/2022/05/10/3INTERPOLATE/">(三)TORCH.NN.FUNCTIONAL.INTERPOLATE使用说明</a></li>  <li class="file"><a href="/2022/05/19/4IntroductionAboutTorchGradient/">4.Introduction About Torch Gradient</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            hexo
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/18/1addLatexSupport/">(一)设置hexo支持Latex公式</a></li>  <li class="file"><a href="/2022/04/18/2-add-mermaid-support/">(二)设置hexo支持mermaid</a></li>  <li class="file"><a href="/2022/04/22/3hexo-latex-subscript/">(三) hexo中Latex公式</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            tensorflow
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/04/20/1l2-normalize/">(一)L2归一化</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            utils
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/2022/05/17/1ThunderbirdMail/">1ThunderbirdMail</a></li>  <li class="file"><a href="/2022/05/17/2GoogleSearchTips/">2.Useful Tricks and Tips to Search Google Better</a></li>  <li class="file"><a href="/2022/05/30/3vscodeMarkdownPdf/">3 Make VSCode MarkdownPdf Plugin Support Latex Math Formula</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-4roLabelImg2DOTA" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Detection/">Detection</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Detection/" rel="tag">Detection</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2022/07/31/4roLabelImg2DOTA/">
+            <time datetime="2022-07-30T16:31:51.000Z" itemprop="datePublished">2022-07-31</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/raw/master/source/_posts/Detection/4roLabelImg2DOTA.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/edit/master/source/_posts/Detection/4roLabelImg2DOTA.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/lx-r/lx-r.github.io/commits/master/source/_posts/Detection/4roLabelImg2DOTA.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            （四）旋转物体检测数据roLabelImg转DOTA格式
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">Catalogue</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E5%8F%AF%E4%BB%A5%E7%94%BB%E6%97%8B%E8%BD%AC%E6%A3%80%E6%B5%8B%E6%A1%86%E7%9A%84%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.</span> <span class="toc-text">1.进入可以画旋转检测框的模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E6%B3%A8%E6%96%87%E4%BB%B6%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.</span> <span class="toc-text">2.标注文件样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dota%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="toc-number">3.</span> <span class="toc-text">3.DOTA数据格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rolabelimg%E6%A0%87%E6%B3%A8%E6%96%87%E4%BB%B6%E8%BD%ACdota%E6%A0%BC%E5%BC%8F"><span class="toc-number">4.</span> <span class="toc-text">4.roLabelImg标注文件转DOTA格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>roLabelImg 工具仓库地址:<a target="_blank" rel="noopener" href="https://github.com/cgvict/roLabelImg">https://github.com/cgvict/roLabelImg</a></p>
+</blockquote>
+<h2 id="进入可以画旋转检测框的模式">1.进入可以画旋转检测框的模式</h2>
+<p><img src="/images/Detection/4roLabelImg2DOTA/roLabelImg.png"></p>
+<h2 id="标注文件样式">2.标注文件样式</h2>
+<p><code>roLabelImg</code>标注旋转检测框时是先画一个常规的矩形框，然后绕矩形的中心点顺时针和逆时针旋转一定的角度来实现的。标注文件中对旋转检测框的定义是使用<code>(cx, cy, width, height, angle)</code>的格式定义的，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">robndbox</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">cx</span>&gt;</span>1178.4388<span class="tag">&lt;/<span class="name">cx</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">cy</span>&gt;</span>1004.6478<span class="tag">&lt;/<span class="name">cy</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">w</span>&gt;</span>319.635<span class="tag">&lt;/<span class="name">w</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">h</span>&gt;</span>273.2016<span class="tag">&lt;/<span class="name">h</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">angle</span>&gt;</span>0.46<span class="tag">&lt;/<span class="name">angle</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">robndbox</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><code>(cx, cy)</code>是旋转框的中心点像素坐标，<code>w</code>的定义是在<code>roLabelImg</code>中画初始矩形框时在图像<code>x</code>方向上的边长, 另一条边是<code>h</code>，画好初始矩形后，无论后续如何旋转，<code>w</code>和<code>h</code>所指的边都不会变。<code>angle</code>角的定义是旋转矩形检测框的<code>w</code>边和<code>X</code>轴正方向顺时针所成的角度，其大小为<code>[0,pi)</code></p>
+初始矩形检测框：
+<center>
+<img src="/images/Detection/4roLabelImg2DOTA/box.png">
+</center>
+调整姿态后检测框：
+<center>
+<p><img src="/images/Detection/4roLabelImg2DOTA/rbox.png"></p>
+</center>
+<p>其中<span class="math inline">\(\theta\)</span>的大小为<code>2.541593</code>。</p>
+<h2 id="dota数据格式">3.DOTA数据格式</h2>
+<p><code>DOTA</code>是武汉大学开源的旋转物体检测数据集，其主页见<a target="_blank" rel="noopener" href="https://captain-whu.github.io/DOTA/dataset.html">https://captain-whu.github.io/DOTA/dataset.html</a>。<code>DOTA</code>标注文件的格式为：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x1, y1, x2, y2, x3, y3, x4, y4, category, difficult</span><br></pre></td></tr></table></figure>
+<p><code>(x1, y1, x2, y2, x3, y3, x4, y4)</code>分别是旋转物体检测框的四个顶点的坐标，<code>category</code>是检测框物体对象的类别</p>
+<h2 id="rolabelimg标注文件转dota格式">4.roLabelImg标注文件转<code>DOTA</code>格式</h2>
+<p>大多数旋转物体检测的开源算法的数据处理部分都支持<code>DOTA</code>格式，如商汤开源的<a target="_blank" rel="noopener" href="https://github.com/open-mmlab/mmrotate">mmrotate</a>,为了更快的在自己数据集上验证算法的有效性，最方便的算法就是将<code>roLabelImg</code>标注的<code>xml</code>文件转成上述的标签格式，<code>roLabelImg</code>标注文件转<code>DOTA</code>可分成四种情况。</p>
+<ul>
+<li>1）<span class="math inline">\(\theta \in (\pi/2, \pi)\)</span>，且中心点C落在点1右侧</li>
+<li>2）<span class="math inline">\(\theta \in (\pi/2, \pi)\)</span>，且中心点C落在点1左侧</li>
+<li>3）<span class="math inline">\(\theta \in [0, \pi/2]\)</span>，且中心点C落在点1左侧</li>
+<li>4）<span class="math inline">\(\theta \in [0, \pi/2]\)</span>，且中心点C落在点1右侧</li>
+</ul>
+<center>
+<img src="/images/Detection/4roLabelImg2DOTA/roLabelImgc.png">
+</center>
+以<span class="math inline">\(\theta \in (\pi/2, \pi)\)</span>，且中心点C落在点1右侧为例，
+<center>
+<img src="/images/Detection/4roLabelImg2DOTA/roLabelImg1.png">
+</center>
+<p><code>A(x1, y1)，B(x3, y3)，D(x2, y2)，E(x4, y4)</code>点的坐标由上述三角形之间的关系可以求得：</p>
+<p><span class="math display">\[
+\beta = \angle CAV_2 = arctan\frac{h}{w}+ \pi - \theta
+\]</span> <span class="math display">\[
+d = \frac{\sqrt{w^62+h^2}}{2} 
+\]</span> <span class="math display">\[
+x1 = cx -  d cos\beta \\
+y1 = cy + d sin\beta \\
+x2 = cx + d cos\beta \\
+y2 = cy - d sin\beta \\
+x3 = x1 - hcos(\theta - \frac{\pi}{2}) \\
+y4 = y1 - hsin(\theta - \frac{\pi}{2}) \\
+x4 = x2 + hcos(\theta - \frac{\pi}{2}) \\
+y4 = y2 + hsin(\theta - \frac{\pi}{2})
+\]</span></p>
+<p>同样可以求其他三种情况。</p>
+<p>转换代码见：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">convert_rolabelimg2dota</span>(<span class="params">xml_path:<span class="built_in">str</span></span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    Args: </span></span><br><span class="line"><span class="string">        - `xml_path` (str) : path to roLabelImg label file, like /xx/xx.xml</span></span><br><span class="line"><span class="string">        </span></span><br><span class="line"><span class="string">    Returns: </span></span><br><span class="line"><span class="string">        - `box_points` (list): shape (N, 8 + 1), N is the number of objects, 8 + 1 is \</span></span><br><span class="line"><span class="string">            `(x1, y1, x2, y2, x3, y3, x4, y4, class_name)`</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(xml_path) <span class="keyword">as</span> f:</span><br><span class="line">        tree = ET.parse(f)</span><br><span class="line">        root = tree.getroot()</span><br><span class="line">        size = root.find(<span class="string">&#x27;size&#x27;</span>)</span><br><span class="line">        width = <span class="built_in">int</span>(size.find(<span class="string">&#x27;width&#x27;</span>).text)</span><br><span class="line">        height = <span class="built_in">int</span>(size.find(<span class="string">&#x27;height&#x27;</span>).text)</span><br><span class="line">        objects = root.<span class="built_in">iter</span>(<span class="string">&#x27;object&#x27;</span>)</span><br><span class="line">        boxes = [] <span class="comment"># list of tuple(cz, cy, w, h, angle), angle is in [0-pi)</span></span><br><span class="line">        <span class="keyword">for</span> obj <span class="keyword">in</span> objects:</span><br><span class="line">            <span class="keyword">if</span> obj.find(<span class="string">&#x27;type&#x27;</span>).text == <span class="string">&#x27;robndbox&#x27;</span>:</span><br><span class="line">                rbox_node = obj.find(<span class="string">&#x27;robndbox&#x27;</span>)</span><br><span class="line">                cat = obj.find(<span class="string">&#x27;name&#x27;</span>).text</span><br><span class="line">                rbox = <span class="built_in">dict</span>()</span><br><span class="line">                <span class="keyword">for</span> key <span class="keyword">in</span> [<span class="string">&#x27;cx&#x27;</span>, <span class="string">&#x27;cy&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;angle&#x27;</span>]:</span><br><span class="line">                    rbox[key] = <span class="built_in">float</span>(rbox_node.find(key).text)</span><br><span class="line">                boxes.append(<span class="built_in">list</span>((*rbox.values(), cat)))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;bboxes: <span class="subst">&#123;boxes&#125;</span>&quot;</span>)</span><br><span class="line">        </span><br><span class="line">        box_points = [] <span class="comment"># list of box defined with four vertices</span></span><br><span class="line">        <span class="keyword">for</span> box <span class="keyword">in</span> boxes:</span><br><span class="line">            cx, cy, w, h, ag, cat = box</span><br><span class="line">            alpha_w = math.atan(w / h)</span><br><span class="line">            alpha_h = math.atan(h / w)</span><br><span class="line">            d = math.sqrt(w**<span class="number">2</span> + h**<span class="number">2</span>) / <span class="number">2</span> </span><br><span class="line">            <span class="keyword">if</span> ag &gt; math.pi / <span class="number">2</span>:</span><br><span class="line">                beta = ag - math.pi / <span class="number">2</span> + alpha_w</span><br><span class="line">                <span class="keyword">if</span> beta &lt;= math.pi / <span class="number">2</span>:</span><br><span class="line">                    x1, y1 = cx + d * math.cos(beta), cy + d * math.sin(beta)</span><br><span class="line">                    x2, y2 = cx - d * math.cos(beta), cy - d * math.sin(beta)</span><br><span class="line">                <span class="keyword">elif</span> beta &gt; math.pi / <span class="number">2</span>:</span><br><span class="line">                    beta = math.pi - beta</span><br><span class="line">                    x1, y1 = cx - d * math.cos(beta), cy + d * math.sin(beta)</span><br><span class="line">                    x2, y2 = cx + d * math.cos(beta), cy - d * math.sin(beta)</span><br><span class="line">                x3, y3 = x1 - h * math.cos(ag - math.pi / <span class="number">2</span>), y1 - h * math.sin(ag - math.pi / <span class="number">2</span>)</span><br><span class="line">                x4, y4 = x2 + h * math.cos(ag - math.pi / <span class="number">2</span>), y2 + h * math.sin(ag - math.pi / <span class="number">2</span>) </span><br><span class="line">            <span class="keyword">elif</span> ag &lt;= math.pi / <span class="number">2</span>:</span><br><span class="line">                beta = ag + alpha_h</span><br><span class="line">                <span class="keyword">if</span> beta &lt;= math.pi / <span class="number">2</span>:</span><br><span class="line">                    x1, y1 = cx + d * math.cos(beta), cy + d * math.sin(beta)</span><br><span class="line">                    x2, y2 = cx - d * math.cos(beta), cy - d * math.sin(beta)</span><br><span class="line">                <span class="keyword">elif</span> beta &gt; math.pi / <span class="number">2</span>:</span><br><span class="line">                    beta = math.pi - beta</span><br><span class="line">                    x1, y1 = cx - d * math.cos(beta), cy + d * math.sin(beta)</span><br><span class="line">                    x2, y2 = cx + d * math.cos(beta), cy - d * math.sin(beta)</span><br><span class="line">                x3, y3 = x1 - w * math.cos(ag), y1 - w * math.sin(ag)</span><br><span class="line">                x4, y4 = x2 + w * math.cos(ag), y2 + w * math.sin(ag)</span><br><span class="line">                points = np.array([x1, y1, x3, y3, x2, y2, x4, y4], dtype=np.int32)</span><br><span class="line">                points[<span class="number">0</span>::<span class="number">2</span>] = np.clip(points[<span class="number">0</span>::<span class="number">2</span>], <span class="number">0</span>, width)</span><br><span class="line">                points[<span class="number">1</span>::<span class="number">2</span>] = np.clip(points[<span class="number">1</span>::<span class="number">2</span>], <span class="number">0</span>, height)</span><br><span class="line">            box_points.append([*points, cat])</span><br><span class="line">        <span class="keyword">return</span> box_points</span><br></pre></td></tr></table></figure>
+<p><strong>完整代码见gitee仓库<a target="_blank" rel="noopener" href="https://gitee.com/lx_r/object_detection_task/blob/main/tools/rolabelimg2dota.py">object_detection_task</a></strong></p>
+<div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8685746128991385" crossorigin="anonymous"></script>
+<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661">
+</ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<h2 id="参考资料">参考资料</h2>
+<blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/cgvict/roLabelImg">1.https://github.com/cgvict/roLabelImg</a></li>
+<li><a target="_blank" rel="noopener" href="https://captain-whu.github.io/DOTA/dataset.html">2.DOTA DATASET</a></li>
+</ul>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/2022/07/07/2cityscapes/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">(二)Cityscapes数据集简介</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Alasky &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a>
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+
+    </div>
+</body>
+</html>
