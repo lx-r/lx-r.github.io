@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>shell中的流控制if语句 | 天天教程</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+            // 引入谷歌,不需要可删除这段
+            var hm1 = document.createElement("script");
+            hm1.src = "https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP";
+            var s1 = document.getElementsByTagName("script")[0]; 
+            s1.parentNode.insertBefore(hm1, s1);
+            })();
+            // 谷歌加载,不需要可删除
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDK0Y9WWLP');
+        </script>
+    <link rel="icon" href="/logo.png">
+    <script data-ad-client="ca-pub-8685746128991385" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.a7c784e8.css" as="style"><link rel="preload" href="/assets/js/app.21817c50.js" as="script"><link rel="preload" href="/assets/js/2.e4c56fa5.js" as="script"><link rel="preload" href="/assets/js/153.65fd13d8.js" as="script"><link rel="prefetch" href="/assets/js/10.06e010d6.js"><link rel="prefetch" href="/assets/js/100.bcc3535a.js"><link rel="prefetch" href="/assets/js/101.01a8cf82.js"><link rel="prefetch" href="/assets/js/102.4187f03e.js"><link rel="prefetch" href="/assets/js/103.918f2e9e.js"><link rel="prefetch" href="/assets/js/104.93528a2b.js"><link rel="prefetch" href="/assets/js/105.6613d3fa.js"><link rel="prefetch" href="/assets/js/106.99fd6e75.js"><link rel="prefetch" href="/assets/js/107.d221ee4b.js"><link rel="prefetch" href="/assets/js/108.ec0e735c.js"><link rel="prefetch" href="/assets/js/109.55d6d37b.js"><link rel="prefetch" href="/assets/js/11.a351543a.js"><link rel="prefetch" href="/assets/js/110.0db368be.js"><link rel="prefetch" href="/assets/js/111.e94c25c1.js"><link rel="prefetch" href="/assets/js/112.c5c4b32d.js"><link rel="prefetch" href="/assets/js/113.b249002b.js"><link rel="prefetch" href="/assets/js/114.007c3af7.js"><link rel="prefetch" href="/assets/js/115.04b165b8.js"><link rel="prefetch" href="/assets/js/116.0bc02075.js"><link rel="prefetch" href="/assets/js/117.d502746f.js"><link rel="prefetch" href="/assets/js/118.fba36ba4.js"><link rel="prefetch" href="/assets/js/119.ef17b65f.js"><link rel="prefetch" href="/assets/js/12.cb3a5e0f.js"><link rel="prefetch" href="/assets/js/120.05f96a69.js"><link rel="prefetch" href="/assets/js/121.e7d97307.js"><link rel="prefetch" href="/assets/js/122.03da8ab3.js"><link rel="prefetch" href="/assets/js/123.3fe9e4e3.js"><link rel="prefetch" href="/assets/js/124.259d22e6.js"><link rel="prefetch" href="/assets/js/125.a1e3c27e.js"><link rel="prefetch" href="/assets/js/126.0c8d424d.js"><link rel="prefetch" href="/assets/js/127.a24d840b.js"><link rel="prefetch" href="/assets/js/128.87480c17.js"><link rel="prefetch" href="/assets/js/129.5448469b.js"><link rel="prefetch" href="/assets/js/13.ccf8f790.js"><link rel="prefetch" href="/assets/js/130.ae6e7544.js"><link rel="prefetch" href="/assets/js/131.1bbef546.js"><link rel="prefetch" href="/assets/js/132.d470732b.js"><link rel="prefetch" href="/assets/js/133.ede12aa6.js"><link rel="prefetch" href="/assets/js/134.07ca3898.js"><link rel="prefetch" href="/assets/js/135.5799109f.js"><link rel="prefetch" href="/assets/js/136.ee0308bf.js"><link rel="prefetch" href="/assets/js/137.63146dde.js"><link rel="prefetch" href="/assets/js/138.abc26e9e.js"><link rel="prefetch" href="/assets/js/139.4e7e2257.js"><link rel="prefetch" href="/assets/js/14.3254ecc6.js"><link rel="prefetch" href="/assets/js/140.ec5288c0.js"><link rel="prefetch" href="/assets/js/141.af27b9ec.js"><link rel="prefetch" href="/assets/js/142.75e48cd0.js"><link rel="prefetch" href="/assets/js/143.42531248.js"><link rel="prefetch" href="/assets/js/144.3317d4f7.js"><link rel="prefetch" href="/assets/js/145.eb131e1a.js"><link rel="prefetch" href="/assets/js/146.3da6715e.js"><link rel="prefetch" href="/assets/js/147.a87480e5.js"><link rel="prefetch" href="/assets/js/148.5767661f.js"><link rel="prefetch" href="/assets/js/149.adc170c1.js"><link rel="prefetch" href="/assets/js/15.2d14c44c.js"><link rel="prefetch" href="/assets/js/150.97bc9461.js"><link rel="prefetch" href="/assets/js/151.629040da.js"><link rel="prefetch" href="/assets/js/152.3c346776.js"><link rel="prefetch" href="/assets/js/154.f2b0c196.js"><link rel="prefetch" href="/assets/js/155.aa0a1d5d.js"><link rel="prefetch" href="/assets/js/156.68115c19.js"><link rel="prefetch" href="/assets/js/157.0f3e7ed1.js"><link rel="prefetch" href="/assets/js/158.129f9631.js"><link rel="prefetch" href="/assets/js/159.717aa8ea.js"><link rel="prefetch" href="/assets/js/16.ce204444.js"><link rel="prefetch" href="/assets/js/160.7170842b.js"><link rel="prefetch" href="/assets/js/161.19b34786.js"><link rel="prefetch" href="/assets/js/162.3ba99d0f.js"><link rel="prefetch" href="/assets/js/163.7c3fcfb8.js"><link rel="prefetch" href="/assets/js/164.d81459d1.js"><link rel="prefetch" href="/assets/js/165.3dea297b.js"><link rel="prefetch" href="/assets/js/166.3123aa7d.js"><link rel="prefetch" href="/assets/js/167.d106d568.js"><link rel="prefetch" href="/assets/js/168.eb69779a.js"><link rel="prefetch" href="/assets/js/169.2df544f2.js"><link rel="prefetch" href="/assets/js/17.5650f344.js"><link rel="prefetch" href="/assets/js/170.d0d878ba.js"><link rel="prefetch" href="/assets/js/171.9b5bd6b0.js"><link rel="prefetch" href="/assets/js/172.8c8ea8fd.js"><link rel="prefetch" href="/assets/js/173.888f8c4e.js"><link rel="prefetch" href="/assets/js/174.1a751400.js"><link rel="prefetch" href="/assets/js/175.4f5c609d.js"><link rel="prefetch" href="/assets/js/176.fadf2ed8.js"><link rel="prefetch" href="/assets/js/177.7ff5608b.js"><link rel="prefetch" href="/assets/js/178.b110aec2.js"><link rel="prefetch" href="/assets/js/179.2fca7cf8.js"><link rel="prefetch" href="/assets/js/18.ec7f2a9c.js"><link rel="prefetch" href="/assets/js/180.4e3215be.js"><link rel="prefetch" href="/assets/js/181.ae68a3e5.js"><link rel="prefetch" href="/assets/js/182.bf3cf5eb.js"><link rel="prefetch" href="/assets/js/183.ade5714d.js"><link rel="prefetch" href="/assets/js/184.b9bc5042.js"><link rel="prefetch" href="/assets/js/185.5f3120f6.js"><link rel="prefetch" href="/assets/js/186.fefa34f2.js"><link rel="prefetch" href="/assets/js/187.89347f46.js"><link rel="prefetch" href="/assets/js/188.a094daad.js"><link rel="prefetch" href="/assets/js/189.2ce4603f.js"><link rel="prefetch" href="/assets/js/19.d2d2f589.js"><link rel="prefetch" href="/assets/js/190.6ab27477.js"><link rel="prefetch" href="/assets/js/191.11a0f3bf.js"><link rel="prefetch" href="/assets/js/192.62f3e787.js"><link rel="prefetch" href="/assets/js/193.e037d3f1.js"><link rel="prefetch" href="/assets/js/194.96f28060.js"><link rel="prefetch" href="/assets/js/195.cb297ae7.js"><link rel="prefetch" href="/assets/js/196.9fe1c3a5.js"><link rel="prefetch" href="/assets/js/197.f6e81eaf.js"><link rel="prefetch" href="/assets/js/198.8e1c9413.js"><link rel="prefetch" href="/assets/js/199.62af3caf.js"><link rel="prefetch" href="/assets/js/20.e3949a8d.js"><link rel="prefetch" href="/assets/js/200.2a9b91cb.js"><link rel="prefetch" href="/assets/js/201.a8d0da61.js"><link rel="prefetch" href="/assets/js/202.e27a2390.js"><link rel="prefetch" href="/assets/js/203.134cdbb3.js"><link rel="prefetch" href="/assets/js/204.013c59b6.js"><link rel="prefetch" href="/assets/js/205.a8ca7a2c.js"><link rel="prefetch" href="/assets/js/206.c6d06e9c.js"><link rel="prefetch" href="/assets/js/207.e2886583.js"><link rel="prefetch" href="/assets/js/208.909b20b8.js"><link rel="prefetch" href="/assets/js/209.8e2bb043.js"><link rel="prefetch" href="/assets/js/21.a8ac1efb.js"><link rel="prefetch" href="/assets/js/210.900aaf75.js"><link rel="prefetch" href="/assets/js/211.0b85e3ed.js"><link rel="prefetch" href="/assets/js/212.00e5db73.js"><link rel="prefetch" href="/assets/js/213.850bf215.js"><link rel="prefetch" href="/assets/js/214.00a067c1.js"><link rel="prefetch" href="/assets/js/215.caab872d.js"><link rel="prefetch" href="/assets/js/216.57a4935b.js"><link rel="prefetch" href="/assets/js/217.153e1d4c.js"><link rel="prefetch" href="/assets/js/218.cd6b4f9f.js"><link rel="prefetch" href="/assets/js/219.4cfbb0bf.js"><link rel="prefetch" href="/assets/js/22.5bbd84ce.js"><link rel="prefetch" href="/assets/js/220.9e6778f3.js"><link rel="prefetch" href="/assets/js/221.3b593ed0.js"><link rel="prefetch" href="/assets/js/222.d43f26f2.js"><link rel="prefetch" href="/assets/js/223.7eaec127.js"><link rel="prefetch" href="/assets/js/224.15961ce5.js"><link rel="prefetch" href="/assets/js/225.a97ea0e3.js"><link rel="prefetch" href="/assets/js/226.fc6858ed.js"><link rel="prefetch" href="/assets/js/227.aa143b69.js"><link rel="prefetch" href="/assets/js/228.b68fafe1.js"><link rel="prefetch" href="/assets/js/229.280c2718.js"><link rel="prefetch" href="/assets/js/23.cf7ad595.js"><link rel="prefetch" href="/assets/js/230.e81fd751.js"><link rel="prefetch" href="/assets/js/231.8fda2ee1.js"><link rel="prefetch" href="/assets/js/232.fa05a3c4.js"><link rel="prefetch" href="/assets/js/233.a89da4c9.js"><link rel="prefetch" href="/assets/js/234.3cb8119f.js"><link rel="prefetch" href="/assets/js/235.2d03af8b.js"><link rel="prefetch" href="/assets/js/236.5c43b735.js"><link rel="prefetch" href="/assets/js/237.b107167c.js"><link rel="prefetch" href="/assets/js/238.7310199e.js"><link rel="prefetch" href="/assets/js/24.1fd56fa5.js"><link rel="prefetch" href="/assets/js/25.9e542ba7.js"><link rel="prefetch" href="/assets/js/26.8c812b8d.js"><link rel="prefetch" href="/assets/js/27.bec25c62.js"><link rel="prefetch" href="/assets/js/28.d2904f1b.js"><link rel="prefetch" href="/assets/js/29.9e40867d.js"><link rel="prefetch" href="/assets/js/3.60083ce4.js"><link rel="prefetch" href="/assets/js/30.47bb047a.js"><link rel="prefetch" href="/assets/js/31.00e2e09d.js"><link rel="prefetch" href="/assets/js/32.eeb12054.js"><link rel="prefetch" href="/assets/js/33.ab660df8.js"><link rel="prefetch" href="/assets/js/34.103f1614.js"><link rel="prefetch" href="/assets/js/35.4b1f9e85.js"><link rel="prefetch" href="/assets/js/36.48b926ff.js"><link rel="prefetch" href="/assets/js/37.ec5d8268.js"><link rel="prefetch" href="/assets/js/38.434dc877.js"><link rel="prefetch" href="/assets/js/39.b2d0ee70.js"><link rel="prefetch" href="/assets/js/4.d81b2259.js"><link rel="prefetch" href="/assets/js/40.fa60ed9b.js"><link rel="prefetch" href="/assets/js/41.71a2628d.js"><link rel="prefetch" href="/assets/js/42.336f6b01.js"><link rel="prefetch" href="/assets/js/43.675019ee.js"><link rel="prefetch" href="/assets/js/44.f4b97d67.js"><link rel="prefetch" href="/assets/js/45.03435ac1.js"><link rel="prefetch" href="/assets/js/46.3a752967.js"><link rel="prefetch" href="/assets/js/47.0035d5dc.js"><link rel="prefetch" href="/assets/js/48.9794f100.js"><link rel="prefetch" href="/assets/js/49.d9ebde4e.js"><link rel="prefetch" href="/assets/js/5.cfd05c5e.js"><link rel="prefetch" href="/assets/js/50.678277b9.js"><link rel="prefetch" href="/assets/js/51.07dc0100.js"><link rel="prefetch" href="/assets/js/52.0472c037.js"><link rel="prefetch" href="/assets/js/53.b116b61a.js"><link rel="prefetch" href="/assets/js/54.927ff658.js"><link rel="prefetch" href="/assets/js/55.7bd8c6f7.js"><link rel="prefetch" href="/assets/js/56.a2d7b5b6.js"><link rel="prefetch" href="/assets/js/57.1c7c9592.js"><link rel="prefetch" href="/assets/js/58.a69527de.js"><link rel="prefetch" href="/assets/js/59.f0c14a08.js"><link rel="prefetch" href="/assets/js/6.d7b90ff7.js"><link rel="prefetch" href="/assets/js/60.e77c940e.js"><link rel="prefetch" href="/assets/js/61.ddf5cb64.js"><link rel="prefetch" href="/assets/js/62.1e3056a8.js"><link rel="prefetch" href="/assets/js/63.f4bc4504.js"><link rel="prefetch" href="/assets/js/64.d5324752.js"><link rel="prefetch" href="/assets/js/65.8d8a4686.js"><link rel="prefetch" href="/assets/js/66.345b1698.js"><link rel="prefetch" href="/assets/js/67.11e481ab.js"><link rel="prefetch" href="/assets/js/68.ddb9f08f.js"><link rel="prefetch" href="/assets/js/69.0c320c94.js"><link rel="prefetch" href="/assets/js/7.86b0354c.js"><link rel="prefetch" href="/assets/js/70.66730e68.js"><link rel="prefetch" href="/assets/js/71.fc9d4e2f.js"><link rel="prefetch" href="/assets/js/72.e1e3087d.js"><link rel="prefetch" href="/assets/js/73.7a65fc24.js"><link rel="prefetch" href="/assets/js/74.b799109f.js"><link rel="prefetch" href="/assets/js/75.566a0ce2.js"><link rel="prefetch" href="/assets/js/76.09dd7854.js"><link rel="prefetch" href="/assets/js/77.e6434422.js"><link rel="prefetch" href="/assets/js/78.c32343c5.js"><link rel="prefetch" href="/assets/js/79.00fd0c2f.js"><link rel="prefetch" href="/assets/js/8.8781d181.js"><link rel="prefetch" href="/assets/js/80.a28d7d0b.js"><link rel="prefetch" href="/assets/js/81.32ccc3a6.js"><link rel="prefetch" href="/assets/js/82.c3e5c2af.js"><link rel="prefetch" href="/assets/js/83.3f53f335.js"><link rel="prefetch" href="/assets/js/84.615966d9.js"><link rel="prefetch" href="/assets/js/85.81226105.js"><link rel="prefetch" href="/assets/js/86.29486d89.js"><link rel="prefetch" href="/assets/js/87.04c7b514.js"><link rel="prefetch" href="/assets/js/88.c22fdf86.js"><link rel="prefetch" href="/assets/js/89.aab9fb4e.js"><link rel="prefetch" href="/assets/js/9.94176ae6.js"><link rel="prefetch" href="/assets/js/90.8352e4ea.js"><link rel="prefetch" href="/assets/js/91.afca2469.js"><link rel="prefetch" href="/assets/js/92.87766715.js"><link rel="prefetch" href="/assets/js/93.67483ec2.js"><link rel="prefetch" href="/assets/js/94.9a5e4bcc.js"><link rel="prefetch" href="/assets/js/95.78c95e00.js"><link rel="prefetch" href="/assets/js/96.ac775f62.js"><link rel="prefetch" href="/assets/js/97.3c66cc8e.js"><link rel="prefetch" href="/assets/js/98.88f03efe.js"><link rel="prefetch" href="/assets/js/99.4126675f.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a7c784e8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">天天教程</span></a> <div class="links"><nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link router-link-active">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link router-link-active">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>学习shell</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/shell/" aria-current="page" class="sidebar-link">走进shell</a></li><li><a href="/langs/shell/basic-shell.html" class="sidebar-link">常用shell命令</a></li><li><a href="/langs/shell/disk.html" class="sidebar-link">磁盘管理shell命令</a></li><li><a href="/langs/shell/cmd-type.html" class="sidebar-link">shell的内建命令与外部命令</a></li><li><a href="/langs/shell/env.html" class="sidebar-link">shell中的环境变量</a></li><li><a href="/langs/shell/priviledge.html" class="sidebar-link">linux文件权限</a></li><li><a href="/langs/shell/editor-vim.html" class="sidebar-link">Shell编辑工具VIM使用</a></li><li><a href="/langs/shell/new-shell-file.html" class="sidebar-link">初识shell脚本</a></li><li><a href="/langs/shell/flow-control.html" aria-current="page" class="active sidebar-link">shell中的流控制if语句</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#if语句" class="sidebar-link">if语句</a></li><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#test命令" class="sidebar-link">test命令</a></li><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#数值比较" class="sidebar-link">数值比较</a></li><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#字符串比较" class="sidebar-link">字符串比较</a></li><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#文件比较" class="sidebar-link">文件比较</a></li><li class="sidebar-sub-header"><a href="/langs/shell/flow-control.html#case语句" class="sidebar-link">case语句</a></li></ul></li><li><a href="/langs/shell/loops.html" class="sidebar-link">shell循环语句for命令</a></li><li><a href="/langs/shell/loops-while.html" class="sidebar-link">shell循环while命令</a></li><li><a href="/langs/shell/loops-until.html" class="sidebar-link">shell 循环的until命令</a></li><li><a href="/langs/shell/loops-break.html" class="sidebar-link">shell循环跳出的break/continue命令</a></li><li><a href="/langs/shell/cmd-args.html" class="sidebar-link">bash shell命令行参数</a></li><li><a href="/langs/shell/cmd-specific-args.html" class="sidebar-link">bash shell 特殊参数变量</a></li><li><a href="/langs/shell/shift.html" class="sidebar-link">Linux的shift命令</a></li><li><a href="/langs/shell/cmd-options.html" class="sidebar-link">linux shell 命令行选项</a></li><li><a href="/langs/shell/read.html" class="sidebar-link">Linux Shell获取用户输入</a></li><li><a href="/langs/shell/display.html" class="sidebar-link">Linux Shell输入输出流管理</a></li><li><a href="/langs/shell/mktemp.html" class="sidebar-link">Linux Shell创建临时文件</a></li><li><a href="/langs/shell/process.html" class="sidebar-link">Linux Shell任务控制</a></li><li><a href="/langs/shell/function.html" class="sidebar-link">Linux Shell自定义函数</a></li><li><a href="/langs/shell/ui-shell.html" class="sidebar-link">图形化桌面环境的shell文本菜单</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="shell中的流控制if语句"><a href="#shell中的流控制if语句" class="header-anchor">#</a> shell中的流控制if语句</h1> <p>简单的脚本可以只包含顺序执行的命令，但结构化命令允许根据条件改变程序执行的顺序。</p> <h2 id="if语句"><a href="#if语句" class="header-anchor">#</a> if语句</h2> <h3 id="if-then语句"><a href="#if-then语句" class="header-anchor">#</a> if-then语句</h3> <p><code>if-then</code>语句格式如下:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token keyword">if</span> <span class="token builtin class-name">command</span>
+<span class="token keyword">then</span>
+    commands
+<span class="token keyword">fi</span>
+</code></pre></div><p>在其他编程语言中， <code>if</code> 语句之后的对象是一个等式，这个等式的求值结果为 <code>TRUE</code> 或 <code>FALSE</code> 。<code>bash shell</code>的 <code>if</code> 语句会运行 <code>if</code> 后面的那个命令。如果该命令的退出状态码是<code>0</code>，位于 <code>then</code> 部分的命令就会被执行。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">if</span> <span class="token builtin class-name">pwd</span>
+<span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">&quot;pwd worked&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre></div><p>输出：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># rob@xx-rob:~$ ./test1</span>
+/home/rob
+<span class="token builtin class-name">pwd</span> worked
+</code></pre></div><h3 id="if-then-else-语句"><a href="#if-then-else-语句" class="header-anchor">#</a> if-then-else 语句</h3> <p>格式：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token keyword">if</span> <span class="token builtin class-name">command</span>
+<span class="token keyword">then</span>
+    commands
+<span class="token keyword">else</span>
+    commands
+<span class="token keyword">fi</span>
+</code></pre></div><p>示例：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token assign-left variable">v</span><span class="token operator">=</span>bin
+<span class="token keyword">if</span> <span class="token function">grep</span> <span class="token variable">$v</span> <span class="token builtin class-name">pwd</span>
+<span class="token keyword">then</span>
+	<span class="token builtin class-name">echo</span> <span class="token string">&quot;pwd worked&quot;</span>
+<span class="token keyword">else</span>
+	<span class="token builtin class-name">echo</span> <span class="token string">&quot;cannot find <span class="token variable">$v</span>&quot;</span>
+<span class="token keyword">fi</span>
+</code></pre></div><p>结果：</p> <div class="language-sh extra-class"><pre class="language-sh"><code>rob@xx-rob:~$ ./test1
+<span class="token comment"># grep: pwd: 没有那个文件或目录</span>
+<span class="token comment"># cannot find bin</span>
+</code></pre></div><p><code>if</code>还可以嵌套多层：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token keyword">if</span> command1
+<span class="token keyword">then</span>
+<span class="token builtin class-name">command</span> <span class="token builtin class-name">set</span> <span class="token number">1</span>
+<span class="token keyword">elif</span> command2
+<span class="token keyword">then</span>
+<span class="token builtin class-name">command</span> <span class="token builtin class-name">set</span> <span class="token number">2</span>
+<span class="token keyword">elif</span> command3
+<span class="token keyword">then</span>
+<span class="token builtin class-name">command</span> <span class="token builtin class-name">set</span> <span class="token number">3</span>
+<span class="token keyword">elif</span> command4
+<span class="token keyword">then</span>
+<span class="token builtin class-name">command</span> <span class="token builtin class-name">set</span> <span class="token number">4</span>
+<span class="token keyword">fi</span>
+</code></pre></div><h2 id="test命令"><a href="#test命令" class="header-anchor">#</a> test命令</h2> <p><code>bash shell if</code>语句的条件是<code>command</code>，如果要使用常规的数值/字符串比较条件，需要使用<code>test</code>命令。</p> <p>使用<code>test</code>命令的<code>if-then-fi</code>语句:</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token keyword">if</span> <span class="token builtin class-name">test</span> condition
+<span class="token keyword">then</span>
+commands
+<span class="token keyword">fi</span>
+</code></pre></div><p>如果不写 <code>test</code> 命令的<code>condition</code>部分，它会以非零的退出状态码退出，并执行 <code>else</code>语句块。</p> <p>加入条件时，<code>test</code> 命令会测试该条件。</p> <p><code>bash shell</code>中 <code>test</code>命令的另外一种写法是使用<code>[ condition ]</code> 中括号，第一个方括号之后和第二个方括号之前必须加上一个空格，<br>
+否则就会报错。</p> <p><code>if</code>中条件判断的几个条件：</p> <ul><li>判断变量是否有值<code>if test ${variable}</code></li> <li>数值比较</li> <li>字符串比较</li> <li>文件比较</li></ul> <h2 id="数值比较"><a href="#数值比较" class="header-anchor">#</a> 数值比较</h2> <p><code>test</code>命令的数值比较功能:</p> <table><thead><tr><th style="text-align:left;">比较</th> <th style="text-align:left;">描述</th></tr></thead> <tbody><tr><td style="text-align:left;">n1 -eq n2</td> <td style="text-align:left;">检查 n1 是否与 n2 相等</td></tr> <tr><td style="text-align:left;">n1 -ge n2</td> <td style="text-align:left;">检查 n1 是否大于或等于 n2</td></tr> <tr><td style="text-align:left;">n1 -gt n2</td> <td style="text-align:left;">检查 n1 是否大于 n2</td></tr> <tr><td style="text-align:left;">n1 -le n2</td> <td style="text-align:left;">检查 n1 是否小于或等于 n2</td></tr> <tr><td style="text-align:left;">n1 -lt n2</td> <td style="text-align:left;">检查 n1 是否小于 n2</td></tr> <tr><td style="text-align:left;">n1 -ne n2</td> <td style="text-align:left;">检查 n1 是否不等于 n2</td></tr></tbody></table> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">if</span> <span class="token builtin class-name">test</span> <span class="token number">100</span> <span class="token parameter variable">-le</span> <span class="token number">145</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+	<span class="token builtin class-name">echo</span> <span class="token string">&quot;100 is smaller than 145&quot;</span>
+<span class="token keyword">fi</span>
+
+<span class="token assign-left variable">v</span><span class="token operator">=</span><span class="token number">12</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$v</span> <span class="token parameter variable">-eq</span> <span class="token number">12</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+	<span class="token builtin class-name">echo</span> <span class="token string">&quot;value is 12&quot;</span>
+<span class="token keyword">fi</span>
+
+</code></pre></div><p><code>bash shell</code>只能处理整数，不能使用浮点数作为判断条件。</p> <h2 id="字符串比较"><a href="#字符串比较" class="header-anchor">#</a> 字符串比较</h2> <p><code>bash shell</code>条件测试还允许比较字符串值，比较字符串比较烦琐。</p> <table><thead><tr><th style="text-align:center;">比较</th> <th style="text-align:left;">描述</th></tr></thead> <tbody><tr><td style="text-align:center;">str1 = str2</td> <td style="text-align:left;">检查 str1 是否和 str2 相同</td></tr> <tr><td style="text-align:center;">str1 != str2</td> <td style="text-align:left;">检查 str1 是否和 str2 不同</td></tr> <tr><td style="text-align:center;">str1 &lt; str2</td> <td style="text-align:left;">检查 str1 是否比 str2 小</td></tr> <tr><td style="text-align:center;">str1 &gt; str2</td> <td style="text-align:left;">检查 str1 是否比 str2 大</td></tr> <tr><td style="text-align:center;">-n str1</td> <td style="text-align:left;">检查 str1 的长度是否非0</td></tr> <tr><td style="text-align:center;">-z str1</td> <td style="text-align:left;">检查 str1 的长度是否为0</td></tr></tbody></table> <p>在<code>bash sehll</code>中比较运算符需要使用转义，否则会被当成重定向运算符。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>
+<span class="token assign-left variable">s1</span><span class="token operator">=</span><span class="token string">&quot;val&quot;</span>
+<span class="token assign-left variable">s2</span><span class="token operator">=</span><span class="token string">&quot;thi&quot;</span>
+
+<span class="token comment"># 升成`thi`的文件</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$s1</span> <span class="token operator">&gt;</span> <span class="token variable">$s2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;new file <span class="token variable">$v2</span> has been created.&quot;</span>
+<span class="token keyword">fi</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$s1</span> <span class="token punctuation">\</span><span class="token operator">&gt;</span> <span class="token variable">$s2</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;<span class="token variable">$s1</span> is greater than <span class="token variable">$s2</span>.&quot;</span>
+<span class="token keyword">fi</span>
+
+</code></pre></div><p>比较测试中使用的是标准的<code>ASCII</code>顺序，根据每个字符的<code>ASCII</code>数值来决定排序结果。在比较测试中，大写字母被认为是小于小写字母的。</p> <h2 id="文件比较"><a href="#文件比较" class="header-anchor">#</a> 文件比较</h2> <p>测试<code>Linux</code>文件系统上文件和目录的状态。</p> <table><thead><tr><th style="text-align:center;">命令</th> <th style="text-align:center;">描述</th></tr></thead> <tbody><tr><td style="text-align:center;">-d file</td> <td style="text-align:center;">检查 file 是否存在并是一个目录</td></tr> <tr><td style="text-align:center;">-e file</td> <td style="text-align:center;">检查 file 是否存在</td></tr> <tr><td style="text-align:center;">-f file</td> <td style="text-align:center;">检查 file 是否存在并是一个文件</td></tr> <tr><td style="text-align:center;">-r file</td> <td style="text-align:center;">检查 file 是否存在并可读</td></tr> <tr><td style="text-align:center;">-s file</td> <td style="text-align:center;">检查 file 是否存在并非空</td></tr> <tr><td style="text-align:center;">-w file</td> <td style="text-align:center;">检查 file 是否存在并可写</td></tr> <tr><td style="text-align:center;">-x file</td> <td style="text-align:center;">检查 file 是否存在并可执行</td></tr> <tr><td style="text-align:center;">-O file</td> <td style="text-align:center;">检查 file 是否存在并属当前用户所有</td></tr> <tr><td style="text-align:center;">-G file</td> <td style="text-align:center;">检查 file 是否存在并且默认组与当前用户相同</td></tr> <tr><td style="text-align:center;">file1 -nt file2</td> <td style="text-align:center;">检查 file1 是否比 file2 新</td></tr> <tr><td style="text-align:center;">file1 -ot file2</td> <td style="text-align:center;">检查 file1 是否比 file2 旧</td></tr></tbody></table> <p><code>if-then</code> 语句允许你使用布尔逻辑来组合测试，有两种布尔运算符可用:</p> <ul><li><code>[ condition1 ] &amp;&amp; [ condition2 ]</code></li> <li><code>[ condition1 ] || [ condition2 ]</code></li></ul> <h2 id="case语句"><a href="#case语句" class="header-anchor">#</a> <code>case</code>语句</h2> <p>在尝试计算一个变量的值，在一组可能的值中寻找特定值，可能不得不写出很长的 <code>if-then-else</code>语句。<code>case</code> 命<br>
+令会采用列表格式来检查单个变量的多个值。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token keyword">case</span> variable <span class="token keyword">in</span>
+    pattern1 <span class="token operator">|</span> pattern2<span class="token punctuation">)</span> commands1<span class="token punctuation">;</span><span class="token punctuation">;</span>
+    pattern3<span class="token punctuation">)</span> commands2<span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *<span class="token punctuation">)</span> default commands<span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span>
+</code></pre></div><p>一个例子：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token assign-left variable">c</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">case</span> <span class="token variable">$c</span> <span class="token keyword">in</span>
+<span class="token number">1</span> <span class="token operator">|</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token number">3</span><span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">&quot;23&quot;</span><span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span>
+</code></pre></div><div class="adswrapper"><!----> <div style="display:none;"></div> <ins data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661" data-ad-test="" data-ad-region="" class="adsbygoogle" style="display:block;"></ins> <!----> <div style="display:none;"> (adsbygoogle = window.adsbygoogle || []).push({}); </div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/langs/shell/new-shell-file.html" class="prev">
+        初识shell脚本
+      </a></span> <span class="next"><a href="/langs/shell/loops.html">
+        shell循环语句for命令
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.21817c50.js" defer></script><script src="/assets/js/2.e4c56fa5.js" defer></script><script src="/assets/js/153.65fd13d8.js" defer></script>
+  </body>
+</html>
