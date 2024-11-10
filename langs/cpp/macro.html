@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>C++预处理及宏定义 | 天天教程</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+            // 引入谷歌,不需要可删除这段
+            var hm1 = document.createElement("script");
+            hm1.src = "https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP";
+            var s1 = document.getElementsByTagName("script")[0]; 
+            s1.parentNode.insertBefore(hm1, s1);
+            })();
+            // 谷歌加载,不需要可删除
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDK0Y9WWLP');
+        </script>
+    <link rel="icon" href="/logo.png">
+    <script data-ad-client="ca-pub-8685746128991385" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.a7c784e8.css" as="style"><link rel="preload" href="/assets/js/app.992331d8.js" as="script"><link rel="preload" href="/assets/js/2.e4c56fa5.js" as="script"><link rel="preload" href="/assets/js/114.66457419.js" as="script"><link rel="prefetch" href="/assets/js/10.41eb1cd5.js"><link rel="prefetch" href="/assets/js/100.9005fa9b.js"><link rel="prefetch" href="/assets/js/101.f2bca75e.js"><link rel="prefetch" href="/assets/js/102.5838b9f2.js"><link rel="prefetch" href="/assets/js/103.2dab16fc.js"><link rel="prefetch" href="/assets/js/104.76a04dc6.js"><link rel="prefetch" href="/assets/js/105.086a86f2.js"><link rel="prefetch" href="/assets/js/106.5dd620cc.js"><link rel="prefetch" href="/assets/js/107.03e67c7e.js"><link rel="prefetch" href="/assets/js/108.0becaadd.js"><link rel="prefetch" href="/assets/js/109.eac0afaa.js"><link rel="prefetch" href="/assets/js/11.debd9616.js"><link rel="prefetch" href="/assets/js/110.5134f7d6.js"><link rel="prefetch" href="/assets/js/111.e45cca56.js"><link rel="prefetch" href="/assets/js/112.b128ef30.js"><link rel="prefetch" href="/assets/js/113.dbecfa6c.js"><link rel="prefetch" href="/assets/js/115.4201c0bc.js"><link rel="prefetch" href="/assets/js/116.6d3f6d24.js"><link rel="prefetch" href="/assets/js/117.0b3f4648.js"><link rel="prefetch" href="/assets/js/118.7ba80744.js"><link rel="prefetch" href="/assets/js/119.ba766ee4.js"><link rel="prefetch" href="/assets/js/12.b9d181be.js"><link rel="prefetch" href="/assets/js/120.ec0ccba9.js"><link rel="prefetch" href="/assets/js/121.bb82f90f.js"><link rel="prefetch" href="/assets/js/122.556b54db.js"><link rel="prefetch" href="/assets/js/123.3ef2820b.js"><link rel="prefetch" href="/assets/js/124.17abf15d.js"><link rel="prefetch" href="/assets/js/125.8897bb2f.js"><link rel="prefetch" href="/assets/js/126.a4452bdf.js"><link rel="prefetch" href="/assets/js/127.b8df5f82.js"><link rel="prefetch" href="/assets/js/128.e0107d03.js"><link rel="prefetch" href="/assets/js/129.52da2947.js"><link rel="prefetch" href="/assets/js/13.ccf8f790.js"><link rel="prefetch" href="/assets/js/130.f92f40f9.js"><link rel="prefetch" href="/assets/js/131.f8abb15e.js"><link rel="prefetch" href="/assets/js/132.40e3639c.js"><link rel="prefetch" href="/assets/js/133.6628196c.js"><link rel="prefetch" href="/assets/js/134.8494e3a3.js"><link rel="prefetch" href="/assets/js/135.f2d4bb0e.js"><link rel="prefetch" href="/assets/js/136.bd68dd4a.js"><link rel="prefetch" href="/assets/js/137.0e1717a7.js"><link rel="prefetch" href="/assets/js/138.f68756a8.js"><link rel="prefetch" href="/assets/js/139.b2a65aa2.js"><link rel="prefetch" href="/assets/js/14.704c7ae9.js"><link rel="prefetch" href="/assets/js/140.d0f2abeb.js"><link rel="prefetch" href="/assets/js/141.5067e652.js"><link rel="prefetch" href="/assets/js/142.07e63dc9.js"><link rel="prefetch" href="/assets/js/143.1e241b6f.js"><link rel="prefetch" href="/assets/js/144.0b422f8e.js"><link rel="prefetch" href="/assets/js/145.eb78d729.js"><link rel="prefetch" href="/assets/js/146.4adcd2e4.js"><link rel="prefetch" href="/assets/js/147.0b3ac24c.js"><link rel="prefetch" href="/assets/js/148.673d13e3.js"><link rel="prefetch" href="/assets/js/149.1edb3e60.js"><link rel="prefetch" href="/assets/js/15.f47782d0.js"><link rel="prefetch" href="/assets/js/150.b2a8983a.js"><link rel="prefetch" href="/assets/js/151.6acf5c45.js"><link rel="prefetch" href="/assets/js/152.ef0156cf.js"><link rel="prefetch" href="/assets/js/153.158525bc.js"><link rel="prefetch" href="/assets/js/154.d3080067.js"><link rel="prefetch" href="/assets/js/155.85fdd961.js"><link rel="prefetch" href="/assets/js/156.d563824c.js"><link rel="prefetch" href="/assets/js/157.3bc77c42.js"><link rel="prefetch" href="/assets/js/158.3a493e4c.js"><link rel="prefetch" href="/assets/js/159.5d7248fa.js"><link rel="prefetch" href="/assets/js/16.35c17230.js"><link rel="prefetch" href="/assets/js/160.39c6e25c.js"><link rel="prefetch" href="/assets/js/161.249957f6.js"><link rel="prefetch" href="/assets/js/162.a3520f71.js"><link rel="prefetch" href="/assets/js/163.31e9e653.js"><link rel="prefetch" href="/assets/js/164.ba850d25.js"><link rel="prefetch" href="/assets/js/165.0e1df769.js"><link rel="prefetch" href="/assets/js/166.861bc571.js"><link rel="prefetch" href="/assets/js/167.4be07df4.js"><link rel="prefetch" href="/assets/js/168.2a69b10a.js"><link rel="prefetch" href="/assets/js/169.7ff8b344.js"><link rel="prefetch" href="/assets/js/17.5650f344.js"><link rel="prefetch" href="/assets/js/170.14c7c6fd.js"><link rel="prefetch" href="/assets/js/171.df5c9a70.js"><link rel="prefetch" href="/assets/js/172.2b3231ce.js"><link rel="prefetch" href="/assets/js/173.16cde8df.js"><link rel="prefetch" href="/assets/js/174.00f0222a.js"><link rel="prefetch" href="/assets/js/175.49f25ad7.js"><link rel="prefetch" href="/assets/js/176.be82c083.js"><link rel="prefetch" href="/assets/js/177.f40a9dcf.js"><link rel="prefetch" href="/assets/js/178.de70ebd0.js"><link rel="prefetch" href="/assets/js/179.3bb17aa2.js"><link rel="prefetch" href="/assets/js/18.842a3cf5.js"><link rel="prefetch" href="/assets/js/180.2c1ccc4f.js"><link rel="prefetch" href="/assets/js/181.5425d8ed.js"><link rel="prefetch" href="/assets/js/182.7c6366fa.js"><link rel="prefetch" href="/assets/js/183.1e9e62f2.js"><link rel="prefetch" href="/assets/js/184.ac7016bb.js"><link rel="prefetch" href="/assets/js/185.bc33caa8.js"><link rel="prefetch" href="/assets/js/186.6cb481e6.js"><link rel="prefetch" href="/assets/js/187.98a72c74.js"><link rel="prefetch" href="/assets/js/188.d8f3345e.js"><link rel="prefetch" href="/assets/js/189.618f9f9c.js"><link rel="prefetch" href="/assets/js/19.f7492a18.js"><link rel="prefetch" href="/assets/js/190.418ccc44.js"><link rel="prefetch" href="/assets/js/191.c611e940.js"><link rel="prefetch" href="/assets/js/192.162b9972.js"><link rel="prefetch" href="/assets/js/193.9a4508eb.js"><link rel="prefetch" href="/assets/js/194.ffe2e984.js"><link rel="prefetch" href="/assets/js/195.75e671c9.js"><link rel="prefetch" href="/assets/js/196.1de031b1.js"><link rel="prefetch" href="/assets/js/197.acb941d1.js"><link rel="prefetch" href="/assets/js/198.5b301a0c.js"><link rel="prefetch" href="/assets/js/199.a3991337.js"><link rel="prefetch" href="/assets/js/20.e3949a8d.js"><link rel="prefetch" href="/assets/js/200.d8007d84.js"><link rel="prefetch" href="/assets/js/201.99f33f66.js"><link rel="prefetch" href="/assets/js/202.2da3ef16.js"><link rel="prefetch" href="/assets/js/203.805bb368.js"><link rel="prefetch" href="/assets/js/204.aec6a8d5.js"><link rel="prefetch" href="/assets/js/205.473e4285.js"><link rel="prefetch" href="/assets/js/206.95f357d6.js"><link rel="prefetch" href="/assets/js/207.9ccea970.js"><link rel="prefetch" href="/assets/js/208.3c3b703c.js"><link rel="prefetch" href="/assets/js/209.a0e2bd5a.js"><link rel="prefetch" href="/assets/js/21.8d3dc09a.js"><link rel="prefetch" href="/assets/js/210.73b8ca27.js"><link rel="prefetch" href="/assets/js/211.e92d881f.js"><link rel="prefetch" href="/assets/js/212.0d9484b9.js"><link rel="prefetch" href="/assets/js/213.aaae7271.js"><link rel="prefetch" href="/assets/js/214.c3f6dabb.js"><link rel="prefetch" href="/assets/js/215.c1f06743.js"><link rel="prefetch" href="/assets/js/216.a440bf04.js"><link rel="prefetch" href="/assets/js/217.9492deb2.js"><link rel="prefetch" href="/assets/js/218.2a9f5356.js"><link rel="prefetch" href="/assets/js/219.1c7aed9e.js"><link rel="prefetch" href="/assets/js/22.4f9d299b.js"><link rel="prefetch" href="/assets/js/220.996cf892.js"><link rel="prefetch" href="/assets/js/221.a4bc557d.js"><link rel="prefetch" href="/assets/js/222.c708ca13.js"><link rel="prefetch" href="/assets/js/223.787ad38f.js"><link rel="prefetch" href="/assets/js/224.fc3cd5ac.js"><link rel="prefetch" href="/assets/js/225.2f4f39fc.js"><link rel="prefetch" href="/assets/js/226.44794a7a.js"><link rel="prefetch" href="/assets/js/227.c92a76fa.js"><link rel="prefetch" href="/assets/js/228.a5f600f6.js"><link rel="prefetch" href="/assets/js/229.17561253.js"><link rel="prefetch" href="/assets/js/23.17533143.js"><link rel="prefetch" href="/assets/js/230.8834175f.js"><link rel="prefetch" href="/assets/js/231.9a071631.js"><link rel="prefetch" href="/assets/js/232.968a4be3.js"><link rel="prefetch" href="/assets/js/233.fc163686.js"><link rel="prefetch" href="/assets/js/234.c4e97775.js"><link rel="prefetch" href="/assets/js/235.6e224c36.js"><link rel="prefetch" href="/assets/js/236.da13b8ee.js"><link rel="prefetch" href="/assets/js/237.cdcb759f.js"><link rel="prefetch" href="/assets/js/238.1b75044a.js"><link rel="prefetch" href="/assets/js/239.608e9837.js"><link rel="prefetch" href="/assets/js/24.1fd56fa5.js"><link rel="prefetch" href="/assets/js/240.4e88ee83.js"><link rel="prefetch" href="/assets/js/241.3b69b7e5.js"><link rel="prefetch" href="/assets/js/242.4ea63052.js"><link rel="prefetch" href="/assets/js/243.c9856e8e.js"><link rel="prefetch" href="/assets/js/244.14dbf5f6.js"><link rel="prefetch" href="/assets/js/245.633a981d.js"><link rel="prefetch" href="/assets/js/246.74e7d818.js"><link rel="prefetch" href="/assets/js/247.3040490f.js"><link rel="prefetch" href="/assets/js/248.8ec8731b.js"><link rel="prefetch" href="/assets/js/249.ae91636e.js"><link rel="prefetch" href="/assets/js/25.065a29cc.js"><link rel="prefetch" href="/assets/js/250.12c1c933.js"><link rel="prefetch" href="/assets/js/251.03132616.js"><link rel="prefetch" href="/assets/js/252.50d62ed2.js"><link rel="prefetch" href="/assets/js/253.a364cf02.js"><link rel="prefetch" href="/assets/js/254.25a68eff.js"><link rel="prefetch" href="/assets/js/255.65e148da.js"><link rel="prefetch" href="/assets/js/256.af7815fe.js"><link rel="prefetch" href="/assets/js/257.ecc5d9e3.js"><link rel="prefetch" href="/assets/js/258.c786bfc1.js"><link rel="prefetch" href="/assets/js/259.f554c854.js"><link rel="prefetch" href="/assets/js/26.3321b5e0.js"><link rel="prefetch" href="/assets/js/27.9b33c4ba.js"><link rel="prefetch" href="/assets/js/28.8ff60412.js"><link rel="prefetch" href="/assets/js/29.be420400.js"><link rel="prefetch" href="/assets/js/3.7a8d291b.js"><link rel="prefetch" href="/assets/js/30.430f6a53.js"><link rel="prefetch" href="/assets/js/31.00e2e09d.js"><link rel="prefetch" href="/assets/js/32.f125fda9.js"><link rel="prefetch" href="/assets/js/33.3c2fedbd.js"><link rel="prefetch" href="/assets/js/34.8507bcdd.js"><link rel="prefetch" href="/assets/js/35.73a2ff54.js"><link rel="prefetch" href="/assets/js/36.6847a5a2.js"><link rel="prefetch" href="/assets/js/37.b1686b47.js"><link rel="prefetch" href="/assets/js/38.38f8ba23.js"><link rel="prefetch" href="/assets/js/39.b2d0ee70.js"><link rel="prefetch" href="/assets/js/4.d81b2259.js"><link rel="prefetch" href="/assets/js/40.fa60ed9b.js"><link rel="prefetch" href="/assets/js/41.71a2628d.js"><link rel="prefetch" href="/assets/js/42.336f6b01.js"><link rel="prefetch" href="/assets/js/43.675019ee.js"><link rel="prefetch" href="/assets/js/44.f4b97d67.js"><link rel="prefetch" href="/assets/js/45.03435ac1.js"><link rel="prefetch" href="/assets/js/46.3a752967.js"><link rel="prefetch" href="/assets/js/47.0035d5dc.js"><link rel="prefetch" href="/assets/js/48.6f181314.js"><link rel="prefetch" href="/assets/js/49.b7d563be.js"><link rel="prefetch" href="/assets/js/5.cfd05c5e.js"><link rel="prefetch" href="/assets/js/50.047e24f9.js"><link rel="prefetch" href="/assets/js/51.850c9229.js"><link rel="prefetch" href="/assets/js/52.4af04ed7.js"><link rel="prefetch" href="/assets/js/53.db1555a4.js"><link rel="prefetch" href="/assets/js/54.3fca1938.js"><link rel="prefetch" href="/assets/js/55.ac44ae5d.js"><link rel="prefetch" href="/assets/js/56.9bc1b50d.js"><link rel="prefetch" href="/assets/js/57.f5487322.js"><link rel="prefetch" href="/assets/js/58.e17b08a3.js"><link rel="prefetch" href="/assets/js/59.0f7c94ed.js"><link rel="prefetch" href="/assets/js/6.d7b90ff7.js"><link rel="prefetch" href="/assets/js/60.886f7f3d.js"><link rel="prefetch" href="/assets/js/61.7cef02e6.js"><link rel="prefetch" href="/assets/js/62.106f4704.js"><link rel="prefetch" href="/assets/js/63.724d0065.js"><link rel="prefetch" href="/assets/js/64.627f6d5c.js"><link rel="prefetch" href="/assets/js/65.b5dede43.js"><link rel="prefetch" href="/assets/js/66.cc11d5a0.js"><link rel="prefetch" href="/assets/js/67.4b2872e5.js"><link rel="prefetch" href="/assets/js/68.da36125f.js"><link rel="prefetch" href="/assets/js/69.ceee634f.js"><link rel="prefetch" href="/assets/js/7.6dd0e6c3.js"><link rel="prefetch" href="/assets/js/70.67d8c701.js"><link rel="prefetch" href="/assets/js/71.1362a61a.js"><link rel="prefetch" href="/assets/js/72.4318aec2.js"><link rel="prefetch" href="/assets/js/73.1898a9ac.js"><link rel="prefetch" href="/assets/js/74.1d6f7f45.js"><link rel="prefetch" href="/assets/js/75.d5fc1c9b.js"><link rel="prefetch" href="/assets/js/76.249e7026.js"><link rel="prefetch" href="/assets/js/77.c543e3af.js"><link rel="prefetch" href="/assets/js/78.733be809.js"><link rel="prefetch" href="/assets/js/79.44d22269.js"><link rel="prefetch" href="/assets/js/8.8781d181.js"><link rel="prefetch" href="/assets/js/80.23a85171.js"><link rel="prefetch" href="/assets/js/81.2cba6e1e.js"><link rel="prefetch" href="/assets/js/82.90c6b6a6.js"><link rel="prefetch" href="/assets/js/83.ee8fbd05.js"><link rel="prefetch" href="/assets/js/84.d8d3c45f.js"><link rel="prefetch" href="/assets/js/85.67ae005d.js"><link rel="prefetch" href="/assets/js/86.ffa982ed.js"><link rel="prefetch" href="/assets/js/87.cd9a0369.js"><link rel="prefetch" href="/assets/js/88.bbfc5844.js"><link rel="prefetch" href="/assets/js/89.00d7c7ef.js"><link rel="prefetch" href="/assets/js/9.ab72dbf1.js"><link rel="prefetch" href="/assets/js/90.8b3d901d.js"><link rel="prefetch" href="/assets/js/91.1f031ee0.js"><link rel="prefetch" href="/assets/js/92.e49114db.js"><link rel="prefetch" href="/assets/js/93.6d76b116.js"><link rel="prefetch" href="/assets/js/94.e99017db.js"><link rel="prefetch" href="/assets/js/95.bfff3681.js"><link rel="prefetch" href="/assets/js/96.4711a7dd.js"><link rel="prefetch" href="/assets/js/97.63675b6a.js"><link rel="prefetch" href="/assets/js/98.15f57bd6.js"><link rel="prefetch" href="/assets/js/99.4b5e180e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a7c784e8.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">天天教程</span></a> <div class="links"><nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/all/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link router-link-active">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/all/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link router-link-active">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>C++基础学习</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/" aria-current="page" class="sidebar-link">C++编译器</a></li><li><a href="/langs/cpp/preprocess.html" class="sidebar-link">C++编译之预处理</a></li><li><a href="/langs/cpp/macro.html" aria-current="page" class="active sidebar-link">C++预处理及宏定义</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/langs/cpp/macro.html#_1-多行宏" class="sidebar-link">1.多行宏</a></li><li class="sidebar-sub-header"><a href="/langs/cpp/macro.html#_2-符号" class="sidebar-link">2.#/##/...符号</a></li><li class="sidebar-sub-header"><a href="/langs/cpp/macro.html#_3-条件宏" class="sidebar-link">3.条件宏</a></li></ul></li><li><a href="/langs/cpp/pointer-func.html" class="sidebar-link">C++中的指针与函数</a></li><li><a href="/langs/cpp/memory-manage.html" class="sidebar-link">C++中的内存管理</a></li><li><a href="/langs/cpp/lvalue-rvalue.html" class="sidebar-link">C++中的左值和右值</a></li><li><a href="/langs/cpp/cstring.html" class="sidebar-link">C++中的string</a></li><li><a href="/langs/cpp/intell-pointer.html" class="sidebar-link">C++中的智能指针</a></li><li><a href="/langs/cpp/array-pointer.html" class="sidebar-link">C++中的数组与指针</a></li><li><a href="/langs/cpp/convert-1d2d-pointer.html" class="sidebar-link">C++ 中将一维数组转成多维的三种方式</a></li><li><a href="/langs/cpp/arg-min-max.html" class="sidebar-link">10.C++中实现argmin和argmax</a></li><li><a href="/langs/cpp/container.html" class="sidebar-link">C++的常用容器简析</a></li><li><a href="/langs/cpp/sort.html" class="sidebar-link">C++中的SORT算法比较</a></li><li><a href="/langs/cpp/static-file.html" class="sidebar-link">C++中的static及文件包含</a></li><li><a href="/langs/cpp/typedef.html" class="sidebar-link">C++中的typdef</a></li><li><a href="/langs/cpp/typedef-using.html" class="sidebar-link">typedef 与 using</a></li><li><a href="/langs/cpp/lambda.html" class="sidebar-link">C++中的lambda表达式</a></li><li><a href="/langs/cpp/stl-algorithm.html" class="sidebar-link">STL中的algorithm</a></li><li><a href="/langs/cpp/random.html" class="sidebar-link">C++中的随机数</a></li><li><a href="/langs/cpp/object-prog.html" class="sidebar-link">C++中的面向对象</a></li><li><a href="/langs/cpp/raii.html" class="sidebar-link">C++中的RAII</a></li><li><a href="/langs/cpp/common-except.html" class="sidebar-link">C++中常见问题</a></li><li><a href="/langs/cpp/noexcept.html" class="sidebar-link">C++中的noexcept关键字</a></li><li><a href="/langs/cpp/forward-declaration.html" class="sidebar-link">前向声明</a></li><li><a href="/langs/cpp/constexpr.html" class="sidebar-link">constexpr关键字</a></li><li><a href="/langs/cpp/explicit.html" class="sidebar-link">explicit修饰符</a></li><li><a href="/langs/cpp/template-none-type.html" class="sidebar-link">Template编程</a></li><li><a href="/langs/cpp/template-ref-warp.html" class="sidebar-link">模板中的实参推断和引用</a></li><li><a href="/langs/cpp/emplace-push-back.html" class="sidebar-link">STL vector容器emplaceback和pushback的区别</a></li><li><a href="/langs/cpp/externC.html" class="sidebar-link">externC</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>C++并发编程</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/multithread.html" class="sidebar-link">C++多线程</a></li><li><a href="/langs/cpp/conditional-variable.html" class="sidebar-link">C++中的条件边量</a></li><li><a href="/langs/cpp/lock-guard.html" class="sidebar-link">lockguard,uniquelock和shared_lock</a></li><li><a href="/langs/cpp/future.html" class="sidebar-link">c++中的std::future与std::shared_future</a></li><li><a href="/langs/cpp/async-promise-pkg.html" class="sidebar-link">std::async/std::promise和std::packaged_task</a></li><li><a href="/langs/cpp/latch-barrier.html" class="sidebar-link">线程闩std::latch和线程卡std::barrier</a></li><li><a href="/langs/cpp/shm-sem.html" class="sidebar-link">Linux进程间通信IPC之共享内存和信号量</a></li><li><a href="/langs/cpp/atomic.html" class="sidebar-link">C++中的原子操作</a></li><li><a href="/langs/cpp/memory-order.html" class="sidebar-link">C++内存序</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>学习CMake</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/cmake.html" class="sidebar-link">cmake</a></li><li><a href="/langs/cpp/cmake-compile.html" class="sidebar-link">CMake中定义编译宏</a></li><li><a href="/langs/cpp/cmake-parse.html" class="sidebar-link">cmakeparsearguments</a></li><li><a href="/langs/cpp/macro-before-func.html" class="sidebar-link">函数声明和class后的宏的作用</a></li><li><a href="/langs/cpp/ctest.html" class="sidebar-link">使用CMake和CTest组织工程测试</a></li><li><a href="/langs/cpp/vscode-include.html" class="sidebar-link">#include errors detected in vscode</a></li><li><a href="/langs/cpp/gcc-compile.html" class="sidebar-link">Ubuntu下安装GCC</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>学习Conan</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/conan.html" class="sidebar-link">conan使用指南</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>代码调试</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/valgrind.html" class="sidebar-link">Linux下程序调试分析工具Valgrind</a></li><li><a href="/langs/cpp/coredump.html" class="sidebar-link">设置及使用coredump文件</a></li><li><a href="/langs/cpp/debug-symbols.html" class="sidebar-link">debug symbol</a></li><li><a href="/langs/cpp/ELF.html" class="sidebar-link">ELF文件及objdump/readelf命令</a></li><li><a href="/langs/cpp/ccache.html" class="sidebar-link">C++加速编译工具ccache</a></li><li><a href="/langs/cpp/clang-tidy.html" class="sidebar-link">静态代码分析工具Clang-Tidy</a></li><li><a href="/langs/cpp/LLVM.html" class="sidebar-link">LLVM</a></li><li><a href="/langs/cpp/strace.html" class="sidebar-link">strace/ltrace命令及其使用</a></li><li><a href="/langs/cpp/perf.html" class="sidebar-link">perf工具使用</a></li><li><a href="/langs/cpp/gdb.html" class="sidebar-link">GDB介绍及简单使用</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="c-预处理及宏定义"><a href="#c-预处理及宏定义" class="header-anchor">#</a> C++预处理及宏定义</h1> <h2 id="_1-多行宏"><a href="#_1-多行宏" class="header-anchor">#</a> 1.多行宏</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">ABC</span> <span class="token expression"><span class="token number">1</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+            <span class="token expression"><span class="token number">2</span><span class="token punctuation">,</span> </span><span class="token punctuation">\</span>
+            <span class="token expression"><span class="token number">3</span></span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>ABC<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span><span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">undef</span> <span class="token expression">ABC</span></span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/**
+ * 1
+ * 2
+ * 3
+ */</span>
+</code></pre></div><h2 id="_2-符号"><a href="#_2-符号" class="header-anchor">#</a> 2.<code>#/##/...</code>符号</h2> <ul><li><code>#</code>将其后面的宏参数进行字符串化操作</li></ul> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">STRINGFI</span><span class="token expression"><span class="token punctuation">(</span>var<span class="token punctuation">)</span> #var</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">&quot;Hello, &quot;</span> <span class="token function">STRINGFI</span><span class="token punctuation">(</span><span class="token number">1123</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token comment">// Hello, 1123</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><code>##</code>被称为连接符（concatenator），用来将两个Token连接为一个Token。</li></ul> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">CONCAT</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> a </span><span class="token punctuation">##</span> <span class="token expression">b</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">HEL</span><span class="token expression"><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>  <span class="token function">CONCAT</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">void</span> <span class="token function">hel1</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">&quot;hello1&quot;</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">hel2</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">&quot;hello2&quot;</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">HEL</span><span class="token punctuation">(</span>hel<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">HEL</span><span class="token punctuation">(</span>hel<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// hello1</span>
+    <span class="token comment">// hello2</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li><code>...</code>在宏中称为<code>Variadic Macro</code>，也就是变参宏</li></ul> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span><span class="token string">&lt;cstdio&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">LOG_ERR</span><span class="token expression"><span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> __VA_ARGS__<span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">LOG_ERR</span><span class="token punctuation">(</span><span class="token string">&quot;%d%d%d%d%s&quot;</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">&quot;this&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token comment">// 1234this</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_3-条件宏"><a href="#_3-条件宏" class="header-anchor">#</a> 3.条件宏</h2> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span><span class="token punctuation">(</span>A<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">elif</span> <span class="token expression"><span class="token operator">!</span><span class="token function">definend</span><span class="token punctuation">(</span>B<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre></div><ul><li>是否定义宏 <code>#if defined(A)</code></li> <li>没有定义宏 <code>#if !defined(A)</code></li></ul> <p><code>#if</code>支持的条件</p> <ul><li>整数常数，加减乘除数字运算，大小比较</li> <li>逻辑运算，<code>&amp;&amp;</code>和<code>||</code></li></ul> <div class="language-cpp extra-class"><pre class="language-cpp"><code>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">defined BUFSIZE <span class="token operator">&amp;&amp;</span> BUFSIZE <span class="token operator">&gt;=</span> <span class="token number">1024</span></span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression"><span class="token function">defined</span> <span class="token punctuation">(</span>__vax__<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">defined</span> <span class="token punctuation">(</span>__ns16000__<span class="token punctuation">)</span></span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre></div><p>示例：</p> <div class="language-cpp extra-class"><pre class="language-cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cstdio&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">LOG_LEVEL</span> <span class="token expression"><span class="token number">12</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">if</span> <span class="token expression">LOG_LEVEL <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&gt;=</span> <span class="token number">14</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">LOG_ERR</span><span class="token expression"><span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token function">printf</span><span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> __VA_ARGS__<span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">else</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">LOG_ERR</span><span class="token expression"><span class="token punctuation">(</span>fmt<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token keyword">void</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span> <span class="token operator">*</span><span class="token operator">*</span>argv<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token function">LOG_ERR</span><span class="token punctuation">(</span><span class="token string">&quot;%d&quot;</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>上面的示例中使用了<code>#define LOG_ERR(fmt, ...) void(0)</code>语句，这个是告诉编译器是空语句，在预处理阶段不会生成任何代码。</p> <p>使用<code>cmake</code>管理工程时，编译时添加宏，</p> <div class="language-sh extra-class"><pre class="language-sh"><code>target_compile_definitions<span class="token punctuation">(</span>foo PUBLIC <span class="token assign-left variable">DFOO</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre></div><blockquote><ul><li><a href="https://www.tutorialspoint.com/cprogramming/c_preprocessors.htm" target="_blank" rel="noopener noreferrer">1.https://www.tutorialspoint.com/cprogramming/c_preprocessors.htm<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></blockquote></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/langs/cpp/preprocess.html" class="prev">
+        C++编译之预处理
+      </a></span> <span class="next"><a href="/langs/cpp/pointer-func.html">
+        C++中的指针与函数
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.992331d8.js" defer></script><script src="/assets/js/2.e4c56fa5.js" defer></script><script src="/assets/js/114.66457419.js" defer></script>
+  </body>
+</html>
