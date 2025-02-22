@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>strace/ltrace命令及其使用 | 天天教程</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+            // 引入谷歌,不需要可删除这段
+            var hm1 = document.createElement("script");
+            hm1.src = "https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP";
+            var s1 = document.getElementsByTagName("script")[0]; 
+            s1.parentNode.insertBefore(hm1, s1);
+            })();
+            // 谷歌加载,不需要可删除
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDK0Y9WWLP');
+        </script>
+    <link rel="icon" href="/logo.png">
+    <script data-ad-client="ca-pub-8685746128991385" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.c5e7512f.css" as="style"><link rel="preload" href="/assets/js/app.23575af4.js" as="script"><link rel="preload" href="/assets/js/2.f82ec374.js" as="script"><link rel="preload" href="/assets/js/1.89391980.js" as="script"><link rel="preload" href="/assets/js/144.a584c930.js" as="script"><link rel="prefetch" href="/assets/js/10.5a2e9b6f.js"><link rel="prefetch" href="/assets/js/100.f4b23589.js"><link rel="prefetch" href="/assets/js/101.b0940f31.js"><link rel="prefetch" href="/assets/js/102.cd320384.js"><link rel="prefetch" href="/assets/js/103.a755f8aa.js"><link rel="prefetch" href="/assets/js/104.856e5984.js"><link rel="prefetch" href="/assets/js/105.3c954104.js"><link rel="prefetch" href="/assets/js/106.e5f85d80.js"><link rel="prefetch" href="/assets/js/107.76ee879c.js"><link rel="prefetch" href="/assets/js/108.40109e55.js"><link rel="prefetch" href="/assets/js/109.80687ea3.js"><link rel="prefetch" href="/assets/js/11.3e0edbf0.js"><link rel="prefetch" href="/assets/js/110.5466e413.js"><link rel="prefetch" href="/assets/js/111.787e0047.js"><link rel="prefetch" href="/assets/js/112.bc391ddc.js"><link rel="prefetch" href="/assets/js/113.23068a27.js"><link rel="prefetch" href="/assets/js/114.cc9cec7c.js"><link rel="prefetch" href="/assets/js/115.feb2a0c8.js"><link rel="prefetch" href="/assets/js/116.10018fbe.js"><link rel="prefetch" href="/assets/js/117.b45fcd24.js"><link rel="prefetch" href="/assets/js/118.64c3319f.js"><link rel="prefetch" href="/assets/js/119.04509aa9.js"><link rel="prefetch" href="/assets/js/12.9a49b12f.js"><link rel="prefetch" href="/assets/js/120.966dd8f2.js"><link rel="prefetch" href="/assets/js/121.5a94f231.js"><link rel="prefetch" href="/assets/js/122.bbb24349.js"><link rel="prefetch" href="/assets/js/123.5375d92c.js"><link rel="prefetch" href="/assets/js/124.ddc6c7d8.js"><link rel="prefetch" href="/assets/js/125.9e9d8661.js"><link rel="prefetch" href="/assets/js/126.0a61407c.js"><link rel="prefetch" href="/assets/js/127.7b7742d4.js"><link rel="prefetch" href="/assets/js/128.b90a4788.js"><link rel="prefetch" href="/assets/js/129.8d2e633e.js"><link rel="prefetch" href="/assets/js/13.c98d76f0.js"><link rel="prefetch" href="/assets/js/130.7f2e756f.js"><link rel="prefetch" href="/assets/js/131.56fd9d07.js"><link rel="prefetch" href="/assets/js/132.75561e61.js"><link rel="prefetch" href="/assets/js/133.0f5a4eee.js"><link rel="prefetch" href="/assets/js/134.b74315d9.js"><link rel="prefetch" href="/assets/js/135.707cbeb0.js"><link rel="prefetch" href="/assets/js/136.ddb624b8.js"><link rel="prefetch" href="/assets/js/137.0ad95aa6.js"><link rel="prefetch" href="/assets/js/138.065692c3.js"><link rel="prefetch" href="/assets/js/139.a635e7ec.js"><link rel="prefetch" href="/assets/js/14.6172bcbb.js"><link rel="prefetch" href="/assets/js/140.89c8e6c7.js"><link rel="prefetch" href="/assets/js/141.5976c51f.js"><link rel="prefetch" href="/assets/js/142.6c19ccb7.js"><link rel="prefetch" href="/assets/js/143.404b134e.js"><link rel="prefetch" href="/assets/js/145.eb59da53.js"><link rel="prefetch" href="/assets/js/146.2920f016.js"><link rel="prefetch" href="/assets/js/147.0260b4ab.js"><link rel="prefetch" href="/assets/js/148.7c8fdee2.js"><link rel="prefetch" href="/assets/js/149.44e1282d.js"><link rel="prefetch" href="/assets/js/15.6900fe6f.js"><link rel="prefetch" href="/assets/js/150.efd980e5.js"><link rel="prefetch" href="/assets/js/151.df2abad4.js"><link rel="prefetch" href="/assets/js/152.06e7f4a5.js"><link rel="prefetch" href="/assets/js/153.3a7287b0.js"><link rel="prefetch" href="/assets/js/154.d594a1d9.js"><link rel="prefetch" href="/assets/js/155.2c0f5744.js"><link rel="prefetch" href="/assets/js/156.d512e563.js"><link rel="prefetch" href="/assets/js/157.64c9f698.js"><link rel="prefetch" href="/assets/js/158.881229a1.js"><link rel="prefetch" href="/assets/js/159.2eb68536.js"><link rel="prefetch" href="/assets/js/16.5077eb29.js"><link rel="prefetch" href="/assets/js/160.397a3592.js"><link rel="prefetch" href="/assets/js/161.314f2d65.js"><link rel="prefetch" href="/assets/js/162.1850cd93.js"><link rel="prefetch" href="/assets/js/163.79639b8a.js"><link rel="prefetch" href="/assets/js/164.08f26520.js"><link rel="prefetch" href="/assets/js/165.8094c06c.js"><link rel="prefetch" href="/assets/js/166.9b83513a.js"><link rel="prefetch" href="/assets/js/167.b6002630.js"><link rel="prefetch" href="/assets/js/168.aea094cd.js"><link rel="prefetch" href="/assets/js/169.03c800da.js"><link rel="prefetch" href="/assets/js/17.112268e5.js"><link rel="prefetch" href="/assets/js/170.ab9b8cf8.js"><link rel="prefetch" href="/assets/js/171.9bcfcc73.js"><link rel="prefetch" href="/assets/js/172.6b7ecc0b.js"><link rel="prefetch" href="/assets/js/173.bce3a9d7.js"><link rel="prefetch" href="/assets/js/174.5588a259.js"><link rel="prefetch" href="/assets/js/175.06b060ef.js"><link rel="prefetch" href="/assets/js/176.ad169d54.js"><link rel="prefetch" href="/assets/js/177.b74043b7.js"><link rel="prefetch" href="/assets/js/178.b3bf9b93.js"><link rel="prefetch" href="/assets/js/179.cb37b737.js"><link rel="prefetch" href="/assets/js/18.b015dc58.js"><link rel="prefetch" href="/assets/js/180.e7a5ed93.js"><link rel="prefetch" href="/assets/js/181.52e088b9.js"><link rel="prefetch" href="/assets/js/182.cda65835.js"><link rel="prefetch" href="/assets/js/183.736a20fb.js"><link rel="prefetch" href="/assets/js/184.1263a6a5.js"><link rel="prefetch" href="/assets/js/185.c4aebb6a.js"><link rel="prefetch" href="/assets/js/186.7e6c33a9.js"><link rel="prefetch" href="/assets/js/187.fd20d07f.js"><link rel="prefetch" href="/assets/js/188.aedb25ee.js"><link rel="prefetch" href="/assets/js/189.7094ada9.js"><link rel="prefetch" href="/assets/js/19.a730210d.js"><link rel="prefetch" href="/assets/js/190.33fa360d.js"><link rel="prefetch" href="/assets/js/191.241ddb15.js"><link rel="prefetch" href="/assets/js/192.45e769d2.js"><link rel="prefetch" href="/assets/js/193.10c299dc.js"><link rel="prefetch" href="/assets/js/194.c3ff7384.js"><link rel="prefetch" href="/assets/js/195.ea2591fc.js"><link rel="prefetch" href="/assets/js/196.fbc46342.js"><link rel="prefetch" href="/assets/js/197.b35e45ed.js"><link rel="prefetch" href="/assets/js/198.412be72a.js"><link rel="prefetch" href="/assets/js/199.74d19310.js"><link rel="prefetch" href="/assets/js/20.a01ca174.js"><link rel="prefetch" href="/assets/js/200.67b2c971.js"><link rel="prefetch" href="/assets/js/201.f912c393.js"><link rel="prefetch" href="/assets/js/202.794560c3.js"><link rel="prefetch" href="/assets/js/203.18147a94.js"><link rel="prefetch" href="/assets/js/204.1fd318ae.js"><link rel="prefetch" href="/assets/js/205.ed4ed503.js"><link rel="prefetch" href="/assets/js/206.fd68842e.js"><link rel="prefetch" href="/assets/js/207.9d6d716e.js"><link rel="prefetch" href="/assets/js/208.7d44838d.js"><link rel="prefetch" href="/assets/js/209.530ef754.js"><link rel="prefetch" href="/assets/js/21.56e4f12e.js"><link rel="prefetch" href="/assets/js/210.2b7c9195.js"><link rel="prefetch" href="/assets/js/211.31e02492.js"><link rel="prefetch" href="/assets/js/212.10d8d916.js"><link rel="prefetch" href="/assets/js/213.6e2d4c49.js"><link rel="prefetch" href="/assets/js/214.35b6de22.js"><link rel="prefetch" href="/assets/js/215.93cf55fa.js"><link rel="prefetch" href="/assets/js/216.61320608.js"><link rel="prefetch" href="/assets/js/217.2060d873.js"><link rel="prefetch" href="/assets/js/218.add74fc9.js"><link rel="prefetch" href="/assets/js/219.8aa46583.js"><link rel="prefetch" href="/assets/js/22.5d776410.js"><link rel="prefetch" href="/assets/js/220.2a44ed23.js"><link rel="prefetch" href="/assets/js/221.0a1c8f72.js"><link rel="prefetch" href="/assets/js/222.1fdd4fa8.js"><link rel="prefetch" href="/assets/js/223.7c6f20f0.js"><link rel="prefetch" href="/assets/js/224.b29a536e.js"><link rel="prefetch" href="/assets/js/225.ccabc8fb.js"><link rel="prefetch" href="/assets/js/226.c38c9b3d.js"><link rel="prefetch" href="/assets/js/227.628c13b5.js"><link rel="prefetch" href="/assets/js/228.2910c366.js"><link rel="prefetch" href="/assets/js/229.2dd6a25a.js"><link rel="prefetch" href="/assets/js/23.9f2f860b.js"><link rel="prefetch" href="/assets/js/230.8da03dc6.js"><link rel="prefetch" href="/assets/js/231.ea34c098.js"><link rel="prefetch" href="/assets/js/232.9606eb60.js"><link rel="prefetch" href="/assets/js/233.25db6306.js"><link rel="prefetch" href="/assets/js/234.b08834a7.js"><link rel="prefetch" href="/assets/js/235.f029a2a0.js"><link rel="prefetch" href="/assets/js/236.c058bf3b.js"><link rel="prefetch" href="/assets/js/237.f0a7b16a.js"><link rel="prefetch" href="/assets/js/238.a6417dfd.js"><link rel="prefetch" href="/assets/js/239.f4f92aec.js"><link rel="prefetch" href="/assets/js/24.0cf2d734.js"><link rel="prefetch" href="/assets/js/240.e119d08c.js"><link rel="prefetch" href="/assets/js/241.f1b013bf.js"><link rel="prefetch" href="/assets/js/242.1f7c81ed.js"><link rel="prefetch" href="/assets/js/243.633dafdd.js"><link rel="prefetch" href="/assets/js/244.18160b1b.js"><link rel="prefetch" href="/assets/js/245.bea96c03.js"><link rel="prefetch" href="/assets/js/246.0c3c7b06.js"><link rel="prefetch" href="/assets/js/247.e63c118e.js"><link rel="prefetch" href="/assets/js/248.468219e1.js"><link rel="prefetch" href="/assets/js/249.407cf530.js"><link rel="prefetch" href="/assets/js/25.322f30a7.js"><link rel="prefetch" href="/assets/js/250.907e1804.js"><link rel="prefetch" href="/assets/js/251.c5b9350f.js"><link rel="prefetch" href="/assets/js/252.1c62be4d.js"><link rel="prefetch" href="/assets/js/253.467143ac.js"><link rel="prefetch" href="/assets/js/254.a680d946.js"><link rel="prefetch" href="/assets/js/255.d3fbeea1.js"><link rel="prefetch" href="/assets/js/256.109ea457.js"><link rel="prefetch" href="/assets/js/257.6de19e06.js"><link rel="prefetch" href="/assets/js/258.3eaf957a.js"><link rel="prefetch" href="/assets/js/259.51e27a48.js"><link rel="prefetch" href="/assets/js/26.fd26c7ba.js"><link rel="prefetch" href="/assets/js/260.69219dd3.js"><link rel="prefetch" href="/assets/js/261.f91713fe.js"><link rel="prefetch" href="/assets/js/262.d798a386.js"><link rel="prefetch" href="/assets/js/263.f78cd2a7.js"><link rel="prefetch" href="/assets/js/264.e59f830c.js"><link rel="prefetch" href="/assets/js/265.b2b6b671.js"><link rel="prefetch" href="/assets/js/266.1bfb2bac.js"><link rel="prefetch" href="/assets/js/267.94e62e43.js"><link rel="prefetch" href="/assets/js/268.1eb6cc1d.js"><link rel="prefetch" href="/assets/js/269.8d7f1c2c.js"><link rel="prefetch" href="/assets/js/27.65271a2b.js"><link rel="prefetch" href="/assets/js/270.a4cd8967.js"><link rel="prefetch" href="/assets/js/271.543b2fab.js"><link rel="prefetch" href="/assets/js/272.c0118647.js"><link rel="prefetch" href="/assets/js/273.25c7a57c.js"><link rel="prefetch" href="/assets/js/274.cc4fe18a.js"><link rel="prefetch" href="/assets/js/275.d058d56f.js"><link rel="prefetch" href="/assets/js/276.b357431c.js"><link rel="prefetch" href="/assets/js/277.5ba62784.js"><link rel="prefetch" href="/assets/js/278.1484c36b.js"><link rel="prefetch" href="/assets/js/28.4782ec8c.js"><link rel="prefetch" href="/assets/js/29.ec406168.js"><link rel="prefetch" href="/assets/js/3.939eb1e6.js"><link rel="prefetch" href="/assets/js/30.e6c05b51.js"><link rel="prefetch" href="/assets/js/31.db64a75b.js"><link rel="prefetch" href="/assets/js/32.f64490d9.js"><link rel="prefetch" href="/assets/js/33.270e2df1.js"><link rel="prefetch" href="/assets/js/34.db4965cb.js"><link rel="prefetch" href="/assets/js/35.63c2145d.js"><link rel="prefetch" href="/assets/js/36.d351c0ba.js"><link rel="prefetch" href="/assets/js/37.a6d6bde2.js"><link rel="prefetch" href="/assets/js/38.89aa4567.js"><link rel="prefetch" href="/assets/js/39.0e31b49a.js"><link rel="prefetch" href="/assets/js/4.8a85b52c.js"><link rel="prefetch" href="/assets/js/40.e90964e3.js"><link rel="prefetch" href="/assets/js/41.8209ab4c.js"><link rel="prefetch" href="/assets/js/42.2a07d7c3.js"><link rel="prefetch" href="/assets/js/43.97a13ff2.js"><link rel="prefetch" href="/assets/js/44.7af83233.js"><link rel="prefetch" href="/assets/js/45.ea12ccc4.js"><link rel="prefetch" href="/assets/js/46.941cabb1.js"><link rel="prefetch" href="/assets/js/47.51c88b4e.js"><link rel="prefetch" href="/assets/js/48.c11e9e5d.js"><link rel="prefetch" href="/assets/js/49.3f774a6e.js"><link rel="prefetch" href="/assets/js/5.36ab2f9a.js"><link rel="prefetch" href="/assets/js/50.e60b0e33.js"><link rel="prefetch" href="/assets/js/51.1d40f647.js"><link rel="prefetch" href="/assets/js/52.79cfd1c7.js"><link rel="prefetch" href="/assets/js/53.375673c2.js"><link rel="prefetch" href="/assets/js/54.51dcfbb0.js"><link rel="prefetch" href="/assets/js/55.3069ec31.js"><link rel="prefetch" href="/assets/js/56.42514926.js"><link rel="prefetch" href="/assets/js/57.c5b4e48d.js"><link rel="prefetch" href="/assets/js/58.2ded3f2e.js"><link rel="prefetch" href="/assets/js/59.ceabdbf6.js"><link rel="prefetch" href="/assets/js/6.438ace19.js"><link rel="prefetch" href="/assets/js/60.0551036b.js"><link rel="prefetch" href="/assets/js/61.876b309f.js"><link rel="prefetch" href="/assets/js/62.643b5fd6.js"><link rel="prefetch" href="/assets/js/63.bc3dde9c.js"><link rel="prefetch" href="/assets/js/64.38317ddf.js"><link rel="prefetch" href="/assets/js/65.ed98900c.js"><link rel="prefetch" href="/assets/js/66.41102126.js"><link rel="prefetch" href="/assets/js/67.8d955484.js"><link rel="prefetch" href="/assets/js/68.58434e8e.js"><link rel="prefetch" href="/assets/js/69.2f96b9c1.js"><link rel="prefetch" href="/assets/js/7.f0aabcb2.js"><link rel="prefetch" href="/assets/js/70.5f34dcf8.js"><link rel="prefetch" href="/assets/js/71.cc379223.js"><link rel="prefetch" href="/assets/js/72.ee683b31.js"><link rel="prefetch" href="/assets/js/73.7c2e1fa1.js"><link rel="prefetch" href="/assets/js/74.60367ad5.js"><link rel="prefetch" href="/assets/js/75.c7bab66f.js"><link rel="prefetch" href="/assets/js/76.6c47e641.js"><link rel="prefetch" href="/assets/js/77.ed477082.js"><link rel="prefetch" href="/assets/js/78.a9773517.js"><link rel="prefetch" href="/assets/js/79.e06068c3.js"><link rel="prefetch" href="/assets/js/80.61136c4a.js"><link rel="prefetch" href="/assets/js/81.0bf71d5d.js"><link rel="prefetch" href="/assets/js/82.4efcff60.js"><link rel="prefetch" href="/assets/js/83.bd40160a.js"><link rel="prefetch" href="/assets/js/84.b846e7bb.js"><link rel="prefetch" href="/assets/js/85.1cefd2bb.js"><link rel="prefetch" href="/assets/js/86.383c6551.js"><link rel="prefetch" href="/assets/js/87.dffb01db.js"><link rel="prefetch" href="/assets/js/88.8a89d5c4.js"><link rel="prefetch" href="/assets/js/89.3e56edd1.js"><link rel="prefetch" href="/assets/js/90.3c2ff424.js"><link rel="prefetch" href="/assets/js/91.fa68e032.js"><link rel="prefetch" href="/assets/js/92.f5598fab.js"><link rel="prefetch" href="/assets/js/93.fe312759.js"><link rel="prefetch" href="/assets/js/94.c28d3f44.js"><link rel="prefetch" href="/assets/js/95.baf94084.js"><link rel="prefetch" href="/assets/js/96.8f70c61d.js"><link rel="prefetch" href="/assets/js/97.702e9146.js"><link rel="prefetch" href="/assets/js/98.700b8a73.js"><link rel="prefetch" href="/assets/js/99.bfc143da.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.934ed2fb.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c5e7512f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">天天教程</span></a> <div class="links"><nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/all/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link router-link-active">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/all/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link router-link-active">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>C++基础学习</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/" aria-current="page" class="sidebar-link">C++编译器</a></li><li><a href="/langs/cpp/preprocess.html" class="sidebar-link">C++编译之预处理</a></li><li><a href="/langs/cpp/macro.html" class="sidebar-link">C++预处理及宏定义</a></li><li><a href="/langs/cpp/pointer-func.html" class="sidebar-link">C++中的指针与函数</a></li><li><a href="/langs/cpp/memory-manage.html" class="sidebar-link">C++中的内存管理</a></li><li><a href="/langs/cpp/lvalue-rvalue.html" class="sidebar-link">C++中的左值和右值</a></li><li><a href="/langs/cpp/cstring.html" class="sidebar-link">C++中的string</a></li><li><a href="/langs/cpp/intell-pointer.html" class="sidebar-link">C++中的智能指针</a></li><li><a href="/langs/cpp/array-pointer.html" class="sidebar-link">C++中的数组与指针</a></li><li><a href="/langs/cpp/convert-1d2d-pointer.html" class="sidebar-link">C++ 中将一维数组转成多维的三种方式</a></li><li><a href="/langs/cpp/arg-min-max.html" class="sidebar-link">10.C++中实现argmin和argmax</a></li><li><a href="/langs/cpp/container.html" class="sidebar-link">C++的常用容器简析</a></li><li><a href="/langs/cpp/sort.html" class="sidebar-link">C++中的SORT算法比较</a></li><li><a href="/langs/cpp/static-file.html" class="sidebar-link">C++中的static及文件包含</a></li><li><a href="/langs/cpp/typedef.html" class="sidebar-link">C++中的typdef</a></li><li><a href="/langs/cpp/typedef-using.html" class="sidebar-link">typedef 与 using</a></li><li><a href="/langs/cpp/lambda.html" class="sidebar-link">C++中的lambda表达式</a></li><li><a href="/langs/cpp/stl-algorithm.html" class="sidebar-link">STL中的algorithm</a></li><li><a href="/langs/cpp/random.html" class="sidebar-link">C++中的随机数</a></li><li><a href="/langs/cpp/object-prog.html" class="sidebar-link">C++中的面向对象</a></li><li><a href="/langs/cpp/raii.html" class="sidebar-link">C++中的RAII</a></li><li><a href="/langs/cpp/common-except.html" class="sidebar-link">C++中常见问题</a></li><li><a href="/langs/cpp/noexcept.html" class="sidebar-link">C++中的noexcept关键字</a></li><li><a href="/langs/cpp/forward-declaration.html" class="sidebar-link">前向声明</a></li><li><a href="/langs/cpp/constexpr.html" class="sidebar-link">constexpr关键字</a></li><li><a href="/langs/cpp/explicit.html" class="sidebar-link">explicit修饰符</a></li><li><a href="/langs/cpp/template-none-type.html" class="sidebar-link">Template编程</a></li><li><a href="/langs/cpp/template-ref-warp.html" class="sidebar-link">模板中的实参推断和引用</a></li><li><a href="/langs/cpp/emplace-push-back.html" class="sidebar-link">STL vector容器emplaceback和pushback的区别</a></li><li><a href="/langs/cpp/externC.html" class="sidebar-link">externC</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>C++并发编程</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/multithread.html" class="sidebar-link">C++多线程</a></li><li><a href="/langs/cpp/conditional-variable.html" class="sidebar-link">C++中的条件边量</a></li><li><a href="/langs/cpp/lock-guard.html" class="sidebar-link">lockguard,uniquelock和shared_lock</a></li><li><a href="/langs/cpp/future.html" class="sidebar-link">c++中的std::future与std::shared_future</a></li><li><a href="/langs/cpp/async-promise-pkg.html" class="sidebar-link">std::async/std::promise和std::packaged_task</a></li><li><a href="/langs/cpp/latch-barrier.html" class="sidebar-link">线程闩std::latch和线程卡std::barrier</a></li><li><a href="/langs/cpp/shm-sem.html" class="sidebar-link">Linux进程间通信IPC之共享内存和信号量</a></li><li><a href="/langs/cpp/atomic.html" class="sidebar-link">C++中的原子操作</a></li><li><a href="/langs/cpp/memory-order.html" class="sidebar-link">C++内存序</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>学习CMake</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/cmake.html" class="sidebar-link">cmake</a></li><li><a href="/langs/cpp/cmake-compile.html" class="sidebar-link">CMake中定义编译宏</a></li><li><a href="/langs/cpp/cmake-parse.html" class="sidebar-link">cmakeparsearguments</a></li><li><a href="/langs/cpp/macro-before-func.html" class="sidebar-link">函数声明和class后的宏的作用</a></li><li><a href="/langs/cpp/ctest.html" class="sidebar-link">使用CMake和CTest组织工程测试</a></li><li><a href="/langs/cpp/vscode-include.html" class="sidebar-link">#include errors detected in vscode</a></li><li><a href="/langs/cpp/gcc-compile.html" class="sidebar-link">Ubuntu下安装GCC</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>学习Conan</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/conan.html" class="sidebar-link">conan使用指南</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>代码调试</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/valgrind.html" class="sidebar-link">Linux下程序调试分析工具Valgrind</a></li><li><a href="/langs/cpp/coredump.html" class="sidebar-link">设置及使用coredump文件</a></li><li><a href="/langs/cpp/debug-symbols.html" class="sidebar-link">debug symbol</a></li><li><a href="/langs/cpp/ELF.html" class="sidebar-link">ELF文件及objdump/readelf命令</a></li><li><a href="/langs/cpp/ccache.html" class="sidebar-link">C++加速编译工具ccache</a></li><li><a href="/langs/cpp/clang-tidy.html" class="sidebar-link">静态代码分析工具Clang-Tidy</a></li><li><a href="/langs/cpp/LLVM.html" class="sidebar-link">LLVM</a></li><li><a href="/langs/cpp/strace.html" aria-current="page" class="active sidebar-link">strace/ltrace命令及其使用</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/langs/cpp/strace.html#strace基本介绍" class="sidebar-link">strace基本介绍</a></li><li class="sidebar-sub-header"><a href="/langs/cpp/strace.html#strace命令格式及常用选项" class="sidebar-link">strace命令格式及常用选项</a></li><li class="sidebar-sub-header"><a href="/langs/cpp/strace.html#ltrace介绍" class="sidebar-link">ltrace介绍</a></li><li class="sidebar-sub-header"><a href="/langs/cpp/strace.html#ltrace命令格式及其常用选项" class="sidebar-link">ltrace命令格式及其常用选项</a></li></ul></li><li><a href="/langs/cpp/perf.html" class="sidebar-link">perf工具使用</a></li><li><a href="/langs/cpp/gdb.html" class="sidebar-link">GDB介绍及简单使用</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>C++17</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/cpp/variant.html" class="sidebar-link">std::variant用法</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="strace-ltrace命令及其使用"><a href="#strace-ltrace命令及其使用" class="header-anchor">#</a> strace/ltrace命令及其使用</h1> <h2 id="strace基本介绍"><a href="#strace基本介绍" class="header-anchor">#</a> <code>strace</code>基本介绍</h2> <p><code>strace</code> 是一个强大的工具，用于跟踪程序执行时的系统调用和接收到的信号。</p> <p>通过 <code>strace</code>，可以了解程序在运行时请求了哪些系统调用，这些调用的参数是什么，以及操作系统对这些调用的响应。这对于调试程序、分析程序行为和优化性能非常有用。</p> <p>其主要作用包括以下几点:</p> <ul><li>诊断程序错误：通过分析程序与操作系统之间的交互，可以帮助找到错误和异常的原因</li> <li>性能分析：通过查看系统调用的时间、数量和类型，可以识别潜在的性能瓶颈</li> <li>安全分析：检查程序是否进行恶意行为，如不当访问文件、套接字等</li> <li>学习和理解：通过观察系统调用，可以加深对Linux操作系统、库函数和系统调用之间关系的理解</li> <li>调试：在没有源代码的情况下，可以通过查看系统调用的顺序和参数来了解程序的执行流程</li></ul> <h2 id="strace命令格式及常用选项"><a href="#strace命令格式及常用选项" class="header-anchor">#</a> <code>strace</code>命令格式及常用选项</h2> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">strace</span> <span class="token punctuation">[</span>选项<span class="token punctuation">]</span> 程序 <span class="token punctuation">[</span>程序参数<span class="token punctuation">]</span>
+</code></pre></div><p>支持的常用选项有：</p> <ul><li><code>-c</code>统计每个系统调用的执行时间、次数和出错次数</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># % time     seconds  usecs/call     calls    errors syscall</span>
+<span class="token comment"># ------ ----------- ----------- --------- --------- ----------------</span>
+<span class="token comment">#  45.53    0.001222          26        47        42 openat</span>
+<span class="token comment">#  23.10    0.000620          28        22           mmap</span>
+<span class="token comment">#   6.78    0.000182          26         7           mprotect</span>
+<span class="token comment">#   5.96    0.000160         160         1           munmap</span>
+<span class="token comment">#   5.96    0.000160          16        10           pread64</span>
+<span class="token comment">#   4.06    0.000109          18         6           fstat</span>
+<span class="token comment">#   2.53    0.000068          17         4           read</span>
+<span class="token comment">#   2.24    0.000060          12         5           close</span>
+<span class="token comment">#   1.34    0.000036          36         1           clock_nanosleep</span>
+<span class="token comment">#   1.12    0.000030          30         1           write</span>
+<span class="token comment">#   0.97    0.000026           8         3           brk</span>
+<span class="token comment">#   0.41    0.000011           5         2         1 arch_prctl</span>
+<span class="token comment">#   0.00    0.000000           0        31        28 stat</span>
+<span class="token comment">#   0.00    0.000000           0         1         1 access</span>
+<span class="token comment">#   0.00    0.000000           0         1           execve</span>
+<span class="token comment"># ------ ----------- ----------- --------- --------- ----------------</span>
+<span class="token comment"># 100.00    0.002684                   142        72 total</span>
+</code></pre></div><ul><li><code>-f</code>跟踪由 <code>fork</code> 调用产生的子进程</li> <li><code>-o filename</code>将 <code>strace</code> 的输出写入文件 <code>filename</code></li> <li><code>-e expr</code>指定一个表达式来控制跟踪的系统调用，例如<code>-e trace=open</code>表示只跟踪 <code>open</code> 调用</li></ul> <h2 id="ltrace介绍"><a href="#ltrace介绍" class="header-anchor">#</a> ltrace介绍</h2> <p><code>ltrace</code> 是一个用于跟踪程序库函数调用的工具。它会显示被执行的进程调用的动态库函数，以及接收到的信号。与 <code>strace</code> 类似，<code>ltrace</code> 可以帮助用来调试程序和分析其行为。它还可以拦截并打印程序执行的系统调用。</p> <h2 id="ltrace命令格式及其常用选项"><a href="#ltrace命令格式及其常用选项" class="header-anchor">#</a> <code>ltrace</code>命令格式及其常用选项</h2> <p>命令格式：</p> <div class="language-sh extra-class"><pre class="language-sh"><code>ltrace <span class="token punctuation">[</span>选项<span class="token punctuation">]</span> 程序 <span class="token punctuation">[</span>程序参数<span class="token punctuation">]</span>
+</code></pre></div><p>常用选项：</p> <ul><li><code>-c</code>：统计每个库函数的调用次数和时间，并在程序退出时打印摘要</li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># % time     seconds  usecs/call     calls      function</span>
+<span class="token comment"># ------ ----------- ----------- --------- --------------------</span>
+<span class="token comment">#  99.92    1.000427     1000427         1 nanosleep</span>
+<span class="token comment">#   0.02    0.000250         250         1 _ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_</span>
+<span class="token comment">#   0.02    0.000250         250         1 _ZNSolsEPFRSoS_E</span>
+<span class="token comment">#   0.02    0.000168         168         1 _ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc</span>
+<span class="token comment">#   0.01    0.000121         121         1 _ZNSolsEi</span>
+<span class="token comment"># ------ ----------- ----------- --------- --------------------</span>
+<span class="token comment"># 100.00    1.001216                     5 total</span>
+
+</code></pre></div><ul><li><code>-D, --debug &lt;掩码&gt;</code>：打印调试信息。</li> <li><code>-e &lt;过滤条件&gt;</code>指定要跟踪的事件，例如特定函数</li> <li><code>-f</code>：跟踪子进程</li> <li><code>-S</code>显示系统调用</li> <li><code>-t</code>打印绝对时间戳</li> <li><code>-o, --output=file</code> 把输出定向到文件</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/langs/cpp/LLVM.html" class="prev">
+        LLVM
+      </a></span> <span class="next"><a href="/langs/cpp/perf.html">
+        perf工具使用
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.23575af4.js" defer></script><script src="/assets/js/2.f82ec374.js" defer></script><script src="/assets/js/1.89391980.js" defer></script><script src="/assets/js/144.a584c930.js" defer></script>
+  </body>
+</html>
