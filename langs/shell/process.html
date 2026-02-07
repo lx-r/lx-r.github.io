@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Linux Shell任务控制 | GoldNotes</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <script>
+            var _hmt = _hmt || [];
+            (function() {
+            // 引入谷歌,不需要可删除这段
+            var hm1 = document.createElement("script");
+            hm1.src = "https://www.googletagmanager.com/gtag/js?id=G-BDK0Y9WWLP";
+            var s1 = document.getElementsByTagName("script")[0]; 
+            s1.parentNode.insertBefore(hm1, s1);
+            })();
+            // 谷歌加载,不需要可删除
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BDK0Y9WWLP');
+        </script>
+    <link rel="icon" href="/logo.png">
+    <script data-ad-client="ca-pub-8685746128991385" async="true" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Just playing around">
+    
+    <link rel="preload" href="/assets/css/0.styles.c5e7512f.css" as="style"><link rel="preload" href="/assets/js/app.4fb1e7ac.js" as="script"><link rel="preload" href="/assets/js/2.441eb26f.js" as="script"><link rel="preload" href="/assets/js/1.1a1c696e.js" as="script"><link rel="preload" href="/assets/js/200.88a1d097.js" as="script"><link rel="prefetch" href="/assets/js/10.5a2e9b6f.js"><link rel="prefetch" href="/assets/js/100.ef80225f.js"><link rel="prefetch" href="/assets/js/101.e15d219a.js"><link rel="prefetch" href="/assets/js/102.d6f75c18.js"><link rel="prefetch" href="/assets/js/103.12816430.js"><link rel="prefetch" href="/assets/js/104.7cafc7da.js"><link rel="prefetch" href="/assets/js/105.a95fe706.js"><link rel="prefetch" href="/assets/js/106.f9124e10.js"><link rel="prefetch" href="/assets/js/107.8ff67460.js"><link rel="prefetch" href="/assets/js/108.f9d986f5.js"><link rel="prefetch" href="/assets/js/109.32bd2df3.js"><link rel="prefetch" href="/assets/js/11.3e0edbf0.js"><link rel="prefetch" href="/assets/js/110.313ef3df.js"><link rel="prefetch" href="/assets/js/111.b8637dcf.js"><link rel="prefetch" href="/assets/js/112.9e6011d2.js"><link rel="prefetch" href="/assets/js/113.63c9a458.js"><link rel="prefetch" href="/assets/js/114.50d79414.js"><link rel="prefetch" href="/assets/js/115.f6673090.js"><link rel="prefetch" href="/assets/js/116.a6d8417d.js"><link rel="prefetch" href="/assets/js/117.7e612414.js"><link rel="prefetch" href="/assets/js/118.d92d9409.js"><link rel="prefetch" href="/assets/js/119.ebe75303.js"><link rel="prefetch" href="/assets/js/12.9a49b12f.js"><link rel="prefetch" href="/assets/js/120.552b6b09.js"><link rel="prefetch" href="/assets/js/121.db70210c.js"><link rel="prefetch" href="/assets/js/122.6f43bbfe.js"><link rel="prefetch" href="/assets/js/123.fad382fe.js"><link rel="prefetch" href="/assets/js/124.fc7d5e6b.js"><link rel="prefetch" href="/assets/js/125.644c16a8.js"><link rel="prefetch" href="/assets/js/126.b554f501.js"><link rel="prefetch" href="/assets/js/127.5d9889cb.js"><link rel="prefetch" href="/assets/js/128.7465973e.js"><link rel="prefetch" href="/assets/js/129.f3d49d26.js"><link rel="prefetch" href="/assets/js/13.c98d76f0.js"><link rel="prefetch" href="/assets/js/130.7f786c09.js"><link rel="prefetch" href="/assets/js/131.c588a4e5.js"><link rel="prefetch" href="/assets/js/132.a9d8f9d7.js"><link rel="prefetch" href="/assets/js/133.40e52588.js"><link rel="prefetch" href="/assets/js/134.46e589a3.js"><link rel="prefetch" href="/assets/js/135.22363a46.js"><link rel="prefetch" href="/assets/js/136.6ed1697a.js"><link rel="prefetch" href="/assets/js/137.85561c69.js"><link rel="prefetch" href="/assets/js/138.99a04494.js"><link rel="prefetch" href="/assets/js/139.f0552c7a.js"><link rel="prefetch" href="/assets/js/14.c033f4de.js"><link rel="prefetch" href="/assets/js/140.4ec1e061.js"><link rel="prefetch" href="/assets/js/141.a9837bb8.js"><link rel="prefetch" href="/assets/js/142.0daf24d0.js"><link rel="prefetch" href="/assets/js/143.f9fc0d3f.js"><link rel="prefetch" href="/assets/js/144.755f8542.js"><link rel="prefetch" href="/assets/js/145.fd3d789b.js"><link rel="prefetch" href="/assets/js/146.c2c62b01.js"><link rel="prefetch" href="/assets/js/147.f946170d.js"><link rel="prefetch" href="/assets/js/148.7733f24d.js"><link rel="prefetch" href="/assets/js/149.5d54ce19.js"><link rel="prefetch" href="/assets/js/15.6900fe6f.js"><link rel="prefetch" href="/assets/js/150.09134583.js"><link rel="prefetch" href="/assets/js/151.7522945c.js"><link rel="prefetch" href="/assets/js/152.808bd1b6.js"><link rel="prefetch" href="/assets/js/153.0af3f06c.js"><link rel="prefetch" href="/assets/js/154.53831122.js"><link rel="prefetch" href="/assets/js/155.53e5bdc3.js"><link rel="prefetch" href="/assets/js/156.8923d841.js"><link rel="prefetch" href="/assets/js/157.04fb08da.js"><link rel="prefetch" href="/assets/js/158.0e6663e8.js"><link rel="prefetch" href="/assets/js/159.2670449b.js"><link rel="prefetch" href="/assets/js/16.5077eb29.js"><link rel="prefetch" href="/assets/js/160.3fc6588a.js"><link rel="prefetch" href="/assets/js/161.7875402e.js"><link rel="prefetch" href="/assets/js/162.541ec610.js"><link rel="prefetch" href="/assets/js/163.c17ccbc0.js"><link rel="prefetch" href="/assets/js/164.86fce3b4.js"><link rel="prefetch" href="/assets/js/165.2b9548d0.js"><link rel="prefetch" href="/assets/js/166.66a2805f.js"><link rel="prefetch" href="/assets/js/167.4de98e57.js"><link rel="prefetch" href="/assets/js/168.6f000eaa.js"><link rel="prefetch" href="/assets/js/169.cda36066.js"><link rel="prefetch" href="/assets/js/17.112268e5.js"><link rel="prefetch" href="/assets/js/170.3f1ae11a.js"><link rel="prefetch" href="/assets/js/171.ae67c120.js"><link rel="prefetch" href="/assets/js/172.6f2bed6e.js"><link rel="prefetch" href="/assets/js/173.2b8efaa1.js"><link rel="prefetch" href="/assets/js/174.01667775.js"><link rel="prefetch" href="/assets/js/175.b6b57c90.js"><link rel="prefetch" href="/assets/js/176.241f6966.js"><link rel="prefetch" href="/assets/js/177.20a02334.js"><link rel="prefetch" href="/assets/js/178.a338760c.js"><link rel="prefetch" href="/assets/js/179.d31d1033.js"><link rel="prefetch" href="/assets/js/18.b015dc58.js"><link rel="prefetch" href="/assets/js/180.5292fa26.js"><link rel="prefetch" href="/assets/js/181.d76d57b6.js"><link rel="prefetch" href="/assets/js/182.e53b7eee.js"><link rel="prefetch" href="/assets/js/183.dd36cb6c.js"><link rel="prefetch" href="/assets/js/184.8c5d1acd.js"><link rel="prefetch" href="/assets/js/185.0fa69241.js"><link rel="prefetch" href="/assets/js/186.a060dcfc.js"><link rel="prefetch" href="/assets/js/187.7c5dd016.js"><link rel="prefetch" href="/assets/js/188.e1d6eb59.js"><link rel="prefetch" href="/assets/js/189.d080da82.js"><link rel="prefetch" href="/assets/js/19.a730210d.js"><link rel="prefetch" href="/assets/js/190.5ea05bc2.js"><link rel="prefetch" href="/assets/js/191.ccce8c21.js"><link rel="prefetch" href="/assets/js/192.8919b9f4.js"><link rel="prefetch" href="/assets/js/193.53a2231c.js"><link rel="prefetch" href="/assets/js/194.7dc4768d.js"><link rel="prefetch" href="/assets/js/195.1f14c2d3.js"><link rel="prefetch" href="/assets/js/196.95e1de51.js"><link rel="prefetch" href="/assets/js/197.61f1490e.js"><link rel="prefetch" href="/assets/js/198.c16e311f.js"><link rel="prefetch" href="/assets/js/199.a0463af3.js"><link rel="prefetch" href="/assets/js/20.a01ca174.js"><link rel="prefetch" href="/assets/js/201.ccd16283.js"><link rel="prefetch" href="/assets/js/202.63c30104.js"><link rel="prefetch" href="/assets/js/203.75cacf3b.js"><link rel="prefetch" href="/assets/js/204.78d81202.js"><link rel="prefetch" href="/assets/js/205.428844a4.js"><link rel="prefetch" href="/assets/js/206.536ab8ea.js"><link rel="prefetch" href="/assets/js/207.1d6ea039.js"><link rel="prefetch" href="/assets/js/208.559fa16a.js"><link rel="prefetch" href="/assets/js/209.024c14ee.js"><link rel="prefetch" href="/assets/js/21.56e4f12e.js"><link rel="prefetch" href="/assets/js/210.b4e24295.js"><link rel="prefetch" href="/assets/js/211.59133109.js"><link rel="prefetch" href="/assets/js/212.2c11bc51.js"><link rel="prefetch" href="/assets/js/213.4124dac6.js"><link rel="prefetch" href="/assets/js/214.3fe2516e.js"><link rel="prefetch" href="/assets/js/215.aef02404.js"><link rel="prefetch" href="/assets/js/216.02f537aa.js"><link rel="prefetch" href="/assets/js/217.4fb1b7ef.js"><link rel="prefetch" href="/assets/js/218.2effa1a4.js"><link rel="prefetch" href="/assets/js/219.c1de57a8.js"><link rel="prefetch" href="/assets/js/22.fcddc1c6.js"><link rel="prefetch" href="/assets/js/220.b5062ce2.js"><link rel="prefetch" href="/assets/js/221.d10aa87c.js"><link rel="prefetch" href="/assets/js/222.174a73b7.js"><link rel="prefetch" href="/assets/js/223.6bd66640.js"><link rel="prefetch" href="/assets/js/224.60738e78.js"><link rel="prefetch" href="/assets/js/225.29e10b6a.js"><link rel="prefetch" href="/assets/js/226.41609457.js"><link rel="prefetch" href="/assets/js/227.5d2a1817.js"><link rel="prefetch" href="/assets/js/228.ae086e62.js"><link rel="prefetch" href="/assets/js/229.23dbfd01.js"><link rel="prefetch" href="/assets/js/23.c542ac54.js"><link rel="prefetch" href="/assets/js/230.846276a3.js"><link rel="prefetch" href="/assets/js/231.a85ab6e0.js"><link rel="prefetch" href="/assets/js/232.0b6e6b4c.js"><link rel="prefetch" href="/assets/js/233.6cb92776.js"><link rel="prefetch" href="/assets/js/234.cea1dee5.js"><link rel="prefetch" href="/assets/js/235.500e92ea.js"><link rel="prefetch" href="/assets/js/236.bbc42488.js"><link rel="prefetch" href="/assets/js/237.2a724798.js"><link rel="prefetch" href="/assets/js/238.4ab2349d.js"><link rel="prefetch" href="/assets/js/239.d0bfc9cf.js"><link rel="prefetch" href="/assets/js/24.b876b0b7.js"><link rel="prefetch" href="/assets/js/240.605bb0c5.js"><link rel="prefetch" href="/assets/js/241.9570c994.js"><link rel="prefetch" href="/assets/js/242.18d655b8.js"><link rel="prefetch" href="/assets/js/243.1001542c.js"><link rel="prefetch" href="/assets/js/244.b6b11929.js"><link rel="prefetch" href="/assets/js/245.80f35f7e.js"><link rel="prefetch" href="/assets/js/246.33b89f85.js"><link rel="prefetch" href="/assets/js/247.7b6887c5.js"><link rel="prefetch" href="/assets/js/248.63719a2c.js"><link rel="prefetch" href="/assets/js/249.67a27bcb.js"><link rel="prefetch" href="/assets/js/25.1dcefbee.js"><link rel="prefetch" href="/assets/js/250.b26d162c.js"><link rel="prefetch" href="/assets/js/251.c796b53a.js"><link rel="prefetch" href="/assets/js/252.1305b2c8.js"><link rel="prefetch" href="/assets/js/253.032816e3.js"><link rel="prefetch" href="/assets/js/254.a40ea038.js"><link rel="prefetch" href="/assets/js/255.f961cc57.js"><link rel="prefetch" href="/assets/js/256.db863c94.js"><link rel="prefetch" href="/assets/js/257.d4fbd9ba.js"><link rel="prefetch" href="/assets/js/258.e75fd178.js"><link rel="prefetch" href="/assets/js/259.86faea64.js"><link rel="prefetch" href="/assets/js/26.59e81884.js"><link rel="prefetch" href="/assets/js/260.5052982a.js"><link rel="prefetch" href="/assets/js/261.e5150bda.js"><link rel="prefetch" href="/assets/js/262.d38b609d.js"><link rel="prefetch" href="/assets/js/263.6e33b2d1.js"><link rel="prefetch" href="/assets/js/264.bbb4378b.js"><link rel="prefetch" href="/assets/js/265.c10f1cb4.js"><link rel="prefetch" href="/assets/js/266.da1848ad.js"><link rel="prefetch" href="/assets/js/267.669cad05.js"><link rel="prefetch" href="/assets/js/268.849e9b54.js"><link rel="prefetch" href="/assets/js/269.db147d70.js"><link rel="prefetch" href="/assets/js/27.c6d3d68b.js"><link rel="prefetch" href="/assets/js/270.d7a9657a.js"><link rel="prefetch" href="/assets/js/271.7780769c.js"><link rel="prefetch" href="/assets/js/272.87997591.js"><link rel="prefetch" href="/assets/js/273.f97c10b8.js"><link rel="prefetch" href="/assets/js/274.21a985e4.js"><link rel="prefetch" href="/assets/js/275.26455192.js"><link rel="prefetch" href="/assets/js/276.a7c80ed1.js"><link rel="prefetch" href="/assets/js/277.c3387517.js"><link rel="prefetch" href="/assets/js/278.b8efb02b.js"><link rel="prefetch" href="/assets/js/279.28947d1f.js"><link rel="prefetch" href="/assets/js/28.6f255334.js"><link rel="prefetch" href="/assets/js/280.9d7368cd.js"><link rel="prefetch" href="/assets/js/281.536ed57f.js"><link rel="prefetch" href="/assets/js/282.bc9c2104.js"><link rel="prefetch" href="/assets/js/283.be87340c.js"><link rel="prefetch" href="/assets/js/284.85f91dd9.js"><link rel="prefetch" href="/assets/js/285.c997d364.js"><link rel="prefetch" href="/assets/js/29.ff17d212.js"><link rel="prefetch" href="/assets/js/3.939eb1e6.js"><link rel="prefetch" href="/assets/js/30.de8e75fd.js"><link rel="prefetch" href="/assets/js/31.2237e84f.js"><link rel="prefetch" href="/assets/js/32.24ea6ffd.js"><link rel="prefetch" href="/assets/js/33.24c84eee.js"><link rel="prefetch" href="/assets/js/34.7d7c5d30.js"><link rel="prefetch" href="/assets/js/35.e122dd64.js"><link rel="prefetch" href="/assets/js/36.62df0b93.js"><link rel="prefetch" href="/assets/js/37.df57cb81.js"><link rel="prefetch" href="/assets/js/38.3ec5fc5b.js"><link rel="prefetch" href="/assets/js/39.390a3693.js"><link rel="prefetch" href="/assets/js/4.61dbd51c.js"><link rel="prefetch" href="/assets/js/40.55d80750.js"><link rel="prefetch" href="/assets/js/41.2ab0a6ab.js"><link rel="prefetch" href="/assets/js/42.64bcd0f8.js"><link rel="prefetch" href="/assets/js/43.8b758d29.js"><link rel="prefetch" href="/assets/js/44.01f440d3.js"><link rel="prefetch" href="/assets/js/45.215f31f9.js"><link rel="prefetch" href="/assets/js/46.2841afe2.js"><link rel="prefetch" href="/assets/js/47.f898542e.js"><link rel="prefetch" href="/assets/js/48.d71a0437.js"><link rel="prefetch" href="/assets/js/49.09e4d0dc.js"><link rel="prefetch" href="/assets/js/5.8404b813.js"><link rel="prefetch" href="/assets/js/50.ca870680.js"><link rel="prefetch" href="/assets/js/51.76cb8363.js"><link rel="prefetch" href="/assets/js/52.7746a702.js"><link rel="prefetch" href="/assets/js/53.92e1e16d.js"><link rel="prefetch" href="/assets/js/54.565d805f.js"><link rel="prefetch" href="/assets/js/55.cd788d8f.js"><link rel="prefetch" href="/assets/js/56.8f7bf723.js"><link rel="prefetch" href="/assets/js/57.91a0d761.js"><link rel="prefetch" href="/assets/js/58.f642e24a.js"><link rel="prefetch" href="/assets/js/59.2a8e3be6.js"><link rel="prefetch" href="/assets/js/6.9c81633d.js"><link rel="prefetch" href="/assets/js/60.c832cb65.js"><link rel="prefetch" href="/assets/js/61.fe244e14.js"><link rel="prefetch" href="/assets/js/62.a6df731e.js"><link rel="prefetch" href="/assets/js/63.2d9337d6.js"><link rel="prefetch" href="/assets/js/64.175c6cf8.js"><link rel="prefetch" href="/assets/js/65.71d399f4.js"><link rel="prefetch" href="/assets/js/66.c2ff4239.js"><link rel="prefetch" href="/assets/js/67.2520b141.js"><link rel="prefetch" href="/assets/js/68.5e59ea8f.js"><link rel="prefetch" href="/assets/js/69.ef86b576.js"><link rel="prefetch" href="/assets/js/7.0dcde973.js"><link rel="prefetch" href="/assets/js/70.b6a38514.js"><link rel="prefetch" href="/assets/js/71.6891db67.js"><link rel="prefetch" href="/assets/js/72.875d6b6d.js"><link rel="prefetch" href="/assets/js/73.7b2a501e.js"><link rel="prefetch" href="/assets/js/74.58bab29f.js"><link rel="prefetch" href="/assets/js/75.07cbc52d.js"><link rel="prefetch" href="/assets/js/76.4abced12.js"><link rel="prefetch" href="/assets/js/77.7d6f96ed.js"><link rel="prefetch" href="/assets/js/78.bcf6d0aa.js"><link rel="prefetch" href="/assets/js/79.518f153c.js"><link rel="prefetch" href="/assets/js/80.28a5affe.js"><link rel="prefetch" href="/assets/js/81.b454a9d9.js"><link rel="prefetch" href="/assets/js/82.d1cece4c.js"><link rel="prefetch" href="/assets/js/83.206656f4.js"><link rel="prefetch" href="/assets/js/84.f148ca2a.js"><link rel="prefetch" href="/assets/js/85.49862eae.js"><link rel="prefetch" href="/assets/js/86.1be96c00.js"><link rel="prefetch" href="/assets/js/87.29271ed2.js"><link rel="prefetch" href="/assets/js/88.f0267ae8.js"><link rel="prefetch" href="/assets/js/89.74e42f1e.js"><link rel="prefetch" href="/assets/js/90.c2d94a52.js"><link rel="prefetch" href="/assets/js/91.8567aa93.js"><link rel="prefetch" href="/assets/js/92.44b8dd08.js"><link rel="prefetch" href="/assets/js/93.4d546387.js"><link rel="prefetch" href="/assets/js/94.6d4c5937.js"><link rel="prefetch" href="/assets/js/95.67ba4aea.js"><link rel="prefetch" href="/assets/js/96.5137f1ee.js"><link rel="prefetch" href="/assets/js/97.5861f7e7.js"><link rel="prefetch" href="/assets/js/98.80a7594c.js"><link rel="prefetch" href="/assets/js/99.4236959e.js"><link rel="prefetch" href="/assets/js/vendors~docsearch.6fed1ae2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c5e7512f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">GoldNotes</span></a> <div class="links"><nav class="nav-links can-hide"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li><li class="dropdown-item"><!----> <a href="/ai/onnx/" class="nav-link">
+  学习ONNX
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link router-link-active">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="理财基础" class="dropdown-title"><span class="title">理财基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="理财基础" class="mobile-dropdown-title"><span class="title">理财基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/finance/evaluate.html" class="nav-link">
+  评测指标
+</a></li></ul></div></div> <!----></nav> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="计算机视觉" class="dropdown-title"><span class="title">计算机视觉</span> <span class="arrow down"></span></button> <button type="button" aria-label="计算机视觉" class="mobile-dropdown-title"><span class="title">计算机视觉</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/cv/dip/" class="nav-link">
+  学习图像处理
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection/" class="nav-link">
+  学习目标检测
+</a></li><li class="dropdown-item"><!----> <a href="/cv/segmentation/" class="nav-link">
+  学习语义分割
+</a></li><li class="dropdown-item"><!----> <a href="/cv/ocr/" class="nav-link">
+  学习OCR
+</a></li><li class="dropdown-item"><!----> <a href="/cv/human-pose/" class="nav-link">
+  学习姿态估计
+</a></li><li class="dropdown-item"><!----> <a href="/cv/gan/" class="nav-link">
+  学习生成对抗网络
+</a></li><li class="dropdown-item"><!----> <a href="/cv/datasets/" class="nav-link">
+  学习开源数据
+</a></li><li class="dropdown-item"><!----> <a href="/cv/tracking/" class="nav-link">
+  学习目标追踪
+</a></li><li class="dropdown-item"><!----> <a href="/cv/detection3d/" class="nav-link">
+  学习3D目标检测
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="算法框架" class="dropdown-title"><span class="title">算法框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="算法框架" class="mobile-dropdown-title"><span class="title">算法框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ai/opencv/" class="nav-link">
+  学习OpenCV
+</a></li><li class="dropdown-item"><!----> <a href="/ai/torch/" class="nav-link">
+  学习pytorch
+</a></li><li class="dropdown-item"><!----> <a href="/ai/cuda/" class="nav-link">
+  学习CUDA
+</a></li><li class="dropdown-item"><!----> <a href="/ai/tensorflow/" class="nav-link">
+  学习tensorflow
+</a></li><li class="dropdown-item"><!----> <a href="/ai/onnx/" class="nav-link">
+  学习ONNX
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="机器学习" class="dropdown-title"><span class="title">机器学习</span> <span class="arrow down"></span></button> <button type="button" aria-label="机器学习" class="mobile-dropdown-title"><span class="title">机器学习</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/ml/gnn/" class="nav-link">
+  学习图算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/singleclass/" class="nav-link">
+  学习单分类算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/oneshot/" class="nav-link">
+  学习小样本算法
+</a></li><li class="dropdown-item"><!----> <a href="/ml/common/" class="nav-link">
+  学习常用算法
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="操作系统" class="dropdown-title"><span class="title">操作系统</span> <span class="arrow down"></span></button> <button type="button" aria-label="操作系统" class="mobile-dropdown-title"><span class="title">操作系统</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/system/" class="nav-link">
+  学习操作系统
+</a></li><li class="dropdown-item"><!----> <a href="/system/linux/" class="nav-link">
+  学习linux
+</a></li><li class="dropdown-item"><!----> <a href="/system/ros/" class="nav-link">
+  学习ROS
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="编程语言" class="dropdown-title"><span class="title">编程语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="编程语言" class="mobile-dropdown-title"><span class="title">编程语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/langs/se/" class="nav-link">
+  学习软件开发
+</a></li><li class="dropdown-item"><!----> <a href="/langs/python/" class="nav-link">
+  学习Python
+</a></li><li class="dropdown-item"><!----> <a href="/langs/cpp/" class="nav-link">
+  学习C++
+</a></li><li class="dropdown-item"><!----> <a href="/langs/yaml/" class="nav-link">
+  学习yaml
+</a></li><li class="dropdown-item"><!----> <a href="/langs/sqlite/" class="nav-link">
+  学习sql
+</a></li><li class="dropdown-item"><!----> <a href="/langs/shell/" class="nav-link router-link-active">
+  学习shell
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="IT工具" class="dropdown-title"><span class="title">IT工具</span> <span class="arrow down"></span></button> <button type="button" aria-label="IT工具" class="mobile-dropdown-title"><span class="title">IT工具</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/tools/git/" class="nav-link">
+  学习GIT
+</a></li><li class="dropdown-item"><!----> <a href="/tools/docker/" class="nav-link">
+  学习Docker
+</a></li><li class="dropdown-item"><!----> <a href="/tools/gimp/" class="nav-link">
+  学习GIMP
+</a></li><li class="dropdown-item"><!----> <a href="/tools/vscode/" class="nav-link">
+  学习VSCode
+</a></li><li class="dropdown-item"><!----> <a href="/tools/hexo/" class="nav-link">
+  学习hexo
+</a></li><li class="dropdown-item"><!----> <a href="/tools/others/" class="nav-link">
+  学习常用工具
+</a></li><li class="dropdown-item"><!----> <a href="/tools/leetcodes/" class="nav-link">
+  基础算法刷题
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="数学知识" class="dropdown-title"><span class="title">数学知识</span> <span class="arrow down"></span></button> <button type="button" aria-label="数学知识" class="mobile-dropdown-title"><span class="title">数学知识</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/math/statistics/" class="nav-link">
+  学习概率统计
+</a></li><li class="dropdown-item"><!----> <a href="/math/linear-algebra/" class="nav-link">
+  学习线性代数
+</a></li><li class="dropdown-item"><!----> <a href="/math/calculus/" class="nav-link">
+  学习高等数学
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="理财基础" class="dropdown-title"><span class="title">理财基础</span> <span class="arrow down"></span></button> <button type="button" aria-label="理财基础" class="mobile-dropdown-title"><span class="title">理财基础</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/finance/evaluate.html" class="nav-link">
+  评测指标
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>学习shell</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/langs/shell/" aria-current="page" class="sidebar-link">走进shell</a></li><li><a href="/langs/shell/basic-shell.html" class="sidebar-link">常用shell命令</a></li><li><a href="/langs/shell/disk.html" class="sidebar-link">磁盘管理shell命令</a></li><li><a href="/langs/shell/cmd-type.html" class="sidebar-link">shell的内建命令与外部命令</a></li><li><a href="/langs/shell/env.html" class="sidebar-link">shell中的环境变量</a></li><li><a href="/langs/shell/priviledge.html" class="sidebar-link">linux文件权限</a></li><li><a href="/langs/shell/editor-vim.html" class="sidebar-link">Shell编辑工具VIM使用</a></li><li><a href="/langs/shell/new-shell-file.html" class="sidebar-link">初识shell脚本</a></li><li><a href="/langs/shell/flow-control.html" class="sidebar-link">shell中的流控制if语句</a></li><li><a href="/langs/shell/loops.html" class="sidebar-link">shell循环语句for命令</a></li><li><a href="/langs/shell/loops-while.html" class="sidebar-link">shell循环while命令</a></li><li><a href="/langs/shell/loops-until.html" class="sidebar-link">shell 循环的until命令</a></li><li><a href="/langs/shell/loops-break.html" class="sidebar-link">shell循环跳出的break/continue命令</a></li><li><a href="/langs/shell/cmd-args.html" class="sidebar-link">bash shell命令行参数</a></li><li><a href="/langs/shell/cmd-specific-args.html" class="sidebar-link">bash shell 特殊参数变量</a></li><li><a href="/langs/shell/shift.html" class="sidebar-link">Linux的shift命令</a></li><li><a href="/langs/shell/cmd-options.html" class="sidebar-link">linux shell 命令行选项</a></li><li><a href="/langs/shell/read.html" class="sidebar-link">Linux Shell获取用户输入</a></li><li><a href="/langs/shell/display.html" class="sidebar-link">Linux Shell输入输出流管理</a></li><li><a href="/langs/shell/mktemp.html" class="sidebar-link">Linux Shell创建临时文件</a></li><li><a href="/langs/shell/process.html" aria-current="page" class="active sidebar-link">Linux Shell任务控制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/langs/shell/process.html#_1-信号" class="sidebar-link">1)信号</a></li><li class="sidebar-sub-header"><a href="/langs/shell/process.html#_2-在后台运行脚本" class="sidebar-link">2)在后台运行脚本</a></li><li class="sidebar-sub-header"><a href="/langs/shell/process.html#_3-作业控制" class="sidebar-link">3)作业控制</a></li><li class="sidebar-sub-header"><a href="/langs/shell/process.html#_4-调度优先级" class="sidebar-link">4)调度优先级</a></li><li class="sidebar-sub-header"><a href="/langs/shell/process.html#_5-定时运行作业" class="sidebar-link">5)定时运行作业</a></li></ul></li><li><a href="/langs/shell/function.html" class="sidebar-link">Linux Shell自定义函数</a></li><li><a href="/langs/shell/ui-shell.html" class="sidebar-link">图形化桌面环境的shell文本菜单</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="linux-shell任务控制"><a href="#linux-shell任务控制" class="header-anchor">#</a> Linux Shell任务控制</h1> <p>通常情况下运行脚本的方式就是以实时模式在命令行界面上直接运行，除此之外还有很多其他的运行脚本的方式，如后台运行，定时运行等等。除运行方式外，还可以对脚本程序的运行进行控制，包括向脚本发送信号、修改脚本的优先级以及在脚本运行时从暂停切换到运行模式。</p> <h2 id="_1-信号"><a href="#_1-信号" class="header-anchor">#</a> 1)信号</h2> <p><code>Linux</code>利用信号与运行在系统中的进程进行通信，可以通过对脚本进行编程，使其在收到特定信号时执行特定命令。</p> <table><thead><tr><th style="text-align:left;">信号</th> <th style="text-align:left;">值</th> <th style="text-align:left;">描述</th></tr></thead> <tbody><tr><td style="text-align:left;">1</td> <td style="text-align:left;">SIGHUP</td> <td style="text-align:left;">挂起进程</td></tr> <tr><td style="text-align:left;">2</td> <td style="text-align:left;">SIGINT</td> <td style="text-align:left;">终止进程</td></tr> <tr><td style="text-align:left;">3</td> <td style="text-align:left;">SIGQUIT</td> <td style="text-align:left;">停止进程</td></tr> <tr><td style="text-align:left;">9</td> <td style="text-align:left;">SIGKILL</td> <td style="text-align:left;">无条件终止进程</td></tr> <tr><td style="text-align:left;">15</td> <td style="text-align:left;">SIGTERM</td> <td style="text-align:left;">尽可能终止进程</td></tr> <tr><td style="text-align:left;">17</td> <td style="text-align:left;">SIGSTOP</td> <td style="text-align:left;">无条件停止进程，但不是终止进程</td></tr> <tr><td style="text-align:left;">18</td> <td style="text-align:left;">SIGTSTP</td> <td style="text-align:left;">停止或暂停进程，但不终止进程</td></tr> <tr><td style="text-align:left;">19</td> <td style="text-align:left;">SIGCONT</td> <td style="text-align:left;">继续运行停止的进程</td></tr></tbody></table> <p>默认情况下，交互式<code>shell</code>终端本身的进程会忽略收到的任何 <code>SIGQUIT (3)</code> 和 <code>SIGTERM (5)</code> 信号，因此其不会被意外终止。</p> <p>如果<code>bash shell</code>收到了 <code>SIGHUP</code> 信号，比如当要离开一个交互式<code>shell</code>时，它就会退出。但在退出之前，它会将 <code>SIGHUP</code> 信号传给所有由该<code>shell</code>所启动的进程。</p> <h3 id="通过键盘生成信号"><a href="#通过键盘生成信号" class="header-anchor">#</a> 通过键盘生成信号</h3> <p><strong><code>Ctrl+C</code>组合键会生成 <code>SIGINT</code> 信号，并将其发送给当前在<code>shell</code>中运行的所有进程</strong>。</p> <p><code>Ctrl+Z</code>组合键会生成一个 <code>SIGTSTP</code> 信号，停止<code>shell</code>中运行的任何进程。这样可以在进程运行期间暂停进程，而无需终止它。这样可以在不终止进程的情况下使用户深入脚本内部一窥究竟。</p> <p>停止进程会让程序继续保留在内存中，并能从上次停止的位置继续运行。</p> <p><strong>要想启动停止的进程可以使用<code>fg</code>或<code>bg</code>在前台和后台启动</strong>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">sleep</span> <span class="token number">100</span>
+<span class="token comment"># ^Z</span>
+<span class="token comment"># [1]+  已停止               sleep 100</span>
+</code></pre></div><p>方括号中的数字是<code>shell</code>分配的作业号 <code>（job number）</code>。</p> <p>可以用 <code>ps</code> 命令来查看已停止的作业。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">ps</span> <span class="token parameter variable">-l</span>
+<span class="token comment"># F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span>
+<span class="token comment"># 0 T  1001  116014  113239  0  80   0 -  2791 do_sig pts/0    00:00:00 sleep</span>
+</code></pre></div><p>在 <code>S</code> 列中（进程状态）， <code>ps</code> 命令将已停止作业的状态为显示为 <code>T</code> 。这说明命令要么被跟踪，要么被停止了。</p> <p>在有已停止作业存在的情况下退出<code>shell</code>会终止已停止作业。</p> <h3 id="trap-命令捕获信号"><a href="#trap-命令捕获信号" class="header-anchor">#</a> trap 命令捕获信号</h3> <p><code>trap</code>命令允许用户来指定<code>shell</code>脚本要监视并从<code>shell</code>中拦截的<code>Linux</code>信号。当脚本收到了 <code>trap</code> 命令中列出的信号，会执行用户指定的操作。</p> <p><code>trap</code>命令的格式：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token builtin class-name">trap</span> commands signals
+</code></pre></div><p>示例，</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">trap</span> <span class="token string">&quot;echo 'Ctrl-C Pressed'&quot;</span> SIGINT
+
+<span class="token builtin class-name">echo</span> This is a <span class="token builtin class-name">test</span>
+
+<span class="token assign-left variable">c</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token variable">$c</span> <span class="token parameter variable">-le</span> <span class="token number">5</span> <span class="token punctuation">]</span>
+<span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;Loop #<span class="token variable">$c</span>&quot;</span>
+    <span class="token function">sleep</span> <span class="token number">1</span>
+    <span class="token assign-left variable">c</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">$c</span> + <span class="token number">1</span> <span class="token punctuation">]</span>
+<span class="token keyword">done</span>
+</code></pre></div><p>执行，</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./test.sh 
+<span class="token comment"># This is a test</span>
+<span class="token comment"># Loop #1</span>
+<span class="token comment"># Loop #2</span>
+<span class="token comment"># ^CCtrl-C Pressed</span>
+<span class="token comment"># Loop #3</span>
+<span class="token comment"># Loop #4</span>
+<span class="token comment"># Loop #5</span>
+</code></pre></div><p>上面脚本中<code>trap</code> 命令会在每次检测到 <code>SIGINT</code> 信号时捕获这些信号，阻止用户用<code>bash shell</code>组合键<code>Ctrl+C</code>来停止程序。</p> <p><strong>除了在<code>shell</code>脚本中捕获中断信号，也可以在<code>shell</code>脚本退出时捕获退出信号<code>EXIT</code></strong>。以在<code>shell</code>完成任务时执行特定的命令。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">trap</span> <span class="token string">&quot;echo 'Running Finished.'&quot;</span> EXIT
+
+<span class="token builtin class-name">echo</span> This is a <span class="token builtin class-name">test</span>
+
+<span class="token assign-left variable">c</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token variable">$c</span> <span class="token parameter variable">-le</span> <span class="token number">5</span> <span class="token punctuation">]</span>
+<span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;Loop #<span class="token variable">$c</span>&quot;</span>
+    <span class="token function">sleep</span> <span class="token number">1</span>
+    <span class="token assign-left variable">c</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">$c</span> + <span class="token number">1</span> <span class="token punctuation">]</span>
+<span class="token keyword">done</span>
+</code></pre></div><p>执行，</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./test.sh 
+<span class="token comment"># This is a test</span>
+<span class="token comment"># Loop #1</span>
+<span class="token comment"># Loop #2</span>
+<span class="token comment"># Loop #3</span>
+<span class="token comment"># Loop #4</span>
+<span class="token comment"># Loop #5</span>
+<span class="token comment"># Running Finished.</span>
+</code></pre></div><p><strong>要修改移除捕获，在脚本中的不同位置进行不同的捕获处理，只需重新使用带有新选项的 <code>trap</code> 命令</strong>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token builtin class-name">trap</span> <span class="token string">&quot;echo 'Caught SIGINT'&quot;</span> SIGINT
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;This is first caughtion of SIGINT&quot;</span>
+
+<span class="token assign-left variable">c</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token variable">$c</span> <span class="token parameter variable">-le</span> <span class="token number">3</span> <span class="token punctuation">]</span>
+<span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">&quot;Loop #<span class="token variable">$c</span>&quot;</span>
+    <span class="token function">sleep</span> <span class="token number">1</span>
+    <span class="token assign-left variable">c</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">$c</span> + <span class="token number">1</span> <span class="token punctuation">]</span>
+<span class="token keyword">done</span>
+
+<span class="token builtin class-name">trap</span> <span class="token string">&quot;echo 'Redefine SIGINT '&quot;</span> SIGINT
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;This is Mutated caughtion of SIGINT&quot;</span>
+<span class="token function">sleep</span> <span class="token number">10</span>
+</code></pre></div><p>执行，</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./test.sh
+<span class="token comment"># This is first caughtion of SIGINT</span>
+<span class="token comment"># Loop #1</span>
+<span class="token comment"># ^CCaught SIGINT</span>
+<span class="token comment"># Loop #2</span>
+<span class="token comment"># Loop #3</span>
+<span class="token comment"># This is Mutated caughtion of SIGINT</span>
+<span class="token comment"># ^CRedefine SIGINT</span>
+</code></pre></div><p>修改了信号捕获之后，脚本处理信号的方式就会发生变化。如果一个信号是在捕获被修改前接收到的，那么脚本仍然会根据最初的 <code>trap</code> 命令进行处理。</p> <p><strong>想删除已设置好的捕获，只需要在 <code>trap</code> 命令与希望恢复默认行为的信号列表之间加上两个破折号即可</strong>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token builtin class-name">trap</span> -- SIGINT
+</code></pre></div><h2 id="_2-在后台运行脚本"><a href="#_2-在后台运行脚本" class="header-anchor">#</a> 2)在后台运行脚本</h2> <p>直接在命令行界面运行<code>shell</code>脚本，脚本在运行时，没法在终端会话里做别的事情。</p> <p>在用 <code>ps</code> 命令时，会看到运行在<code>Linux</code>系统上的一系列不同进程。这些进程显然都不是运行在当前的终端显示器上的，这种模式称为在后台运行进程。在后台模式中，进程运行时不会和终端会话上的 <code>STDIN</code> 、 <code>STDOUT</code> 以及 <code>STDERR</code> 关联。</p> <h3 id="命令后加-符"><a href="#命令后加-符" class="header-anchor">#</a> 命令后加 &amp; 符</h3> <p>前面介绍过，<strong>以后台模式运行<code>shell</code>脚本，只要在命令后加个 &amp; 符就行</strong>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./test.sh <span class="token operator">&amp;</span>
+<span class="token comment"># [1] 118347</span>
+</code></pre></div><p>方括号中的数字是<code>shell</code>分配给后台进程的作业号。下一个数是<code>Linux</code>系统分配给进程的进程<code>ID（PID）</code>。当后台进程结束时，它会在终端上显示出一条消息：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># [1]+  已完成               ./test.sh</span>
+</code></pre></div><p><strong>通过<code>./test.sh &amp;</code>命令将脚本放在后台运行还存在两个问题，一个是当前<code>bash shell</code>终端关闭时后台运行中的进程仍然会被终止，第二个时放入后台的脚本输出仍然会显示在显示器上，会与新输入命令的输入混淆在一起</strong>。</p> <p>运行多个后台作业时，通过 <code>ps</code> 命令，可以看到<br>
+所有脚本处于运行状态。</p> <div class="language-sh extra-class"><pre class="language-sh"><code> ./test.sh <span class="token operator">&amp;</span>
+ ./test.sh <span class="token operator">&amp;</span>
+</code></pre></div><div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">ps</span>
+<span class="token comment"># F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span>
+<span class="token comment"># 0 S  1001  118703  118697  0  80   0 -  3178 do_wai pts/3    00:00:00 test.sh</span>
+<span class="token comment"># 0 S  1001  118707  118703  0  80   0 -  2791 hrtime pts/3    00:00:00 sleep</span>
+<span class="token comment"># 0 S  1001  118714  118697  0  80   0 -  3178 do_wai pts/3    00:00:00 test.sh</span>
+<span class="token comment"># 0 S  1001  118718  118714  0  80   0 -  2791 hrtime pts/3    00:00:00 sleep</span>
+</code></pre></div><h3 id="使用nohub命令"><a href="#使用nohub命令" class="header-anchor">#</a> 使用nohub命令</h3> <p>当需要在终端会话中启动<code>shell</code>脚本，然后让脚本一直以后台模式运行到结束，且终端会话退出仍不影响脚本运行时，前面介绍的<code>&amp;</code>符号的方式就不适合了，这时需要使用<code>nohub</code>命令。</p> <p><code>nohup</code> 命令运行的后台任务会阻断所有发送给该进程的 <code>SIGHUP</code>信号，这可以在退出终端会话时阻止进程退出。</p> <p><code>nohup</code> 命令的格式:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">nohup</span> ./test.sh <span class="token operator">&amp;</span>
+<span class="token comment"># [1] 119226</span>
+<span class="token comment"># nohup: 忽略输入并把输出追加到'nohup.out'</span>
+</code></pre></div><p>由于 <code>nohup</code> 命令会解除终端与进程的关联，进程也就不再同 <code>STDOUT</code> 和 <code>STDERR</code> 联系在一起。<br>
+为了保存该命令产生的输出， <code>nohup</code> 命令会自动将 <code>STDOUT</code> 和 <code>STDERR</code> 的消息重定向到一个名为<br> <code>nohup.out</code>的文件中。<strong>值得注意的是，当在同个目录同时启动多个<code>nohub</code>命令时，会输出到同一个<code>nohub.out</code>文件中</strong>。</p> <h2 id="_3-作业控制"><a href="#_3-作业控制" class="header-anchor">#</a> 3)作业控制</h2> <p><code>jobs</code> 命令可以查看分配给<code>shell</code>的作业。</p> <p>通过<code>test.sh</code>启动两个作业，</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ ./test.sh
+<span class="token comment"># This is first caughtion of SIGINT</span>
+<span class="token comment"># Loop #1</span>
+<span class="token comment"># ^Z</span>
+<span class="token comment"># [1]+  已停止</span>
+$ ./test.sh <span class="token operator">&gt;</span> test.out <span class="token operator">&amp;</span>
+<span class="token comment"># [2] 119480</span>
+$ <span class="token function">jobs</span>
+<span class="token comment"># [1]+  已停止               ./test.sh</span>
+<span class="token comment"># [2]-  运行中               ./test.sh &gt; test.out &amp;</span>
+</code></pre></div><p>要想查看作业的<code>PID</code>，可以在 <code>jobs</code> 命令中加入 <code>-l</code> 选项。<strong><code>jobs</code> 命令输出中的加号和减号的含义是带加号的作业会被当做默认作业，在使用作业控制命令时，如果未在命令行指定任何作业号，该作业会被当成作业控制命令的操作对象</strong>。当前的默认作业完成处理后，带减号的作业成为下一个默认作业。任何时候都只有一个带加<br>
+号的作业和一个带减号的作业。在前面介绍的重新启动停止的作业的命令<code>fg/bg</code>不带参数时，启动的就是<code>+</code>号对应的作业。</p> <p>更多<code>jobs</code>命令的选项参数，可以通过命令<code>jobs --help</code>查看。</p> <h2 id="_4-调度优先级"><a href="#_4-调度优先级" class="header-anchor">#</a> 4)调度优先级</h2> <p>调度优先级决定了内核分配给进程的CPU时间。在<code>Linux</code>系统中，由<code>shell</code>启动的所有进程的调度优先级默认都是相同的，都是<code>0</code>。调度优先级是个整数值，从<code>-20</code>（最高优先级）到<code>+19</code>（最低优先级）。</p> <p>要改变一个<code>shell</code>脚本的优先级，可以通过 <code>nice</code> 命令做到。</p> <h3 id="nice命令"><a href="#nice命令" class="header-anchor">#</a> nice命令</h3> <p><code>nice</code> 命令允许你设置命令启动时的调度优先级。要让命令以更低的优先级运行，只要用 <code>nice</code>的 <code>-n</code> 命令行来指定新的优先级即可。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">nice</span> <span class="token parameter variable">-n</span> <span class="token number">10</span> ./test.sh <span class="token operator">&gt;</span> test.out <span class="token operator">&amp;</span>
+<span class="token comment"># [2] 120413</span>
+$ <span class="token function">ps</span> <span class="token parameter variable">-p</span> <span class="token number">120413</span> <span class="token parameter variable">-o</span> pid,ppid,ni,cmd
+<span class="token comment">#     PID    PPID  NI CMD</span>
+<span class="token comment">#  120413  118697  10 /bin/bash ./test.sh</span>
+</code></pre></div><p>通过<code>ps</code>命令可以看到调度优先级已经被调整到了<code>10</code>。</p> <p><strong><code>nice</code> 命令阻止普通系统用户来提高命令的优先级</strong>，需要使用<code>root</code>权限。</p> <h3 id="renice-命令"><a href="#renice-命令" class="header-anchor">#</a> renice 命令</h3> <p><code>renice</code>命令用来改变系统上已运行命令的优先级。通过指定运行进程的PID来改变它的优先级。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">renice</span> <span class="token parameter variable">-n</span> <span class="token number">10</span> <span class="token parameter variable">-p</span> <span class="token number">120756</span>
+<span class="token comment"># 120756 (process ID) 旧优先级为 0，新优先级为 10</span>
+</code></pre></div><h2 id="_5-定时运行作业"><a href="#_5-定时运行作业" class="header-anchor">#</a> 5)定时运行作业</h2> <p><code>Linux</code>系统提供了多个在预选时间运行脚本的方法： <code>at</code> 命令和 <code>cron</code> 表。</p> <h3 id="at"><a href="#at" class="header-anchor">#</a> at</h3> <p><strong><code>at</code> 命令允许指定<code>Linux</code>系统何时运行脚本，相当于是预约执行任务</strong>。</p> <p><strong><code>at</code> 的守护进程 <code>atd</code> 会以后台模式运行，检查作业队列来运行作业。大多数<code>Linux</code>发行版会在启动时运行此守护进程</strong>。</p> <p><code>atd</code> 守护进程会检查系统上的一个特殊目录（通常位于<code>/var/spool/at</code>）来获取用 <code>at</code> 命令提交的作业。默认情况下， <code>atd</code> 守护进程会每60秒检查一下这个目录。有作业时， <code>atd</code> 守护进程会检查作业设置运行的时间。如果时间跟当前时间匹配， atd` 守护进程就会运行此作业。</p> <p><code>at</code> 命令的基本格式:</p> <div class="language-sh extra-class"><pre class="language-sh"><code>at <span class="token punctuation">[</span>-f filename<span class="token punctuation">]</span> <span class="token function">time</span>
+</code></pre></div><ul><li><code>-f</code> 参数来指定用于读取命令（脚本文件）的文件名。</li> <li><code>time</code> 参数指定了Linux系统何时运行该作业。</li></ul> <p><code>at</code> 命令能识别多种不同的时间格式:</p> <ul><li>标准的小时和分钟格式，比如<code>22:15</code></li> <li><code>AM/PM</code>指示符，比如<code>10:15 PM</code></li> <li>特定可命名时间，比如<code>now</code>、<code>noon</code>、<code>midnight</code>或者<code>teatime（4 PM）</code></li> <li>通过不同的日期格式指定特定的日期
+<ul><li>标准日期格式，比如MMDDYY、MM/DD/YY或DD.MM.YY</li> <li>文本日期，比如Jul 4或Dec 25，加不加年份均可</li> <li>指定时间增量:当前时间+25 min。</li></ul></li></ul> <div class="language-sh extra-class"><pre class="language-sh"><code>$ at <span class="token parameter variable">-f</span> test.sh  <span class="token number">21</span>:23
+<span class="token comment"># warning: commands will be executed using /bin/sh</span>
+<span class="token comment"># job 3 at Mon Jan  8 21:23:00 2024</span>
+</code></pre></div><p><strong>作业队列的字母排序越高，作业运行的优先级就越低，<code>nice</code>值更高</strong>。默认情况下， <code>at</code> 的作业会被提交到 <code>a</code> 作业队列。如果想以更高优先级运行作业，可以用 <code>-q</code> 参数指定不同的队列字母。</p> <p><strong>在使用 <code>at</code> 命令时，最好在脚本中对 <code>STDOUT</code> 和 <code>STDERR</code> 进行重定向</strong>。</p> <p><strong><code>atq</code> 命令可以查看系统中有哪些作业在等待</strong>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ atq
+<span class="token comment"># 1	Mon Jan  8 21:17:00 2024 = rob</span>
+<span class="token comment"># 6	Tue Jan  9 20:24:00 2024 a rob</span>
+<span class="token comment"># 3	Mon Jan  8 21:23:00 2024 = rob</span>
+<span class="token comment"># 4	Tue Jan  9 20:24:00 2024 a rob</span>
+<span class="token comment"># 5	Tue Jan  9 20:24:00 2024 a rob</span>
+</code></pre></div><p>可以用 <code>atrm</code> 命令来删除等待中的作业。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ atrm <span class="token number">6</span>
+$ atq
+<span class="token comment"># 1	Mon Jan  8 21:17:00 2024 = rob</span>
+<span class="token comment"># 3	Mon Jan  8 21:23:00 2024 = rob</span>
+<span class="token comment"># 4	Tue Jan  9 20:24:00 2024 a rob</span>
+<span class="token comment"># 5	Tue Jan  9 20:24:00 2024 a rob</span>
+</code></pre></div><h3 id="定期执行命令"><a href="#定期执行命令" class="header-anchor">#</a> 定期执行命令</h3> <p><code>at</code> 命令可以在预设时间安排脚本执行，但如果需要脚本在每天的同一时间运行或是每周一次、每月一次就需要使用新方法。</p> <p><code>Linux</code>系统使用<code>cron</code>程序来安排要定期执行的作业。 <code>cron</code>程序会在后台运行并检查<code>cron</code>时间表，以获知已安排执行的作业。</p> <p>可以使用<code>crontab -e</code>来编辑<code>cron</code>时间表：</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">crontab</span> <span class="token parameter variable">-e</span>
+<span class="token comment"># GNU nano 4.8                                 /tmp/crontab.hABXZo/crontab                                         </span>
+<span class="token comment"># # Edit this file to introduce tasks to be run by cron.</span>
+<span class="token comment"># # </span>
+<span class="token comment"># # Each task to run has to be defined through a single line</span>
+<span class="token comment"># # indicating with different fields when the task will be run</span>
+<span class="token comment"># # and what command to run for the task</span>
+
+</code></pre></div><p>表中每一行表示一个定期执行的任务，其格式为：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># m h  dom mon dow   command</span>
+</code></pre></div><p><code>m</code>表示<code>分钟，</code>h<code>表示小时，</code>dom<code>表示几号，</code>mon<code>表示月份，</code>dow<code>表示星期几，</code>*`表示任意日期。</p> <p>分别是：<code>minute (m), hour (h), day of month (dom), month (mon),# and day of week (dow) or use '*' in these fields (for 'any')</code></p> <p>示例：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/</span>
+</code></pre></div><p>表示每周一凌晨5点将<code>home.tgz</code>解压到<code>/home</code>路径中。</p> <p>每月最后一天执行的任务设置方式，</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token comment"># 00 12 * * * if [ ` date +%d -d tomorrow ` = 01 ] ; then ; command</span>
+</code></pre></div><p><strong>列出<code>crontab</code>中的任务</strong>：</p> <div class="language-sh extra-class"><pre class="language-sh"><code><span class="token function">crontab</span> <span class="token parameter variable">-l</span>
+</code></pre></div><p><strong>如果待执行的脚本对精确的执行时间要求不高，用预配置的cron脚本目录会更方便</strong>。在<code>/etc/</code>路径下有4个基本目录：<code>cron.hourly、daily、monthly</code>和<code>weekly</code>。譬如，如果脚本需要每天运行一次，只要将脚本复制到<code>daily</code>目录，<code>cron</code>就会每天执行它。</p> <p><strong><code>cron</code>程序的唯一问题是它假定Linux系统是7×24小时运行的，如果系统存在关机重启，有可能会错误定时任务，处理这种情况最好是能在开机时检查是否有错过的定时任务，而<code>cron</code>并不会去检查，很多<code>Linux</code>发行版还包含了<code>anacron</code>程序可以解决这个问题</strong>。</p> <p><code>anacron</code>程序只会处理位于<code>cron</code>目录的程序，比如<code>/etc/cron.monthly</code>。它用时间戳来决定作业是否在正确的计划间隔内运行了。每个<code>cron</code>目录都有个时间戳文件，该文件位于<code>/var/spool/anacron</code>。</p> <div class="language-sh extra-class"><pre class="language-sh"><code>$ <span class="token function">sudo</span> <span class="token function">cat</span> /var/spool/anacron/cron.monthly
+<span class="token comment"># 20240104</span>
+</code></pre></div><h3 id="reference"><a href="#reference" class="header-anchor">#</a> reference</h3> <blockquote><p>1.<a href="">《Linux命令行与shell脚本编程大全》</a></p></blockquote> <div class="adswrapper"><!----> <div style="display:none;"></div> <ins data-ad-layout="in-article" data-ad-format="fluid" data-ad-client="ca-pub-8685746128991385" data-ad-slot="2974191661" data-ad-test="" data-ad-region="" class="adsbygoogle" style="display:block;"></ins> <!----> <div style="display:none;"> (adsbygoogle = window.adsbygoogle || []).push({}); </div></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/langs/shell/mktemp.html" class="prev">
+        Linux Shell创建临时文件
+      </a></span> <span class="next"><a href="/langs/shell/function.html">
+        Linux Shell自定义函数
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.4fb1e7ac.js" defer></script><script src="/assets/js/2.441eb26f.js" defer></script><script src="/assets/js/1.1a1c696e.js" defer></script><script src="/assets/js/200.88a1d097.js" defer></script>
+  </body>
+</html>
